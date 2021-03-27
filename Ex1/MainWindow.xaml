@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ex1"
         mc:Ignorable="d"
+        xmlns:Controls="clr-namespace:Ex1.controls"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Controls:Joystick x:Name="Joystick"/>
+        <Slider x:Name="SizeSlider" HorizontalAlignment="Left" Margin="253,247,0,0" VerticalAlignment="Top" Width="189" Maximum="1" Minimum="0" Value="{Binding ElementName=Joystick, Path=Joystick_Size, Mode=OneWayToSource}"/>
+        <Slider x:Name="AngleSlider" HorizontalAlignment="Left" Margin="253,282,0,0" VerticalAlignment="Top" Width="189" Maximum="360" Minimum="0" Value="{Binding ElementName=Joystick, Path=Joystick_Angle, Mode=OneWayToSource}"/>
     </Grid>
 </Window>
