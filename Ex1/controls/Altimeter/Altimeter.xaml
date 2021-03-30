@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Ex1.controls.Altimeter.Altimeter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ex1.controls.Altimeter"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="#FFC1C0C0">
+        <Ellipse Fill="#FF2D2D30" HorizontalAlignment="Left" Height="190" Margin="291,117,0,0" Stroke="Black" VerticalAlignment="Top" Width="190"/>
+        <Path Stretch="Fill" Fill="#FFF3F3F3" 
+          Data="M 
+              0,110 100,110
+              70,90 80,90 
+              120,120 
+              80,150 70,150
+              100,130 0,130 
+              Z"
+          HorizontalAlignment="Right"  Width="85" Height="30" Margin="0,202.111,324.379,217.888"
+          RenderTransformOrigin=".5,.5" Panel.ZIndex="1"/>
+    </Grid>
+</UserControl>

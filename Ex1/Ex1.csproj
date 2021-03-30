@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="controls\Altimeter\Altimeter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="controls\Joystick\Joystick.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -67,12 +71,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="controls\Altimeter\Altimeter.xaml.cs">
+      <DependentUpon>Altimeter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="controls\Joystick\Joystick.xaml.cs">
       <DependentUpon>Joystick.xaml</DependentUpon>
     </Compile>
     <Compile Include="controls\Joystick\JoystickModel.cs" />
     <Compile Include="controls\Joystick\JoystickViewModel.cs" />
     <Compile Include="controls\ViewModel.cs" />
+    <Compile Include="DataFileReader.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
