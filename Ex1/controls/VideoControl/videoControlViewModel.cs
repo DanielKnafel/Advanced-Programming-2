@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Timers;
 namespace Ex1.controls
 {
-    class videoControlViewModel
+    class videoControlViewModel:ViewModel
     {
-        private double time;
-        public double VM_Time
+        private TimeSpan time;
+        public TimeSpan VM_Time
         {
             get { return time; }
             set
@@ -17,6 +17,10 @@ namespace Ex1.controls
                 time = value;
                 //model
             }
+        }
+        public videoControlViewModel()
+        {
+            
         }
         //play speed
     }

@@ -20,14 +20,13 @@ namespace Ex1
 {
     public partial class MainWindow : Window
     {
+        Client client;
         public MainWindow()
         {
             InitializeComponent();
+            client = new Client();
+            client.sendFile("reg_flight.csv");
         }
 
-        private void videoControlView_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
