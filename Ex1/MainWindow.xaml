@@ -4,9 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ex1"
+        xmlns:Controls="clr-namespace:Ex1.controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <StackPanel Margin="19,42,44,208" Orientation="Vertical">
+            <Grid Height="171">
+                <WrapPanel Orientation="Vertical">
+                    <Grid Height="171" Width="731"/>
+
+                </WrapPanel>
+
+            </Grid>
+
+        </StackPanel>
+        <Border Height="171" VerticalAlignment="Top" HorizontalAlignment="Left" Width="731" Margin="10,169,0,0">
+            <Viewbox Stretch="Fill" Margin="0,0,438,60">
+                <Controls:videoControlView Loaded="videoControlView_Loaded" Height="171" Width="731"/>
+
+            </Viewbox>
+
+        </Border>
+
     </Grid>
 </Window>
