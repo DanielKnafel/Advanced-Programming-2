@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
 using System.Threading;
+using System.IO;
 
 namespace Ex1
 {
     class Client
     {
-        private NetworkStream stream;
+       // private NetworkStream stream;
         private TcpClient client;
+        private StreamWriter streamWriter;
         public void sendFile(string fileName)
         {
             try
@@ -21,12 +23,13 @@ namespace Ex1
                 string line;
                 while ((line = file.ReadLine()) != null)
                 {
+                    streamWriter.WriteLine(line);
                     // Send the message to the connected TcpServer.
-                    Byte[] data = System.Text.Encoding.ASCII.GetBytes(line+"\n");
-                    stream.Write(data, 0, data.Length); 
+                    //Byte[] data = System.Text.Encoding.ASCII.GetBytes(line+"\n");
+                    //stream.Write(data, 0, data.Length); 
                     Thread.Sleep(100);
                 }
-                stream.Close();
+                streamWriter.Close();
                 client.Close();
 
             }
@@ -48,8 +51,11 @@ namespace Ex1
         {
             try
             {
-                client = new TcpClient("localhost", 5400);
-                stream = client.GetStream();
+                client = new TcpClient();
+                client.Connect("localhost", 5400);
+                streamWriter = new StreamWriter(client.GetStream());
+                //client = new TcpClient("localhost", 5400);
+                //stream = client.GetStream();
             }
             catch (Exception e)
             {
