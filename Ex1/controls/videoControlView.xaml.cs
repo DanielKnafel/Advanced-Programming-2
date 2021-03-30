@@ -12,20 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Threading;
-using System.Windows.Threading;
-using System.ComponentModel;
 
-namespace Ex1
+namespace Ex1.controls
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for videoControlView.xaml
+    /// </summary>
+    public partial class videoControlView : UserControl
     {
-        public MainWindow()
+        videoControlViewModel vm;
+        public videoControlView()
         {
             InitializeComponent();
+            vm = new videoControlViewModel();
+            DataContext = vm;
         }
 
-        private void videoControlView_Loaded(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
 
         }
