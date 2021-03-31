@@ -15,20 +15,25 @@ using System.Windows.Shapes;
 using System.Threading;
 using System.Windows.Threading;
 using System.ComponentModel;
+using Ex1.MainController;
 
 namespace Ex1
 {
     public partial class MainWindow : Window
     {
-        Client client;
+        MainViewModel vm;
+
         public MainWindow()
         {
             InitializeComponent();
-            client = new Client();
-            client.connect("localhost", 5400);
-            Thread t = new Thread(() => { client.sendFile("reg_flight.csv"); });
-            t.Start();
+            MainModel mainModel = new MainModel();
+            vm = new MainViewModel(mainModel);
+            Joystick.setMainModel(mainModel);
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            vm.startClient();
+        }
     }
 }

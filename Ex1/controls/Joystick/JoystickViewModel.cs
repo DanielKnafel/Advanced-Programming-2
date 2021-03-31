@@ -12,6 +12,7 @@ namespace Ex1.controls
     public class JoystickViewModel : ViewModel
     {
         private JoystickModel model;
+        private MainController.MainModel mainModel;
         private double size, angle;
 
         public JoystickViewModel(JoystickModel model)
@@ -22,6 +23,11 @@ namespace Ex1.controls
                 {
                     NotifyPropertyChanged("VM_" + e.PropertyName);
                 };
+        }
+
+        public void setMainModel(MainController.MainModel model)
+        {
+            this.mainModel = model;
         }
 
         public Thickness VM_NewLocation

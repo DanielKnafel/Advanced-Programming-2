@@ -30,6 +30,11 @@ namespace Ex1.controls
             DataContext = vm;
         }
 
+        public void setMainModel(MainController.MainModel model)
+        {
+            this.vm.setMainModel(model);
+        }
+
         public double Joystick_Size
         {
             set

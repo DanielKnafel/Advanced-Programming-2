@@ -13,13 +13,14 @@ namespace Ex1.controls
         private double radios;
         private Thickness defaultLocation;
         private Thickness newLocation;
-        
+
         public JoystickModel(Thickness defaultLocation, double radius)
         {
             this.defaultLocation = defaultLocation;
             this.newLocation = defaultLocation;
             this.radios = radius;
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
@@ -38,12 +39,9 @@ namespace Ex1.controls
         }
         public Thickness DefaultLocation
         {
-            set
-            {
-                this.defaultLocation = value;
-            }
+            get; set;
         }
-        
+
         // moves the inner joystick to the given position. 0 <= size <= 1, 0 <= angle < 360
         public void moveJoystick(double size, double angle)
         {

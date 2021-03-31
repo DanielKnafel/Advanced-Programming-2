@@ -16,11 +16,15 @@ namespace Ex1
         private StreamWriter streamWriter;
         private string[] data;
         private int currentLine;
+        // frequency in Hz
+        private int frequency;
 
         public Client()
         {
             client = new TcpClient();
             currentLine = 0;
+            // data sampled at 10 Hz
+            frequency = 10;
         }
 
         public void connect(string server, int port)
@@ -58,16 +62,18 @@ namespace Ex1
             return 0;
         }
 
-        public void sendNextLine()
+        public string sendNextLine()
         {
             try
             {
-                streamWriter.WriteLine(data[currentLine++]); 
+                streamWriter.WriteLine(data[currentLine]);
+                return data[currentLine++];
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
-            }
+            } // finally
+            return null;
         }
 
         public void disconnect()
@@ -78,12 +84,27 @@ namespace Ex1
 
         public string getCurrentLine()
         {
-            return data[currentLine];
+            if (data != null)
+                return data[currentLine];
+            return null;
         }
-    
-        public void skipForward()
-        {
 
+        public void skipForward(int seconds)
+        {
+            int skipped = currentLine + (seconds * frequency);
+            if (skipped < data.Length)
+                currentLine = skipped;
+            else
+                currentLine = data.Length - 1;
+        }
+
+        public void skipBackwards(int seconds)
+        {
+            int skipped = currentLine - (seconds * frequency);
+            if (skipped >= 0)
+                currentLine = skipped;
+            else
+                currentLine = 0;
         }
     }
 }

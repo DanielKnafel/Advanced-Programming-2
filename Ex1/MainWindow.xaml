@@ -10,7 +10,6 @@
     <Grid>
         <Controls:Joystick x:Name="Joystick"/>
         <Controls:videoControlView x:Name="VideoControl" Margin="121,257,0,0"/>
-        <Slider x:Name="SizeSlider" HorizontalAlignment="Left" Margin="253,247,0,0" VerticalAlignment="Top" Width="189" Maximum="1" Minimum="0" Value="{Binding ElementName=Joystick, Path=Joystick_Size, Mode=OneWayToSource}"/>
-        <Slider x:Name="AngleSlider" HorizontalAlignment="Left" Margin="253,282,0,0" VerticalAlignment="Top" Width="189" Maximum="360" Minimum="0" Value="{Binding ElementName=Joystick, Path=Joystick_Angle, Mode=OneWayToSource}"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="505,91,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
     </Grid>
 </Window>
