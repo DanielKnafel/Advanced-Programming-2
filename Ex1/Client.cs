@@ -12,55 +12,78 @@ namespace Ex1
 {
     class Client
     {
-       // private NetworkStream stream;
         private TcpClient client;
         private StreamWriter streamWriter;
-        public void sendFile(string fileName)
-        {
-            try
-            {
-                System.IO.StreamReader file = new System.IO.StreamReader(fileName);
-                string line;
-                while ((line = file.ReadLine()) != null)
-                {
-                    streamWriter.WriteLine(line);
-                    // Send the message to the connected TcpServer.
-                    //Byte[] data = System.Text.Encoding.ASCII.GetBytes(line+"\n");
-                    //stream.Write(data, 0, data.Length); 
-                    Thread.Sleep(100);
-                }
-                streamWriter.Close();
-                client.Close();
-
-            }
-            catch (ArgumentNullException ane)
-            {
-                Console.WriteLine("ArgumentNullException : {0}", ane.ToString());
-            }
-            catch (SocketException se)
-            {
-                Console.WriteLine("SocketException : {0}", se.ToString());
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Unexpected exception : {0}", e.ToString());
-            }
-        }
+        private string[] data;
+        private int currentLine;
 
         public Client()
         {
+            client = new TcpClient();
+            currentLine = 0;
+        }
+
+        public void connect(string server, int port)
+        {
             try
             {
-                client = new TcpClient();
-                client.Connect("localhost", 5400);
-                streamWriter = new StreamWriter(client.GetStream());
-                //client = new TcpClient("localhost", 5400);
-                //stream = client.GetStream();
+                if (client != null)
+                {
+                    client.Connect(server, port);
+                    streamWriter = new StreamWriter(client.GetStream());
+                }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
+        }
+
+        public void setData(string fileName)
+        {
+            try
+            {
+                data = File.ReadAllLines(fileName);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        public int dataSize()
+        {
+            if (data != null)
+                return data.Length;
+            return 0;
+        }
+
+        public void sendNextLine()
+        {
+            try
+            {
+                streamWriter.WriteLine(data[currentLine++]); 
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        public void disconnect()
+        {
+            streamWriter.Close();
+            client.Close();
+        }
+
+        public string getCurrentLine()
+        {
+            return data[currentLine];
+        }
+    
+        public void skipForward()
+        {
+
         }
     }
 }

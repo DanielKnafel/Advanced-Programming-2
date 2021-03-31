@@ -25,7 +25,9 @@ namespace Ex1
         {
             InitializeComponent();
             client = new Client();
-            client.sendFile("reg_flight.csv");
+            client.connect("localhost", 5400);
+            Thread t = new Thread(() => { client.sendFile("reg_flight.csv"); });
+            t.Start();
         }
 
     }
