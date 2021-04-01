@@ -88,7 +88,10 @@ namespace Ex1
                 return data[currentLine];
             return null;
         }
-
+        public int getNumOfCurrentLine()
+        {
+            return currentLine;
+        }
         public void skipForward(int seconds)
         {
             int skipped = currentLine + (seconds * frequency);

@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="778.021">
     <Canvas>
-        <Slider Maximum="60" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" Name="sValue" Width="520" Margin="31,71,207,-71" RenderTransformOrigin="0.252,2.5"></Slider>
-        <TextBox  Text="{Binding Value, ElementName=sValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="590,71,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" TextAlignment="Right" Width="33"/>
+        <Slider Maximum="{Binding VM_Size}" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" Name="sValue" Width="520" Value="{Binding VM_Sec}" Margin="31,71,207,-71" RenderTransformOrigin="0.252,2.5"></Slider>
+        <TextBox  Text="{Binding VM_Time, Mode=OneWay}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Top" TextAlignment="Right" Width="46" Canvas.Left="590" Canvas.Top="71"/>
         <Canvas>
             <Image Source="/Ex1;component/Images/Image2.png" Stretch="Fill" Height="36" Canvas.Left="255" Canvas.Top="110" Width="41"/>
             <Image Source="/Ex1;component/Images/Image3.png" Stretch="Fill" Canvas.Left="199" Canvas.Top="110" Height="36" Width="41"/>

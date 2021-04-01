@@ -11,14 +11,22 @@ namespace Ex1.MainController
     {
         private Client client;
 
-        public MainModel() { }
-
+        public MainModel()
+        {
+            client = new Client();
+        }
+        public int Size
+        {
+            get { return client.dataSize(); }
+        }
         public string CurrentLine
         {
             get { return client.getCurrentLine(); }
         }
-
-
+        public int numOfCurrentLine
+        {
+            get { return client.getNumOfCurrentLine(); }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {

@@ -29,6 +29,7 @@ namespace Ex1
             MainModel mainModel = new MainModel();
             vm = new MainViewModel(mainModel);
             Joystick.setMainModel(mainModel);
+            VideoControl.setMainModel(mainModel);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
