@@ -17,13 +17,12 @@ namespace Ex1
         private string[] data;
         private int currentLine;
         // frequency in Hz
-        //private int frequency;
         public int Frequency
         {
             get;
             set;
         }
-       
+ 
         public Client()
         {
             client = new TcpClient();
@@ -31,7 +30,6 @@ namespace Ex1
             // data sampled at 10 Hz
             Frequency = 10;
         }
-
         public void connect(string server, int port)
         {
             try
@@ -47,7 +45,6 @@ namespace Ex1
                 Console.WriteLine(e.ToString());
             }
         }
-
         public void setData(string fileName)
         {
             try
@@ -59,35 +56,12 @@ namespace Ex1
                 Console.WriteLine(e.ToString());
             }
         }
-
-        public int getDataSize()
+        public int dataSize()
         {
             if (data != null)
                 return data.Length;
             return 0;
         }
-
-        public void start()
-        {
-            Thread t = new Thread(() =>
-            {
-                while (!stop)
-                {
-                    if (currentLine == data.Length - 1)
-                        pause = true;
-                    else
-                        pause = false;
-
-                    if (!pause)
-                    {
-                        sendNextLine();
-                        Thread.Sleep(frequency * 10);
-                    }
-                }
-            });
-            t.Start();
-        }
-
         public string sendNextLine()
         {
             try
@@ -101,13 +75,11 @@ namespace Ex1
             } // finally
             return null;
         }
-
         public void disconnect()
         {
             streamWriter.Close();
             client.Close();
         }
-
         public string getCurrentLine()
         {
             if (data != null)
@@ -116,7 +88,7 @@ namespace Ex1
         }
         public void setNumOfCurrentLine(int val)
         {
-            if(val >=0 && val <=dataSize() - 1)
+            if (val >= 0 && val <= dataSize() - 1)
                 currentLine = val;
         }
         public int getNumOfCurrentLine()
@@ -131,7 +103,6 @@ namespace Ex1
             else
                 currentLine = data.Length - 1;
         }
-
         public void skipBackwards(int seconds)
         {
             int skipped = currentLine - (seconds * Frequency);

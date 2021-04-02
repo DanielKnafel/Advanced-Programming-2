@@ -11,6 +11,7 @@ namespace Ex1.MainController
     public class MainModel : INotifyPropertyChanged
     {
         private Client client;
+
         private bool pause;
         private Thread t;
         public MainModel()
@@ -26,13 +27,12 @@ namespace Ex1.MainController
                 try
                 {
                     client.Frequency = (int)(double.Parse(value) * 10);
-                   // NotifyPropertyChanged("Speed");
+                    NotifyPropertyChanged("Speed");
                 }
                 catch (FormatException)
                 {
 
                 }
-                
             }
         }
         public int Size
@@ -43,20 +43,39 @@ namespace Ex1.MainController
         {
             get { return client.getCurrentLine(); }
         }
-
-
+        public int numOfCurrentLine
+        {
+            get { return client.getNumOfCurrentLine(); }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
-
         public void start()
         {
             client = new Client();
             client.connect("localhost", 5400);
             client.setData("reg_flight.csv");
+            NotifyPropertyChanged("Size");
+            playVideo();
+
+        }
+        public void playVideo()
+        {
+            pause = false;
+            t = new Thread(() =>
+            {
+                for (int i = numOfCurrentLine; i < Size; i++)
+                {
+                    if (pause)
+                        break;
+                    sendNextLine();
+                    Thread.Sleep((int)(100 / double.Parse(Speed)));
+                }
+            });
+            t.Start();
         }
         public void pauseVideo()
         {
@@ -74,7 +93,7 @@ namespace Ex1.MainController
         {
             pauseVideo();
             t.Join();
-            if(numOfCurrentLine + 10 * sec > Size)
+            if (numOfCurrentLine + 10 * sec > Size)
                 client.setNumOfCurrentLine(Size - 1);
             else
                 client.setNumOfCurrentLine(numOfCurrentLine + 10 * sec);
@@ -87,7 +106,7 @@ namespace Ex1.MainController
         {
             pauseVideo();
             t.Join();
-            if(numOfCurrentLine - 10 * sec < 0)
+            if (numOfCurrentLine - 10 * sec < 0)
                 client.setNumOfCurrentLine(0);
             else
                 client.setNumOfCurrentLine(numOfCurrentLine - 10 * sec);
@@ -105,7 +124,7 @@ namespace Ex1.MainController
         {
             pauseVideo();
             t.Join();
-            client.setNumOfCurrentLine(Size -1);
+            client.setNumOfCurrentLine(Size - 1);
             NotifyPropertyChanged("numOfCurrentLine");
             NotifyPropertyChanged("Time");
             NotifyPropertyChanged("CurrentLine");
