@@ -9,7 +9,6 @@ namespace Ex1.controls
 {
     public abstract class ViewModel : INotifyPropertyChanged
     {
-
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {

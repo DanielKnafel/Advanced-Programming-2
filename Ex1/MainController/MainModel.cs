@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ex1.MainController
 {
-    public class MainModel : INotifyPropertyChanged
+    public class MainModel
     {
         private Client client;
 
@@ -16,43 +16,9 @@ namespace Ex1.MainController
         private Thread t;
         public MainModel()
         {
-            client = new Client();
             pause = false;
         }
-        public string Speed
-        {
-            get { return $"{(double)client.Frequency / 10}"; }
-            set
-            {
-                try
-                {
-                    client.Frequency = (int)(double.Parse(value) * 10);
-                    NotifyPropertyChanged("Speed");
-                }
-                catch (FormatException)
-                {
 
-                }
-            }
-        }
-        public int Size
-        {
-            get { return client.dataSize(); }
-        }
-        public string CurrentLine
-        {
-            get { return client.getCurrentLine(); }
-        }
-        public int numOfCurrentLine
-        {
-            get { return client.getNumOfCurrentLine(); }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propName)
-        {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-        }
         public void start()
         {
             client = new Client();
@@ -128,16 +94,6 @@ namespace Ex1.MainController
             NotifyPropertyChanged("numOfCurrentLine");
             NotifyPropertyChanged("Time");
             NotifyPropertyChanged("CurrentLine");
-        }
-        public void sendNextLine()
-        {
-            if (client != null)
-            {
-                client.sendNextLine();
-                NotifyPropertyChanged("CurrentLine");
-                NotifyPropertyChanged("numOfCurrentLine");
-                NotifyPropertyChanged("Time");
-            }
         }
     }
 }

@@ -28,10 +28,6 @@ namespace Ex1.controls
             vm = new videoControlViewModel();
             DataContext = vm;
         }
-        public void setMainModel(MainController.MainModel model)
-        {
-            this.vm.setMainModel(model);
-        }
 
         private void Back_Click_Down(object sender, MouseButtonEventArgs e)
         {

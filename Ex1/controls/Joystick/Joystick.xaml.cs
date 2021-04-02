@@ -19,7 +19,7 @@ namespace Ex1.controls
     public partial class Joystick : UserControl
     {
         private JoystickViewModel vm;
-        double size, angle;
+        private double size, angle;
         public Joystick()
         {
             InitializeComponent();
@@ -28,11 +28,6 @@ namespace Ex1.controls
             this.vm = new JoystickViewModel(new JoystickModel(JoystickInner.Margin, radius));
             vm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e){ JoystickInner.Margin = vm.VM_NewLocation; };
             DataContext = vm;
-        }
-
-        public void setMainModel(MainController.MainModel model)
-        {
-            this.vm.setMainModel(model);
         }
 
         public double Joystick_Size
@@ -50,6 +45,10 @@ namespace Ex1.controls
                 this.angle = value;
                 vm.Angle = value;
             }
+        }
+        public void setDataFileReader(DataFileReader reader)
+        {
+            this.vm.setDataFileReader(reader);
         }
     }
 }

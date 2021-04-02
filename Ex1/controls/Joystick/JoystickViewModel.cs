@@ -12,7 +12,7 @@ namespace Ex1.controls
     public class JoystickViewModel : ViewModel
     {
         private JoystickModel model;
-        private MainController.MainModel mainModel;
+        private DataFileReader reader;
         private double size, angle;
 
         public JoystickViewModel(JoystickModel model)
@@ -23,17 +23,18 @@ namespace Ex1.controls
                 {
                     NotifyPropertyChanged("VM_" + e.PropertyName);
                 };
-            mainModel.PropertyChanged += 
-                delegate (Object sender, PropertyChangedEventArgs e)
-                {
-                    if (e.PropertyName.Equals("CurrentLine"))
-                        model.moveJoystick(this.size, this.angle);
-                };
         }
 
-        public void setMainModel(MainController.MainModel model)
+        public void setDataFileReader(DataFileReader reader)
         {
-            this.mainModel = model;
+            this.reader = reader;
+            this.reader.PropertyChanged +=
+                    delegate (Object sender, PropertyChangedEventArgs e)
+                    {
+                        if (e.PropertyName.Equals("Line"))
+                            reader.Line;
+                            //model.moveJoystick(this.size, this.angle);
+                    };
         }
 
         public Thickness VM_NewLocation

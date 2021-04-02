@@ -7,28 +7,24 @@ using System.Net.Sockets;
 using System.Net;
 using System.Threading;
 using System.IO;
+using System.ComponentModel;
 
 namespace Ex1
 {
-    class Client
+    public class Client
     {
         private TcpClient client;
         private StreamWriter streamWriter;
-        private string[] data;
-        private int currentLine;
-        // frequency in Hz
-        public int Frequency
-        {
-            get;
-            set;
-        }
- 
-        public Client()
+        private DataFileReader reader;
+        public Client(DataFileReader reader)
         {
             client = new TcpClient();
-            currentLine = 0;
-            // data sampled at 10 Hz
-            Frequency = 10;
+            this.reader = reader;
+            reader.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+                                      {
+                                            if (e.PropertyName == "Line")
+                                                sendLine(reader.Line);
+                                      };
         }
         public void connect(string server, int port)
         {
@@ -45,71 +41,21 @@ namespace Ex1
                 Console.WriteLine(e.ToString());
             }
         }
-        public void setData(string fileName)
+        public void sendLine(string line)
         {
             try
             {
-                data = File.ReadAllLines(fileName);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-        }
-        public int dataSize()
-        {
-            if (data != null)
-                return data.Length;
-            return 0;
-        }
-        public string sendNextLine()
-        {
-            try
-            {
-                streamWriter.WriteLine(data[currentLine]);
-                return data[currentLine++];
+                streamWriter.WriteLine(line);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             } // finally
-            return null;
         }
         public void disconnect()
         {
             streamWriter.Close();
             client.Close();
-        }
-        public string getCurrentLine()
-        {
-            if (data != null)
-                return data[currentLine];
-            return null;
-        }
-        public void setNumOfCurrentLine(int val)
-        {
-            if (val >= 0 && val <= dataSize() - 1)
-                currentLine = val;
-        }
-        public int getNumOfCurrentLine()
-        {
-            return currentLine;
-        }
-        public void skipForward(int seconds)
-        {
-            int skipped = currentLine + (seconds * Frequency);
-            if (skipped < data.Length)
-                currentLine = skipped;
-            else
-                currentLine = data.Length - 1;
-        }
-        public void skipBackwards(int seconds)
-        {
-            int skipped = currentLine - (seconds * Frequency);
-            if (skipped >= 0)
-                currentLine = skipped;
-            else
-                currentLine = 0;
         }
     }
 }

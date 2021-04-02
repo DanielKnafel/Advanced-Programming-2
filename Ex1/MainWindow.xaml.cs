@@ -15,28 +15,24 @@ using System.Windows.Shapes;
 using System.Threading;
 using System.Windows.Threading;
 using System.ComponentModel;
-using Ex1.MainController;
 
 namespace Ex1
 {
     public partial class MainWindow : Window
     {
-        MainViewModel vm;
-
         public MainWindow()
         {
             InitializeComponent();
-            MainModel mainModel = new MainModel();
-            vm = new MainViewModel(mainModel);
-            Joystick.setMainModel(mainModel);
-            VideoControl.setMainModel(mainModel);
-            mainModel.start();
-        }
+            DataFileReader reader = new DataFileReader();
+            Client client = new Client(reader);
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            vm.startClient();
-        }
+            // add option for user specified file selection
 
+            int frequency = 10;
+            reader.setFile("", frequency);
+            reader.setXMLDefinitions("playback_small.xml");
+            Joystick.setDataFileReader(reader);
+            //VideoControl.setDataFileReader(reader);
+        }
     }
 }
