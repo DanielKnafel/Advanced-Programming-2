@@ -18,7 +18,14 @@ namespace Ex1
         private int currentLine;
         // frequency in Hz
         private int frequency;
-
+        public void setFrequency(int frequency)
+        {
+            this.frequency = frequency;
+        }
+        public int getFrequency()
+        {
+            return this.frequency;
+        }
         public Client()
         {
             client = new TcpClient();
@@ -87,6 +94,11 @@ namespace Ex1
             if (data != null)
                 return data[currentLine];
             return null;
+        }
+        public void setNumOfCurrentLine(int val)
+        {
+            if(val >=0 && val <=dataSize() - 1)
+                currentLine = val;
         }
         public int getNumOfCurrentLine()
         {

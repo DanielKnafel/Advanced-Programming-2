@@ -9,14 +9,19 @@ namespace Ex1.controls
 {
     class videoControlViewModel : ViewModel
     {
-       // private TimeSpan time;
         private DateTime dt;
-        private int seconds; //double??
+        private int seconds; 
+        private string t;
+        public string VM_Speed
+        {
+            get { return mainModel.Speed; }
+            set { mainModel.Speed = value; }
+        }
         public double VM_Size
         {
             get { return mainModel.Size / 10; }
         }
-        public double VM_Sec
+        public double VM_CurrentLine
         {
             get
             {
@@ -32,27 +37,36 @@ namespace Ex1.controls
             get
             {
                 seconds = mainModel.numOfCurrentLine / 10;
+                int h = seconds / 3600;
+                seconds = seconds - h * 3600;
                 int m = seconds / 60;
                 int s = seconds - m * 60;
-                string str;
-                if (m < 10 && s < 10)
-                    str = $"0{m.ToString()} :  0{(s).ToString()}";
-                else if(m < 10)
-                    str = $"0{m.ToString()} :  {(s).ToString()}";
-                else if(s < 10)
-                    str = $"{m.ToString()} :  0{(s).ToString()}";
+                string hour, min, sec, str;
+                if (h < 10)
+                    hour = $"0{h.ToString()}";
                 else
-                    str = $"{m.ToString()} :  {(s).ToString()}";
+                    hour = $"{h.ToString()}";
+                if (m < 10)
+                    min = $"0{m.ToString()}";
+                else
+                    min = $"{m.ToString()}";
+                if (s < 10)
+                    sec = $"0{s.ToString()}";
+                else
+                    sec = $"{s.ToString()}";
+                str = $"{hour}:{min}:{sec}";
                 return str;
+            }
+            set
+            {
+               
             }
             
         }
         private MainController.MainModel mainModel;
         public videoControlViewModel()
         {
-            seconds = 200;
-            dt = new DateTime(2019, 2, 22, 14, 0, 0);
-            Console.WriteLine(dt.ToString());
+            
         }
         public void setMainModel(MainController.MainModel model)
         {
@@ -63,7 +77,34 @@ namespace Ex1.controls
                    NotifyPropertyChanged("VM_" + e.PropertyName);
                };
         }
-       
+        public void pauseVideo()
+        {
+            mainModel.pauseVideo();
+        }
+        public void playVideo()
+        {
+            mainModel.playVideo();
+        }
+        public void stopVideo()
+        {
+            mainModel.stopVideo();
+        }
+        public void forwardVideo(int sec)
+        {
+            mainModel.forwardVideo(sec);
+        }
+        public void backVideo(int sec)
+        {
+            mainModel.backVideo(sec);
+        }
+        public void prevVideo()
+        {
+            mainModel.prevVideo();
+        }
+        public void nextVideo()
+        {
+            mainModel.nextVideo();
+        }
         //play speed
     }
 }

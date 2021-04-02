@@ -30,11 +30,13 @@ namespace Ex1
             vm = new MainViewModel(mainModel);
             Joystick.setMainModel(mainModel);
             VideoControl.setMainModel(mainModel);
+            mainModel.start();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             vm.startClient();
         }
+
     }
 }
