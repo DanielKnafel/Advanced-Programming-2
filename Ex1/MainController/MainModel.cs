@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Ex1.MainController
@@ -10,6 +11,7 @@ namespace Ex1.MainController
     public class MainModel : INotifyPropertyChanged
     {
         private Client client;
+        private FlightData flightData;
 
         public MainModel() { }
 
@@ -18,6 +20,7 @@ namespace Ex1.MainController
             get { return client.getCurrentLine(); }
         }
 
+        public FlightData FlightData
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
@@ -31,6 +34,7 @@ namespace Ex1.MainController
             client = new Client();
             client.connect("localhost", 5400);
             client.setData("reg_flight.csv");
+            client.start();
         }
         public void sendNextLine()
         {

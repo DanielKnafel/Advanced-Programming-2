@@ -23,6 +23,12 @@ namespace Ex1.controls
                 {
                     NotifyPropertyChanged("VM_" + e.PropertyName);
                 };
+            mainModel.PropertyChanged += 
+                delegate (Object sender, PropertyChangedEventArgs e)
+                {
+                    if (e.PropertyName.Equals("CurrentLine"))
+                        model.moveJoystick(this.size, this.angle);
+                };
         }
 
         public void setMainModel(MainController.MainModel model)

@@ -18,6 +18,7 @@ namespace Ex1
         private int currentLine;
         // frequency in Hz
         private int frequency;
+        private bool stop, pause;
 
         public Client()
         {
@@ -25,6 +26,8 @@ namespace Ex1
             currentLine = 0;
             // data sampled at 10 Hz
             frequency = 10;
+            stop = false;
+            pause = false;
         }
 
         public void connect(string server, int port)
@@ -55,11 +58,32 @@ namespace Ex1
             }
         }
 
-        public int dataSize()
+        public int getDataSize()
         {
             if (data != null)
                 return data.Length;
             return 0;
+        }
+
+        public void start()
+        {
+            Thread t = new Thread(() =>
+            {
+                while (!stop)
+                {
+                    if (currentLine == data.Length - 1)
+                        pause = true;
+                    else
+                        pause = false;
+
+                    if (!pause)
+                    {
+                        sendNextLine();
+                        Thread.Sleep(frequency * 10);
+                    }
+                }
+            });
+            t.Start();
         }
 
         public string sendNextLine()
