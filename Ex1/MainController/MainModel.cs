@@ -20,13 +20,13 @@ namespace Ex1.MainController
         }
         public string Speed
         {
-            get { return $"{(double)client.getFrequency() / 10}"; }
+            get { return $"{(double)client.Frequency / 10}"; }
             set
             {
                 try
                 {
-                    client.setFrequency((int)(double.Parse(value) * 10));
-                    NotifyPropertyChanged("Speed");
+                    client.Frequency = (int)(double.Parse(value) * 10);
+                   // NotifyPropertyChanged("Speed");
                 }
                 catch (FormatException)
                 {

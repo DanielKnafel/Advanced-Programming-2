@@ -17,21 +17,19 @@ namespace Ex1
         private string[] data;
         private int currentLine;
         // frequency in Hz
-        private int frequency;
-        public void setFrequency(int frequency)
+        //private int frequency;
+        public int Frequency
         {
-            this.frequency = frequency;
+            get;
+            set;
         }
-        public int getFrequency()
-        {
-            return this.frequency;
-        }
+       
         public Client()
         {
             client = new TcpClient();
             currentLine = 0;
             // data sampled at 10 Hz
-            frequency = 10;
+            Frequency = 10;
         }
 
         public void connect(string server, int port)
@@ -106,7 +104,7 @@ namespace Ex1
         }
         public void skipForward(int seconds)
         {
-            int skipped = currentLine + (seconds * frequency);
+            int skipped = currentLine + (seconds * Frequency);
             if (skipped < data.Length)
                 currentLine = skipped;
             else
@@ -115,7 +113,7 @@ namespace Ex1
 
         public void skipBackwards(int seconds)
         {
-            int skipped = currentLine - (seconds * frequency);
+            int skipped = currentLine - (seconds * Frequency);
             if (skipped >= 0)
                 currentLine = skipped;
             else
