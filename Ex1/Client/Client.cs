@@ -17,17 +17,19 @@ namespace Ex1
         private string[] data;
         private int currentLine;
         // frequency in Hz
-        private int frequency;
-        private bool stop, pause;
-
+        //private int frequency;
+        public int Frequency
+        {
+            get;
+            set;
+        }
+       
         public Client()
         {
             client = new TcpClient();
             currentLine = 0;
             // data sampled at 10 Hz
-            frequency = 10;
-            stop = false;
-            pause = false;
+            Frequency = 10;
         }
 
         public void connect(string server, int port)
@@ -112,10 +114,18 @@ namespace Ex1
                 return data[currentLine];
             return null;
         }
-
+        public void setNumOfCurrentLine(int val)
+        {
+            if(val >=0 && val <=dataSize() - 1)
+                currentLine = val;
+        }
+        public int getNumOfCurrentLine()
+        {
+            return currentLine;
+        }
         public void skipForward(int seconds)
         {
-            int skipped = currentLine + (seconds * frequency);
+            int skipped = currentLine + (seconds * Frequency);
             if (skipped < data.Length)
                 currentLine = skipped;
             else
@@ -124,7 +134,7 @@ namespace Ex1
 
         public void skipBackwards(int seconds)
         {
-            int skipped = currentLine - (seconds * frequency);
+            int skipped = currentLine - (seconds * Frequency);
             if (skipped >= 0)
                 currentLine = skipped;
             else

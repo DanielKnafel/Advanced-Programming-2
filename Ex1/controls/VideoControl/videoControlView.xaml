@@ -7,18 +7,31 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="778.021">
     <Canvas>
-        <Slider Maximum="60" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" Name="sValue" Width="520" Margin="31,71,207,-71" RenderTransformOrigin="0.252,2.5"></Slider>
-        <TextBox  Text="{Binding Value, ElementName=sValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="590,71,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" TextAlignment="Right" Width="33"/>
-        <Canvas>
-            <Image Source="/Ex1;component/Images/Image2.png" Stretch="Fill" Height="36" Canvas.Left="255" Canvas.Top="110" Width="41"/>
-            <Image Source="/Ex1;component/Images/Image3.png" Stretch="Fill" Canvas.Left="199" Canvas.Top="110" Height="36" Width="41"/>
-            <Image Source="/Ex1;component/Images/Image4.png" Stretch="Fill" Height="36" Canvas.Left="312" Canvas.Top="110" Width="45"/>
-            <Image Source="/Ex1;component/Images/Image5.png" Stretch="Fill" Height="36" Canvas.Left="139" Canvas.Top="110" Width="45"/>
-            <Image Source="/Ex1;component/Images/Image6.png" Stretch="Fill" Height="36" Canvas.Left="374" Canvas.Top="110" Width="44"/>
-            <Image Source="/Ex1;component/Images/Image7.png" Stretch="Fill" Height="36" Canvas.Left="76" Canvas.Top="110" Width="49"/>
-            <Image Source="/Ex1;component/Images/Image8.png" Stretch="Fill" Height="36" Canvas.Left="438" Canvas.Top="110" Width="47"/>
-        </Canvas>
+        <Slider Maximum="{Binding VM_Size}" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" Name="sValue" Width="520" Value="{Binding VM_CurrentLine}"  Margin="31,71,207,-71" RenderTransformOrigin="0.252,2.5"></Slider>
+        <TextBox  Text="{Binding VM_Time ,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap"  VerticalAlignment="Top" TextAlignment="Center" Width="62" Canvas.Left="575" Canvas.Top="71"/>
         <Label Content="Play speed" HorizontalAlignment="Left" Margin="505,120,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="590,123,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" TextAlignment="Right" Width="33"/>
+        <TextBox  Name="Speed" Text="{Binding VM_Speed, Delay=250}" HorizontalAlignment="Center" Height="23" Margin="590,123,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" TextAlignment="Center" Width="33"/>
+        <Button Name="Next" Click="next_Click" Canvas.Left="432" Canvas.Top="106" Width="49">
+            <Image Source="/Ex1;component/Images/Image8.png" Stretch="Fill" Height="36" Canvas.Left="438" Canvas.Top="110" Width="47" RenderTransformOrigin="0.532,-1.139"/>
+        </Button>
+        <Button x:Name="Forward" PreviewMouseLeftButtonDown="Forward_Click_Down" PreviewMouseLeftButtonUp="Forward_Click_Up" Canvas.Left="370" Canvas.Top="106" Width="49">
+            <Image Source="/Ex1;component/Images/Image6.png" Stretch="Fill" Height="36" Canvas.Left="139" Canvas.Top="110" Width="45"/>
+        </Button>
+        <Button x:Name="Stop" Click="Stop_Click" Canvas.Left="308" Canvas.Top="106" Width="50">
+            <Image Source="/Ex1;component/Images/Image4.png" Stretch="Fill" Height="36" Canvas.Left="290" Canvas.Top="216" Width="45"/>
+        </Button>
+        <Button x:Name="Pause" Click="Pause_Click" Canvas.Left="246" Canvas.Top="106" Width="51">
+            <Image Source="/Ex1;component/Images/Image2.png" Stretch="Fill" Height="36" Canvas.Left="227" Canvas.Top="216" Width="41"/>
+        </Button>
+        <Button x:Name="Play" Click="Play_Click" Canvas.Left="182" Canvas.Top="106" Width="56">
+            <Image Source="/Ex1;component/Images/Image3.png" Stretch="Fill" Height="36" Canvas.Left="138" Canvas.Top="239" Width="47"/>
+        </Button>
+        <Button x:Name="Back" PreviewMouseLeftButtonDown="Back_Click_Down" PreviewMouseLeftButtonUp="Back_Click_Up" Canvas.Left="121" Canvas.Top="106" Width="53">
+            <Image Source="/Ex1;component/Images/Image5.png" Stretch="Fill" Height="36" Canvas.Left="138" Canvas.Top="239" Width="45"/>
+        </Button>
+        <Button x:Name="Prev" Click="prev_Click" Canvas.Left="51" Canvas.Top="106" Width="59">
+            <Image Source="/Ex1;component/Images/Image7.png" Stretch="Fill" Height="36" Canvas.Left="42" Canvas.Top="225" Width="49"/>
+        </Button>
+        <Button Content="Change Speed" Canvas.Left="638" Canvas.Top="123" Width="89" Click="Button_Click"/>
     </Canvas>
 </UserControl>
