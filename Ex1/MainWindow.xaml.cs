@@ -25,7 +25,7 @@ namespace Ex1
             InitializeComponent();
             DataFileReader reader = new DataFileReader();
             Client client = new Client(reader);
-
+            client.connect("localhost", 5400);
             // add option for user specified file selection
 
             int frequency = 10;

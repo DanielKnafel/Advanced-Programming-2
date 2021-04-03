@@ -58,8 +58,8 @@ namespace Ex1
         public void startReading()
         {
             stop = false;
-            new Thread(() =>
-            {
+       //     new Thread(() =>
+         //   {
                 while (!stop)
                 {
                     if (this.lineNumber == Size)
@@ -73,7 +73,7 @@ namespace Ex1
                         lineNumber++;
                     }
                 }
-            }).Start();
+       //     }).Start();
         }
         public int LineNumber { 
             get { return this.lineNumber; }
