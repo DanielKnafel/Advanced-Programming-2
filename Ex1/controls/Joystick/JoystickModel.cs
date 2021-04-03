@@ -49,8 +49,7 @@ namespace Ex1.controls
             size *= this.radios;
             double newCenterX = size * Math.Sin(angle);
             double newCenterY = size * Math.Cos(angle);
-            this.newLocation = new Thickness(this.defaultLocation.Left + newCenterX, this.defaultLocation.Top - newCenterY, this.defaultLocation.Right, this.defaultLocation.Bottom);
-            NotifyPropertyChanged("NewLocation");
+            this.NewLocation = new Thickness(this.defaultLocation.Left + newCenterX, this.defaultLocation.Top - newCenterY, this.defaultLocation.Right, this.defaultLocation.Bottom);
         }
     }
 }

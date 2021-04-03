@@ -9,29 +9,53 @@ namespace Ex1.controls
 {
     class videoControlViewModel : ViewModel
     {
-        private int seconds; 
         private DataFileReader reader;
+        private double vm_videoLength;
+        private double vm_currentTime;
         public double VM_Speed
         {
             get { return reader.Speed; }
             set { reader.Speed = value; }
         }
-        public double VM_VideoLength
+        public int VM_VideoLength
         {
-            get { return reader.Size / reader.Frequency; }
+            get { return (int)this.vm_videoLength; }
+            set
+            {
+                this.vm_videoLength = value;
+                NotifyPropertyChanged("VM_VideoLength");
+            }
+        }
+
+        public double CurrentTimeChange
+        {
+            set
+            {
+                if (this.reader != null)
+                {
+                    int newTime = (int)(value - this.vm_currentTime);
+                    if (newTime > 0)
+                        forwardVideo(newTime);
+                    else
+                        backVideo(Math.Abs(newTime));
+                }
+            }
         }
         public double VM_CurrentTime
         {
-            get
+            get { return this.vm_currentTime; }
+            set
             {
-                return this.reader.LineNumber / reader.Frequency;
+                this.vm_currentTime = value;
+                NotifyPropertyChanged("VM_CurrentTime");
+                NotifyPropertyChanged("VM_Time");
             }
         }
         public string VM_Time
         {
             get
             {
-                seconds = (int)Math.Round(VM_CurrentTime);
+                int seconds = (int)VM_CurrentTime;
                 int h = seconds / 3600;
                 seconds = seconds - h * 3600;
                 int m = seconds / 60;
@@ -51,18 +75,22 @@ namespace Ex1.controls
                     sec = $"{s.ToString()}";
                 str = $"{hour}:{min}:{sec}";
                 return str;
-            }           
+            }
         }
         public videoControlViewModel()
         {
-            this.seconds = 0;
+            this.VM_VideoLength = 1;
+            this.VM_CurrentTime = 0;
         }
         public void setDataFileReader(DataFileReader reader)
         {
             this.reader = reader;
+            this.VM_VideoLength = reader.Size / reader.Frequency;
             this.reader.PropertyChanged +=
                delegate (Object sender, PropertyChangedEventArgs e)
                {
+                   if (e.PropertyName.Equals("LineNumber"))
+                       this.VM_CurrentTime = reader.LineNumber / reader.Frequency;
                    NotifyPropertyChanged("VM_" + e.PropertyName);
                };
         }

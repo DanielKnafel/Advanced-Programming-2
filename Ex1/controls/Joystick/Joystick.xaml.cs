@@ -26,7 +26,6 @@ namespace Ex1.controls
             JoystickInner.Margin = new Thickness(109, 56, 0, 0);
             double radius = JoystickMiddle.Margin.Left + JoystickInner.Width / 2 - JoystickMiddle.Margin.Left;
             this.vm = new JoystickViewModel(new JoystickModel(JoystickInner.Margin, radius));
-            vm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e){ JoystickInner.Margin = vm.VM_NewLocation; };
             DataContext = vm;
         }
 

@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="controls\Joystick\JoystickModel.cs" />
     <Compile Include="controls\Joystick\JoystickViewModel.cs" />
+    <Compile Include="controls\VideoControl\StringToDoubleConverter.cs" />
     <Compile Include="controls\VideoControl\videoControlView.xaml.cs">
       <DependentUpon>videoControlView.xaml</DependentUpon>
     </Compile>

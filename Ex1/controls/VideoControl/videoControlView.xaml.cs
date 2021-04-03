@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -15,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Ex1.controls
 {
-    /// <summary>
-    /// Interaction logic for videoControlView.xaml
-    /// </summary>
     public partial class videoControlView : UserControl
     {
         videoControlViewModel vm;
@@ -33,7 +32,6 @@ namespace Ex1.controls
         {
             vm.setDataFileReader(reader);
         }
-
         private void Back_Click_Down(object sender, MouseButtonEventArgs e)
         {
             click_Started = DateTime.Now;
@@ -80,10 +78,14 @@ namespace Ex1.controls
         {
             vm.nextVideo();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void TimeSlider_DragStarted(object sender, DragStartedEventArgs e)
         {
-            vm.VM_Speed = double.Parse(Speed.Text);
+            vm.pauseVideo();
+        }
+        private void TimeSlider_DragCompleted(object sender, DragCompletedEventArgs e)
+        {
+            vm.CurrentTimeChange = TimeSlider.Value;
+            vm.playVideo();
         }
     }
 }

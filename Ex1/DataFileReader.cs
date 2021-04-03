@@ -21,6 +21,7 @@ namespace Ex1
         private string line;
         private int frequency;
         private volatile int lineNumber;
+        private int size;
 
         public DataFileReader()
         {
@@ -58,8 +59,8 @@ namespace Ex1
         public void startReading()
         {
             stop = false;
-       //     new Thread(() =>
-         //   {
+            new Thread(() =>
+            {
                 while (!stop)
                 {
                     if (this.lineNumber == Size)
@@ -68,12 +69,11 @@ namespace Ex1
                     {
                         this.line = data[lineNumber];
                         NotifyPropertyChanged("Line");
-                        NotifyPropertyChanged("LineNumber");
                         Thread.Sleep((int)Math.Round(1000.0 / (Frequency * Speed)));
-                        lineNumber++;
+                        LineNumber++;
                     }
                 }
-       //     }).Start();
+            }).Start();
         }
         public int LineNumber { 
             get { return this.lineNumber; }
@@ -83,12 +83,15 @@ namespace Ex1
                     this.lineNumber = value;
                 else
                     this.lineNumber = data.Length - 1;
+                NotifyPropertyChanged("LineNumber");
             }
         }
         public string Line { 
             get { return this.line; } 
         }
-        public double Speed { get; set; }
+        public double Speed {
+            get; set;
+        }
         public int Frequency
         {
             get { return this.frequency; }
@@ -98,12 +101,7 @@ namespace Ex1
         }
         public int Size
         {
-            get
-            {
-                if (data != null)
-                    return data.Length;
-                return 0;
-            }
+            get { return this.size; }
         }
         public void setCSVFile(string fileName, int frequency)
         {
@@ -113,6 +111,8 @@ namespace Ex1
                 this.frequency = frequency;
                 this.lineNumber = 0;
                 this.line = null;
+                this.size = this.data.Length;
+                NotifyPropertyChanged("Size");
                 Speed = 1;
             }
             catch (Exception e)
@@ -122,24 +122,20 @@ namespace Ex1
         }
         public void skipForward(int seconds)
         {
-            int skipped = LineNumber + (seconds / Frequency) - 1;
+            int skipped = LineNumber + (seconds * Frequency) - 1;
             if (skipped < data.Length)
-                this.lineNumber = skipped;
+                this.LineNumber = skipped;
             else
-                this.lineNumber = data.Length - 1;
-            NotifyPropertyChanged("LineNumber");
-
+                this.LineNumber = data.Length - 1;
         }
         public void skipBackwards(int seconds)
         {
-            int skipped = LineNumber - (seconds / Frequency) - 1;
+            int skipped = LineNumber - (seconds * Frequency) - 1;
             if (skipped >= 0)
-                this.lineNumber = skipped;
+                this.LineNumber = skipped;
             else
-                this.lineNumber = 0;
-            NotifyPropertyChanged("LineNumber");
+                this.LineNumber = 0;
         }
-
         public void stopReading()
         {
             this.stop = true;
