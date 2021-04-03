@@ -40,9 +40,6 @@ namespace Ex1
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
-            }
-            finally
-            {
                 disconnect();
             }
         }
@@ -55,9 +52,6 @@ namespace Ex1
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
-            } 
-            finally
-            {
                 disconnect();
             }
         }
