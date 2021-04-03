@@ -90,7 +90,6 @@
     <Compile Include="controls\VideoControl\videoControlViewModel.cs" />
     <Compile Include="controls\ViewModel.cs" />
     <Compile Include="DataFileReader.cs" />
-    <Compile Include="MainController\MainModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

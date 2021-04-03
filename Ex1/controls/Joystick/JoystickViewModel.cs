@@ -31,8 +31,8 @@ namespace Ex1.controls
             this.reader.PropertyChanged +=
                     delegate (Object sender, PropertyChangedEventArgs e)
                     {
-                        if (e.PropertyName.Equals("Line"))
-                            reader.Line;
+                        //if (e.PropertyName.Equals("Line"))
+                            //reader.Line;
                             //model.moveJoystick(this.size, this.angle);
                     };
         }

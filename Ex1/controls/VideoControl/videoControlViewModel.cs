@@ -9,34 +9,29 @@ namespace Ex1.controls
 {
     class videoControlViewModel : ViewModel
     {
-        private DateTime dt;
         private int seconds; 
-        private string t;
-        public string VM_Speed
+        private DataFileReader reader;
+        public double VM_Speed
         {
-            get { return mainModel.Speed; }
-            set { mainModel.Speed = value; }
+            get { return reader.Speed; }
+            set { reader.Speed = value; }
         }
-        public double VM_Size
+        public double VM_VideoLength
         {
-            get { return mainModel.Size / 10; }
+            get { return reader.Size / reader.Frequency; }
         }
-        public double VM_CurrentLine
+        public double VM_CurrentTime
         {
             get
             {
-                return mainModel.numOfCurrentLine / 10;
-            }
-            set
-            {
-
+                return this.reader.LineNumber / reader.Frequency;
             }
         }
         public string VM_Time
         {
             get
             {
-                seconds = mainModel.numOfCurrentLine / 10;
+                seconds = (int)Math.Round(VM_CurrentTime);
                 int h = seconds / 3600;
                 seconds = seconds - h * 3600;
                 int m = seconds / 60;
@@ -56,22 +51,16 @@ namespace Ex1.controls
                     sec = $"{s.ToString()}";
                 str = $"{hour}:{min}:{sec}";
                 return str;
-            }
-            set
-            {
-               
-            }
-            
+            }           
         }
-        private MainController.MainModel mainModel;
         public videoControlViewModel()
         {
-            
+            this.seconds = 0;
         }
-        public void setMainModel(MainController.MainModel model)
+        public void setDataFileReader(DataFileReader reader)
         {
-            this.mainModel = model;
-            this.mainModel.PropertyChanged +=
+            this.reader = reader;
+            this.reader.PropertyChanged +=
                delegate (Object sender, PropertyChangedEventArgs e)
                {
                    NotifyPropertyChanged("VM_" + e.PropertyName);
@@ -79,32 +68,34 @@ namespace Ex1.controls
         }
         public void pauseVideo()
         {
-            mainModel.pauseVideo();
+            this.reader.stopReading();
         }
         public void playVideo()
         {
-            mainModel.playVideo();
+            this.reader.startReading();
         }
         public void stopVideo()
         {
-            mainModel.stopVideo();
+            this.reader.stopReading();
+            this.reader.LineNumber = 0;
         }
         public void forwardVideo(int sec)
         {
-            mainModel.forwardVideo(sec);
+            this.reader.skipForward(sec);
         }
         public void backVideo(int sec)
         {
-            mainModel.backVideo(sec);
+            this.reader.skipBackwards(sec);
         }
         public void prevVideo()
         {
-            mainModel.prevVideo();
+            stopVideo();
+            playVideo();
         }
         public void nextVideo()
         {
-            mainModel.nextVideo();
+            pauseVideo();
+            reader.LineNumber = reader.Size - 1;
         }
-        //play speed
     }
 }

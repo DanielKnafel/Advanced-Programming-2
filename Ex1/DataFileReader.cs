@@ -124,23 +124,25 @@ namespace Ex1
         {
             int skipped = LineNumber + (seconds / Frequency) - 1;
             if (skipped < data.Length)
-            {
                 this.lineNumber = skipped;
-                NotifyPropertyChanged("LineNumber");
-            }
             else
                 this.lineNumber = data.Length - 1;
+            NotifyPropertyChanged("LineNumber");
+
         }
         public void skipBackwards(int seconds)
         {
             int skipped = LineNumber - (seconds / Frequency) - 1;
             if (skipped >= 0)
-            {
                 this.lineNumber = skipped;
-                NotifyPropertyChanged("LineNumber");
-            }
             else
                 this.lineNumber = 0;
+            NotifyPropertyChanged("LineNumber");
+        }
+
+        public void stopReading()
+        {
+            this.stop = true;
         }
     }
 }

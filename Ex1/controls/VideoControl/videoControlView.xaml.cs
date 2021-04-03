@@ -29,6 +29,11 @@ namespace Ex1.controls
             DataContext = vm;
         }
 
+        public void setDataFileReader(DataFileReader reader)
+        {
+            vm.setDataFileReader(reader);
+        }
+
         private void Back_Click_Down(object sender, MouseButtonEventArgs e)
         {
             click_Started = DateTime.Now;
@@ -78,7 +83,7 @@ namespace Ex1.controls
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            vm.VM_Speed = Speed.Text;
+            vm.VM_Speed = double.Parse(Speed.Text);
         }
     }
 }
