@@ -29,10 +29,10 @@ namespace Ex1
             // add option for user specified file selection
 
             int frequency = 10;
-            reader.setFile("", frequency);
+            reader.setCSVFile("reg_flight.csv", frequency);
             reader.setXMLDefinitions("playback_small.xml");
             Joystick.setDataFileReader(reader);
-            //VideoControl.setDataFileReader(reader);
+            VideoControl.setDataFileReader(reader);
         }
     }
 }

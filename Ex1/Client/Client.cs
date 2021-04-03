@@ -20,11 +20,12 @@ namespace Ex1
         {
             client = new TcpClient();
             this.reader = reader;
-            reader.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
-                                      {
-                                            if (e.PropertyName == "Line")
-                                                sendLine(reader.Line);
-                                      };
+            reader.PropertyChanged +=
+                delegate (Object sender, PropertyChangedEventArgs e)
+                {
+                    if (e.PropertyName == "Line")
+                        sendLine(reader.Line);
+                };
         }
         public void connect(string server, int port)
         {
@@ -40,6 +41,10 @@ namespace Ex1
             {
                 Console.WriteLine(e.ToString());
             }
+            finally
+            {
+                disconnect();
+            }
         }
         public void sendLine(string line)
         {
@@ -50,12 +55,23 @@ namespace Ex1
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
-            } // finally
+            } 
+            finally
+            {
+                disconnect();
+            }
         }
         public void disconnect()
         {
-            streamWriter.Close();
-            client.Close();
+            try
+            {
+                streamWriter.Close();
+                client.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
         }
     }
 }

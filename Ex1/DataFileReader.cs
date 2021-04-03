@@ -22,11 +22,6 @@ namespace Ex1
         private int frequency;
         private volatile int lineNumber;
 
-        public void NotifyPropertyChanged(string propName)
-        {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-        }
         public DataFileReader()
         {
             this.lineNumber = 0;
@@ -35,15 +30,30 @@ namespace Ex1
             Speed = 1;
             stop = false;
         }
+        public void NotifyPropertyChanged(string propName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        }
         public void setXMLDefinitions(string fileName)
         {
             XmlDocument xml = new XmlDocument();
             xml.Load(fileName);
             XmlNodeList names = xml.GetElementsByTagName("name");
+            definitions = new string[names.Count];
             for (int i = 0; i < names.Count; i++)
             {
                 definitions[i] = names[i].InnerText;
             }
+        }
+        public string getValueByName(string name)
+        {
+            for (int i = 0; i < definitions.Length; i++)
+            {
+                if (definitions[i].Equals(name))
+                    return data[i];
+            }
+            return null;
         }
         public void startReading()
         {
@@ -67,7 +77,13 @@ namespace Ex1
         }
         public int LineNumber { 
             get { return this.lineNumber; }
-            set { this.lineNumber = value; }
+            set
+            {
+                if (value < data.Length && value >= 0)
+                    this.lineNumber = value;
+                else
+                    this.lineNumber = data.Length - 1;
+            }
         }
         public string Line { 
             get { return this.line; } 
