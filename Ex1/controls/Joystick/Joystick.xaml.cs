@@ -19,32 +19,15 @@ namespace Ex1.controls
     public partial class Joystick : UserControl
     {
         private JoystickViewModel vm;
-        private double size, angle;
         public Joystick()
         {
             InitializeComponent();
-            JoystickInner.Margin = new Thickness(109, 56, 0, 0);
-            double radius = JoystickMiddle.Margin.Left + JoystickInner.Width / 2 - JoystickMiddle.Margin.Left;
-            this.vm = new JoystickViewModel(new JoystickModel(JoystickInner.Margin, radius));
+            double radius = (JoystickMiddle.Width / 2) - (JoystickInner.Width / 2) - (Math.Sqrt(2)*JoystickInner.Width- JoystickInner.Width / 2) - JoystickInner.StrokeThickness;
+            double position = (JoystickOuter.Width / 2) - JoystickInner.Width / 2;
+            this.vm = new JoystickViewModel(new JoystickModel(new Point(position, position), radius));
             DataContext = vm;
         }
 
-        public double Joystick_Size
-        {
-            set
-            {
-                this.size = value;
-                vm.Size = value;
-            }
-        }
-        public double Joystick_Angle
-        {
-            set
-            {
-                this.angle = value;
-                vm.Angle = value;
-            }
-        }
         public void setDataFileReader(DataFileReader reader)
         {
             this.vm.setDataFileReader(reader);

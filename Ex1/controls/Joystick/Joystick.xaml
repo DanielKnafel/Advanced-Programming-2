@@ -6,10 +6,9 @@
              xmlns:local="clr-namespace:Ex1.controls" d:DataContext="{d:DesignInstance Type=local:JoystickViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="200" BorderThickness="5,5,5,5">
-    <Grid Background="#FFA6A3A3" Margin="0,0,-52,-36">
-        <Ellipse x:Name="JoystickOuter" Fill="#FF323234" HorizontalAlignment="Left" Height="130" Margin="64,12,0,0" Stroke="Black" VerticalAlignment="Top" Width="130"/>
-        <Slider x:Name="RudderSlider" HorizontalAlignment="Left" Margin="78,148,0,0" VerticalAlignment="Top" Width="100"/>
-        <Slider x:Name="ThrottleSlider" HorizontalAlignment="Left" Margin="-14,82,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="100">
+    <Canvas Background="#FFA6A3A3" Margin="0,0,-63,-35">
+        <Slider x:Name="RudderSlider" Value="{Binding Rudder, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="78,148,0,0" VerticalAlignment="Top" Width="100" Minimum="0" Maximum="1" IsEnabled="False"/>
+        <Slider x:Name="ThrottleSlider" Value="{Binding Throttle, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="-14,82,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="100" Minimum="0" Maximum="1" IsEnabled="False">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -19,22 +18,25 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
-        <Ellipse x:Name="JoystickMiddle" HorizontalAlignment="Left" Height="80" Margin="89,37,0,0" Stroke="Black" VerticalAlignment="Top" Width="80" Fill="Black"/>
-        <Ellipse x:Name="JoystickInner" HorizontalAlignment="Left" Height="40" Stroke="Black" VerticalAlignment="Top" Width="40" Panel.ZIndex="1" Margin="{Binding VM_NewLocation}">
-            <Ellipse.Fill>
-                <RadialGradientBrush>
-                    <GradientStop Color="White"/>
-                    <GradientStop Color="#FF707070" Offset="0.87"/>
-                </RadialGradientBrush>
-            </Ellipse.Fill>
-            <Ellipse.OpacityMask>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="0"/>
-                    <GradientStop Color="White" Offset="1"/>
-                </LinearGradientBrush>
-            </Ellipse.OpacityMask>
-        </Ellipse>
+        <Canvas x:Name="JoystickCanvas" Height="130" Width="130" Margin="58,18,54,28" >
+            <Ellipse x:Name="JoystickOuter" Fill="#FF323234" HorizontalAlignment="Left" Height="130" Stroke="Black" VerticalAlignment="Top" Width="130"/>
+            <Ellipse x:Name="JoystickMiddle" HorizontalAlignment="Left" Height="80" Stroke="Black" VerticalAlignment="Top" Width="80" Fill="Black" Canvas.Left="25" Canvas.Top="25"/>
+            <Ellipse x:Name="JoystickInner" HorizontalAlignment="Left" Height="40" Stroke="Black" VerticalAlignment="Top" Width="40" Panel.ZIndex="1" Canvas.Left="{Binding VM_NewLocation_X}" Canvas.Top="{Binding VM_NewLocation_Y}">
+                <Ellipse.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color="White"/>
+                        <GradientStop Color="#FF707070" Offset="0.87"/>
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+                <Ellipse.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Ellipse.OpacityMask>
+            </Ellipse>
+        </Canvas>
         <Label x:Name="ThrottleLabel" Content="Throttle" FontSize="15" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top"/>
         <Label x:Name="RudderLabel" Content="Rudder" FontSize="15" HorizontalAlignment="Left" Margin="178,142,0,0" VerticalAlignment="Top"/>
-    </Grid>
+    </Canvas>
 </UserControl>

@@ -10,15 +10,15 @@ namespace Ex1.controls
 {
     public class JoystickModel : INotifyPropertyChanged
     {
-        private double radios;
-        private Thickness defaultLocation;
-        private Thickness newLocation;
+        private double radius;
+        private Point defaultLocation;
+        private Point newLocation;
 
-        public JoystickModel(Thickness defaultLocation, double radius)
+        public JoystickModel(Point defaultLocation, double radius)
         {
             this.defaultLocation = defaultLocation;
             this.newLocation = defaultLocation;
-            this.radios = radius;
+            this.radius = radius;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -28,7 +28,7 @@ namespace Ex1.controls
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
-        public Thickness NewLocation
+        public Point NewLocation
         {
             get { return this.newLocation; }
             set
@@ -37,19 +37,15 @@ namespace Ex1.controls
                 NotifyPropertyChanged("NewLocation");
             }
         }
-        public Thickness DefaultLocation
+        public Point DefaultLocation
         {
             get; set;
         }
 
-        // moves the inner joystick to the given position. 0 <= size <= 1, 0 <= angle < 360
-        public void moveJoystick(double size, double angle)
+        // moves the inner joystick to the given position.
+        public void moveJoystick(double aileron, double elevator)
         {
-            angle *= Math.PI / 180;
-            size *= this.radios;
-            double newCenterX = size * Math.Sin(angle);
-            double newCenterY = size * Math.Cos(angle);
-            this.NewLocation = new Thickness(this.defaultLocation.Left + newCenterX, this.defaultLocation.Top - newCenterY, this.defaultLocation.Right, this.defaultLocation.Bottom);
+            this.NewLocation = new Point(this.defaultLocation.X - this.radius * aileron, this.defaultLocation.Y + this.radius * elevator);
         }
     }
 }

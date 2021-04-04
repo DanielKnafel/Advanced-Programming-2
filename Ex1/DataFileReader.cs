@@ -49,10 +49,11 @@ namespace Ex1
         }
         public string getValueByName(string name)
         {
+            string[] lineValues = this.line.Split(',');
             for (int i = 0; i < definitions.Length; i++)
             {
                 if (definitions[i].Equals(name))
-                    return data[i];
+                    return lineValues[i];
             }
             return null;
         }

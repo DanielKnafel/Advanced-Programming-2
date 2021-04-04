@@ -25,6 +25,7 @@ namespace Ex1.controls
         {
             InitializeComponent();
             vm = new videoControlViewModel();
+            SpeedSlider.Value = 1;
             DataContext = vm;
         }
 

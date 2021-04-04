@@ -26,7 +26,6 @@ namespace Ex1.controls
                 NotifyPropertyChanged("VM_VideoLength");
             }
         }
-
         public double CurrentTimeChange
         {
             set
@@ -81,6 +80,7 @@ namespace Ex1.controls
         {
             this.VM_VideoLength = 1;
             this.VM_CurrentTime = 0;
+
         }
         public void setDataFileReader(DataFileReader reader)
         {

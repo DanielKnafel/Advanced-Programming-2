@@ -27,8 +27,8 @@ namespace Ex1
             int frequency = 10;
             reader.setCSVFile("reg_flight.csv", frequency);
             reader.setXMLDefinitions("playback_small.xml");
-            Client client = new Client(reader);
-            client.connect("localhost", 5400);
+            //Client client = new Client(reader);
+            //client.connect("localhost", 5400);
             // add option for user specified file selection
 
 

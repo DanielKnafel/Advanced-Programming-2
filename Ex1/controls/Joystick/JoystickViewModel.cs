@@ -13,14 +13,23 @@ namespace Ex1.controls
     {
         private JoystickModel model;
         private DataFileReader reader;
-        private double size, angle;
+        private double aileron, elevator, rudder, throttle;
+        private int VM_newLocation_X, VM_newLocation_Y;
 
         public JoystickViewModel(JoystickModel model)
         {
             this.model = model;
+            this.VM_NewLocation_X = (int)model.NewLocation.X;
+            this.VM_NewLocation_Y = (int)model.NewLocation.Y;
+
             model.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
                 {
+                    if (e.PropertyName.Equals("NewLocation"))
+                    {
+                        this.VM_NewLocation_X = (int)model.NewLocation.X;
+                        this.VM_NewLocation_Y = (int)model.NewLocation.Y;
+                    }
                     NotifyPropertyChanged("VM_" + e.PropertyName);
                 };
         }
@@ -31,34 +40,71 @@ namespace Ex1.controls
             this.reader.PropertyChanged +=
                     delegate (Object sender, PropertyChangedEventArgs e)
                     {
-                        //if (e.PropertyName.Equals("Line"))
-                            //reader.Line;
-                            //model.moveJoystick(this.size, this.angle);
+                        if (e.PropertyName.Equals("Line"))
+                        {
+                            try
+                            {
+                                this.Throttle = double.Parse(reader.getValueByName("throttle"));
+                                this.Rudder = double.Parse(reader.getValueByName("rudder"));
+                                this.Aileron = double.Parse(reader.getValueByName("aileron"));
+                                this.Elevator = double.Parse(reader.getValueByName("elevator"));
+                            }
+                            catch (Exception suppressed) { }
+                        }
                     };
         }
 
-        public Thickness VM_NewLocation
+        public int VM_NewLocation_X
         {
-            get { return model.NewLocation; }
-        }
-        public Thickness VM_DefaultLocation
-        {
-            set { model.DefaultLocation = value; }
-        }
-        public double Size
-        {
-            set
-            {
-                this.size = value;
-                model.moveJoystick(this.size, this.angle);
+            get { return this.VM_newLocation_X; }
+            set { 
+                this.VM_newLocation_X = value;
+                NotifyPropertyChanged("VM_NewLocation_X");
             }
         }
-        public double Angle
+        public int VM_NewLocation_Y
         {
+            get { return this.VM_newLocation_Y; }
+            set 
+            { 
+                this.VM_newLocation_Y = value;
+                NotifyPropertyChanged("VM_NewLocation_Y");
+            }
+        }
+        public double Aileron
+        {
+            get { return this.aileron; }
             set
             {
-                this.angle = value;
-                model.moveJoystick(this.size, this.angle);
+                this.aileron = value;
+                model.moveJoystick(this.aileron, this.elevator);
+            }
+        }
+        public double Elevator
+        {
+            get { return this.elevator; }
+            set
+            {
+                this.elevator = value;
+                model.moveJoystick(this.aileron, this.elevator);
+            }
+        }
+        public double Rudder
+        {
+            get { return this.rudder; }
+            set
+            {
+                this.rudder = value;
+                NotifyPropertyChanged("Rudder");
+            }
+        }
+        public double Throttle
+        {
+            get { return this.throttle; }
+            set
+            {
+                this.throttle = value;
+                NotifyPropertyChanged("Throttle");
             }
         }
     }
