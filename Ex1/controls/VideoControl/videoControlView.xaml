@@ -7,10 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="778.021">
     <Canvas>
-        <Slider Name="TimeSlider" Thumb.DragStarted="TimeSlider_DragStarted" Thumb.DragCompleted="TimeSlider_DragCompleted" Maximum="{Binding VM_VideoLength, Mode=OneWay}" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" Width="520" Value="{Binding VM_CurrentTime, Mode=OneWay}" Margin="31,71,207,-71" RenderTransformOrigin="0.252,2.5"/>
+        <Slider Name="TimeSlider" Thumb.DragStarted="TimeSlider_DragStarted" Thumb.DragCompleted="TimeSlider_DragCompleted" Maximum="{Binding VM_VideoLength, Mode=OneWay}" Minimum="0" Width="520" Value="{Binding VM_CurrentTime, Mode=OneWay}" Margin="31,71,207,-71" RenderTransformOrigin="0.252,2.5"/>
         <TextBox  x:Name="TimeTextbox" Text="{Binding VM_Time, Mode=OneWay}" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Width="62" Canvas.Left="575" Canvas.Top="71"/>
         <Label Name="SpeedLabel" Content="Play speed" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="503" Canvas.Top="117"/>
-        <TextBox  Name="SpeedTextbox" Text="{Binding ElementName=SpeedSlider, Path=Value}" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap"  VerticalAlignment="Top" TextAlignment="Center" Width="33" Canvas.Left="715" Canvas.Top="120"/>
+        <TextBox  Name="SpeedTextbox" Text="{Binding ElementName=SpeedSlider, Path=Value}" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap"  VerticalAlignment="Top" TextAlignment="Center" Width="33" Canvas.Left="715" Canvas.Top="120" IsEnabled="False"/>
         <Button Name="NextButton" Click="next_Click" Canvas.Left="432" Canvas.Top="106" Width="49">
             <Image Source="/Ex1;component/Images/Image8.png" Stretch="Fill" Height="36" Canvas.Left="438" Canvas.Top="110" Width="47" RenderTransformOrigin="0.532,-1.139"/>
         </Button>

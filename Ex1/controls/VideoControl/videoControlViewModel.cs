@@ -91,6 +91,8 @@ namespace Ex1.controls
                {
                    if (e.PropertyName.Equals("LineNumber"))
                        this.VM_CurrentTime = reader.LineNumber / reader.Frequency;
+                   else if (e.PropertyName.Equals("Size"))
+                       this.VM_VideoLength = reader.Size / reader.Frequency;
                    NotifyPropertyChanged("VM_" + e.PropertyName);
                };
         }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.ComponentModel;
 using System.Threading;
@@ -19,17 +15,18 @@ namespace Ex1
         private volatile bool stop;
         public event PropertyChangedEventHandler PropertyChanged;
         private string line;
-        private int frequency;
+        private int frequency, size;
         private volatile int lineNumber;
-        private int size;
+        private Mutex mut;
 
         public DataFileReader()
         {
             this.lineNumber = 0;
             line = null;
-            this.frequency = 0;
+            this.frequency = 1;
             Speed = 1;
             stop = false;
+            mut = new Mutex();
         }
         public void NotifyPropertyChanged(string propName)
         {
@@ -59,45 +56,59 @@ namespace Ex1
         }
         public void startReading()
         {
+            mut.WaitOne();
             stop = false;
+            mut.ReleaseMutex();
             new Thread(() =>
             {
                 while (!stop)
                 {
                     if (this.lineNumber == Size)
+                    {
+                        mut.WaitOne();
                         stop = true;
+                        mut.ReleaseMutex();
+                    }
                     else
                     {
                         this.line = data[lineNumber];
                         NotifyPropertyChanged("Line");
                         Thread.Sleep((int)Math.Round(1000.0 / (Frequency * Speed)));
+                        mut.WaitOne();
                         LineNumber++;
+                        mut.ReleaseMutex();
                     }
                 }
             }).Start();
         }
-        public int LineNumber { 
+        public int LineNumber
+        {
             get { return this.lineNumber; }
             set
             {
+                mut.WaitOne();
                 if (value < data.Length && value >= 0)
                     this.lineNumber = value;
                 else
                     this.lineNumber = data.Length - 1;
+                mut.ReleaseMutex();
                 NotifyPropertyChanged("LineNumber");
             }
         }
-        public string Line { 
+        public string Line
+        { 
             get { return this.line; } 
         }
-        public double Speed {
+        public double Speed
+        {
             get; set;
         }
         public int Frequency
         {
             get { return this.frequency; }
         }
-        public string[] Definitions { 
+        public string[] Definitions
+        { 
             get { return this.definitions; } 
         }
         public int Size
@@ -124,22 +135,28 @@ namespace Ex1
         public void skipForward(int seconds)
         {
             int skipped = LineNumber + (seconds * Frequency) - 1;
+            mut.WaitOne();
             if (skipped < data.Length)
                 this.LineNumber = skipped;
             else
                 this.LineNumber = data.Length - 1;
+            mut.ReleaseMutex();
         }
         public void skipBackwards(int seconds)
         {
             int skipped = LineNumber - (seconds * Frequency) - 1;
+            mut.WaitOne();
             if (skipped >= 0)
                 this.LineNumber = skipped;
             else
                 this.LineNumber = 0;
+            mut.ReleaseMutex();
         }
         public void stopReading()
         {
+            mut.WaitOne();
             this.stop = true;
+            mut.ReleaseMutex();
         }
     }
 }

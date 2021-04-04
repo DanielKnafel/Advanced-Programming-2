@@ -6,9 +6,12 @@
         xmlns:local="clr-namespace:Ex1"
         mc:Ignorable="d"
         xmlns:Controls="clr-namespace:Ex1.controls"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="495.333" Width="827.333">
     <Grid>
-        <Controls:Joystick x:Name="Joystick"/>
-        <Controls:videoControlView x:Name="VideoControl" Margin="26,247,95,10"/>
+        <Controls:Joystick Grid.Row="0" Grid.Column="0" x:Name="Joystick" Margin="0,0,58,33"/>
+        <Controls:videoControlView Grid.Row="3" x:Name="VideoControl" Margin="26,247,95,8"/>
+        <Button Name="UploadXMLButton" Content="Choose XML" HorizontalAlignment="Left" Margin="19,409,0,-10" Grid.Row="4" VerticalAlignment="Top" Width="75" Click="UploadXMLButton_Click" Grid.RowSpan="2"/>
+        <Button Name="UploadCSVButton" Content="Choose CSV" HorizontalAlignment="Left" Margin="99,409,0,0" VerticalAlignment="Top" Width="75" Click="UploadCSVButton_Click" IsEnabled="False"/>
+
     </Grid>
 </Window>
