@@ -3,6 +3,7 @@ using System.IO;
 using System.ComponentModel;
 using System.Threading;
 using System.Xml;
+using System.Collections.Generic;
 
 namespace Ex1
 {
@@ -17,7 +18,9 @@ namespace Ex1
         private string line;
         private int frequency, size;
         private volatile int lineNumber;
+        // mutex for volotile resources
         private Mutex mut;
+        private Dictionary<string, List<float>> featuresDictionary;
 
         public DataFileReader()
         {
@@ -38,10 +41,29 @@ namespace Ex1
             XmlDocument xml = new XmlDocument();
             xml.Load(fileName);
             XmlNodeList names = xml.GetElementsByTagName("name");
-            definitions = new string[names.Count];
-            for (int i = 0; i < names.Count; i++)
+            definitions = new string[names.Count/2];
+            for (int i = 0; i < definitions.Length; i++)
             {
                 definitions[i] = names[i].InnerText;
+            }
+        }
+        public void setCSVFile(string fileName, int frequency)
+        {
+            try
+            {
+                this.data = File.ReadAllLines(fileName);
+                this.frequency = frequency;
+                this.lineNumber = 0;
+                this.line = null;
+                this.size = this.data.Length;
+                NotifyPropertyChanged("Size");
+                Speed = 1;
+                this.featuresDictionary = new Dictionary<string, List<float>>();
+                setFeaturesDictionary();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
             }
         }
         public string getValueByName(string name)
@@ -81,6 +103,7 @@ namespace Ex1
                 }
             }).Start();
         }
+        #region Properties
         public int LineNumber
         {
             get { return this.lineNumber; }
@@ -115,23 +138,8 @@ namespace Ex1
         {
             get { return this.size; }
         }
-        public void setCSVFile(string fileName, int frequency)
-        {
-            try
-            {
-                this.data = File.ReadAllLines(fileName);
-                this.frequency = frequency;
-                this.lineNumber = 0;
-                this.line = null;
-                this.size = this.data.Length;
-                NotifyPropertyChanged("Size");
-                Speed = 1;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-        }
+        public Dictionary<string, List<float>> FeaturesDictionary { get; }
+        #endregion
         public void skipForward(int seconds)
         {
             int skipped = LineNumber + (seconds * Frequency) - 1;
@@ -157,6 +165,29 @@ namespace Ex1
             mut.WaitOne();
             this.stop = true;
             mut.ReleaseMutex();
+        }
+        // returns a mapping between feature name and its values vector
+        private void setFeaturesDictionary()
+        {
+            // create list for each feature
+            foreach (string name in definitions)
+            {
+                // make duplicates of feature names
+                if (!featuresDictionary.ContainsKey(name))
+                    featuresDictionary.Add(name, new List<float>());
+                else
+                    featuresDictionary.Add(name+"[1]", new List<float>());
+            }
+            // initialize lists with values
+            for (int i = 0; i < data.Length; i++)
+            {
+                string[] lineValues = data[i].Split(',');
+                int j = 0;
+                foreach (KeyValuePair<string, List<float>> pair in featuresDictionary)
+                {
+                    pair.Value.Add(float.Parse(lineValues[j++]));
+                }
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Windows;
+using System.Runtime.InteropServices;
 
 namespace Ex1
 {
@@ -15,7 +16,6 @@ namespace Ex1
             reader.setXMLDefinitions("playback_small.xml");
             //Client client = new Client(reader);
             //client.connect("localhost", 5400);
-            // add option for user specified file selection
             Joystick.setDataFileReader(reader);
             VideoControl.setDataFileReader(reader);
             VideoControl.IsEnabled = false;
