@@ -138,7 +138,7 @@ namespace Ex1
         {
             get { return this.size; }
         }
-        public Dictionary<string, List<float>> FeaturesDictionary { get; }
+        public Dictionary<string, List<float>> FeaturesDictionary { get { return this.featuresDictionary; } }
         #endregion
         public void skipForward(int seconds)
         {
