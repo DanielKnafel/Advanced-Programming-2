@@ -182,11 +182,8 @@ namespace Ex1
             for (int i = 0; i < data.Length; i++)
             {
                 string[] lineValues = data[i].Split(',');
-                int j = 0;
-                foreach (KeyValuePair<string, List<float>> pair in featuresDictionary)
-                {
-                    pair.Value.Add(float.Parse(lineValues[j++]));
-                }
+                for (int j = 0; j < lineValues.Length; j++)
+                    featuresDictionary[definitions[j]].Add(float.Parse(lineValues[j]));
             }
         }
     }
