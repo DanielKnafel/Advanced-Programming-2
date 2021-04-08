@@ -56,7 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="controls\GraphReg\GraphReg.xaml">
+    <Page Include="controls\GraphControl\GraphControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -77,8 +77,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Client\Client.cs" />
-    <Compile Include="controls\GraphReg\GraphReg.xaml.cs">
-      <DependentUpon>GraphReg.xaml</DependentUpon>
+    <Compile Include="controls\GraphControl\GraphControl.xaml.cs">
+      <DependentUpon>GraphControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="controls\Joystick\Joystick.xaml.cs">
       <DependentUpon>Joystick.xaml</DependentUpon>
@@ -97,6 +97,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PearsonCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
