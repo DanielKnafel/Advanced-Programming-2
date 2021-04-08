@@ -60,6 +60,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="controls\GraphReg\GraphReg.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="controls\Joystick\Joystick.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -79,6 +83,9 @@
     <Compile Include="Client\Client.cs" />
     <Compile Include="controls\GraphControl\GraphControl.xaml.cs">
       <DependentUpon>GraphControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\GraphReg\GraphReg.xaml.cs">
+      <DependentUpon>GraphReg.xaml</DependentUpon>
     </Compile>
     <Compile Include="controls\Joystick\Joystick.xaml.cs">
       <DependentUpon>Joystick.xaml</DependentUpon>
