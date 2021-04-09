@@ -44,7 +44,7 @@ namespace Ex1
                         frequency = int.Parse(UserAnswer);
                         completed = true;
                     }
-                    catch (Exception supressed) { }
+                    catch (Exception suppressed) { }
                 } while (!completed);
                 reader.setCSVFile(openFileDialog.FileName, frequency);
             }
