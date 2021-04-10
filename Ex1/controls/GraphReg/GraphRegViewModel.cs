@@ -44,15 +44,25 @@ namespace Ex1.controls.GraphReg
         }
         public List<Point> getPoints()
         {
-            List<float> val1 = reader.getValuesOfFeature(VM_displayFeature);
-            List<float> val2 = reader.getValuesOfFeature(VM_corrolatedFeature);
-            List<Point> list = new List<Point>();
-            for(int i = 0; i<val1.Count(); i++)
+            if(VM_displayFeature != null && VM_corrolatedFeature != null)
             {
-                list.Add(new Point(val1[i], val2[i]));
+                List<float> val1 = reader.getValuesOfFeature(VM_displayFeature);
+                List<float> val2 = reader.getValuesOfFeature(VM_corrolatedFeature);
+                List<Point> list = new List<Point>();
+                for (int i = 0; i < reader.LineNumber; i++)
+                {
+                    list.Add(new Point(val1[i], val2[i]));
+                }
+                return list;
             }
-            return list;
+            return null;
 
+        }
+        public int getLineNumber()
+        {
+            if(reader != null)
+                return reader.LineNumber;
+            return 0;
         }
     }
 }

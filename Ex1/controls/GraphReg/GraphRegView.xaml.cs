@@ -39,11 +39,15 @@ namespace Ex1.controls.GraphReg
                 {
                     l = vm.getRegLine();
                     p = vm.getPoints();
+                    if (p != null && l != null)
+                        DrawGraph();
                 }
                   
                 else if (e.PropertyName.Equals("VM_LineNumber"))
                 {
-
+                    p = vm.getPoints();
+                    if (p != null && l != null)
+                        DrawGraph();
                 }
             };
             l = new Polyline();
@@ -107,21 +111,31 @@ namespace Ex1.controls.GraphReg
             canGraph.Children.Add(yaxis_path);
 
             // Make some data sets.
-            Brush[] brushes = { Brushes.Red, Brushes.Green, Brushes.Blue };
+            Brush[] brushes = { Brushes.Red, Brushes.Blue, Brushes.Gray };
             Random rand = new Random();
             l.StrokeThickness = 1;
-            l.Stroke = brushes[0];
+            l.Stroke = brushes[1];
             canGraph.Children.Add(l);
             // Display ellipses at the points.
             const float width = 4;
             const float radius = width / 2;
-            foreach (Point point in p)
+            int length = vm.getLineNumber();
+            for (int i = 0; i < length; i++)
             {
+                Point point = p[i];
                 Ellipse ellipse = new Ellipse();
                 ellipse.SetValue(Canvas.LeftProperty, point.X - radius);
                 ellipse.SetValue(Canvas.TopProperty, point.Y - radius);
-                ellipse.Fill = brushes[0];
-                ellipse.Stroke = brushes[0];
+                if (length - i <= 300)
+                { // 30 sec. 
+                    ellipse.Fill = brushes[0];
+                    ellipse.Stroke = brushes[0];
+                }
+                else //regular point.
+                {
+                    ellipse.Fill = brushes[2];
+                    ellipse.Stroke = brushes[2];
+                }
                 ellipse.StrokeThickness = 1;
                 ellipse.Width = width;
                 ellipse.Height = width;
