@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,11 +23,29 @@ namespace Ex1.controls.GraphReg
     {
         Polyline l;
         List<Point> p;
+        string cf1, cf2;
+
         GraphRegViewModel vm;
         public GraphRegView()
         {
             InitializeComponent();
             vm = new GraphRegViewModel();
+            cf1 = null;
+            cf2 = null;
+            this.vm.PropertyChanged +=
+            delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                if (e.PropertyName.Equals("VM_displayFeature"))
+                {
+                    l = vm.getRegLine();
+                    p = vm.getPoints();
+                }
+                  
+                else if (e.PropertyName.Equals("VM_LineNumber"))
+                {
+
+                }
+            };
             l = new Polyline();
             PointCollection po = new PointCollection();
             po.Add(new Point(0, 0));
@@ -35,6 +54,10 @@ namespace Ex1.controls.GraphReg
             p = new List<Point>();
             p.Add(new Point(50, 50));
             DrawGraph();
+        }
+        public void setDataFileReader(DataFileReader reader)
+        {
+            vm.setDataFileReader(reader);
         }
         // Draw a simple graph.
         private void DrawGraph()

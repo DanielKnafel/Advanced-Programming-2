@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Threading;
 using System.Xml;
 using System.Collections.Generic;
+using System.Windows.Shapes;
 
 namespace Ex1
 {
@@ -16,6 +17,7 @@ namespace Ex1
         private volatile bool stop;
         public event PropertyChangedEventHandler PropertyChanged;
         private string line;
+        private string displayFeature;
         private int frequency, size;
         private volatile int lineNumber;
         // mutex for volotile resources
@@ -185,6 +187,27 @@ namespace Ex1
                 for (int j = 0; j < lineValues.Length; j++)
                     featuresDictionary[definitions[j]].Add(float.Parse(lineValues[j]));
             }
+        }
+        public List<float> getValuesOfFeature(string name)
+        {
+            return this.featuresDictionary[name];
+        }
+        public void setDisplayFeature(string name)
+        {
+            this.displayFeature = name;
+            NotifyPropertyChanged("displayFeature");
+        }
+        public string getDisplayFeature()
+        {
+            return displayFeature;
+        }
+        public string getCorroleatedFeature(string name)
+        {
+            return null; //implent.
+        }
+        public Polyline getRegLine(string cf1, string cf2)
+        {
+            return null; //implent.
         }
     }
 }
