@@ -18,13 +18,15 @@ namespace Ex1.controls.GraphReg
     /// <summary>
     /// Interaction logic for GraphReg.xaml
     /// </summary>
-    public partial class GraphReg : UserControl
+    public partial class GraphRegView : UserControl
     {
         Polyline l;
         List<Point> p;
-        public GraphReg()
+        GraphRegViewModel vm;
+        public GraphRegView()
         {
             InitializeComponent();
+            vm = new GraphRegViewModel();
             l = new Polyline();
             PointCollection po = new PointCollection();
             po.Add(new Point(0, 0));

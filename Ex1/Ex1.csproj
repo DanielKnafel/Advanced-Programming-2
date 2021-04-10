@@ -63,7 +63,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="controls\GraphReg\GraphReg.xaml">
+    <Page Include="controls\GraphReg\GraphRegView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -87,9 +87,10 @@
     <Compile Include="controls\GraphControl\GraphControl.xaml.cs">
       <DependentUpon>GraphControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="controls\GraphReg\GraphReg.xaml.cs">
-      <DependentUpon>GraphReg.xaml</DependentUpon>
+    <Compile Include="controls\GraphReg\GraphRegView.xaml.cs">
+      <DependentUpon>GraphRegView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="controls\GraphReg\GraphRegViewModel.cs" />
     <Compile Include="controls\Joystick\Joystick.xaml.cs">
       <DependentUpon>Joystick.xaml</DependentUpon>
     </Compile>

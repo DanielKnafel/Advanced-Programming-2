@@ -9,7 +9,6 @@ namespace Ex1.controls
 {
     class videoControlViewModel : ViewModel
     {
-        private DataFileReader reader;
         private double vm_videoLength;
         private double vm_currentTime;
         public double VM_Speed
@@ -82,9 +81,9 @@ namespace Ex1.controls
             this.VM_CurrentTime = 0;
 
         }
-        public void setDataFileReader(DataFileReader reader)
+        public override void setDataFileReader(DataFileReader reader)
         {
-            this.reader = reader;
+            base.setDataFileReader(reader);
             this.VM_VideoLength = reader.Size / reader.Frequency;
             this.reader.PropertyChanged +=
                delegate (Object sender, PropertyChangedEventArgs e)

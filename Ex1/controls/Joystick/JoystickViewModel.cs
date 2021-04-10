@@ -6,7 +6,6 @@ namespace Ex1.controls
     public class JoystickViewModel : ViewModel
     {
         private JoystickModel model;
-        private DataFileReader reader;
         private double aileron, elevator, rudder, throttle;
         private int VM_newLocation_X, VM_newLocation_Y;
 
@@ -28,7 +27,7 @@ namespace Ex1.controls
                 };
         }
 
-        public void setDataFileReader(DataFileReader reader)
+        public override void setDataFileReader(DataFileReader reader)
         {
             this.reader = reader;
             this.reader.PropertyChanged +=
