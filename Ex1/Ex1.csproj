@@ -147,6 +147,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="AnomalyDetectionDLL\AnomalyDetectionDLL.vcxproj" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -168,6 +169,31 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="controls\Graphs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AnomalyDetectionDLL\AnomalyDetectionAPI.cpp" />
+    <Content Include="AnomalyDetectionDLL\AnomalyDetectionAPI.h" />
+    <Content Include="AnomalyDetectionDLL\AnomalyDetectionDLL.dll" />
+    <Content Include="AnomalyDetectionDLL\AnomalyDetectionDLL.vcxproj.filters" />
+    <Content Include="AnomalyDetectionDLL\AnomalyDetectionDLL.vcxproj.user" />
+    <Content Include="AnomalyDetectionDLL\AnomalyDetector.h" />
+    <Content Include="AnomalyDetectionDLL\anomaly_detection_util.cpp" />
+    <Content Include="AnomalyDetectionDLL\anomaly_detection_util.h" />
+    <Content Include="AnomalyDetectionDLL\CLI.cpp" />
+    <Content Include="AnomalyDetectionDLL\CLI.h" />
+    <Content Include="AnomalyDetectionDLL\commands.h" />
+    <Content Include="AnomalyDetectionDLL\dllmain.cpp" />
+    <Content Include="AnomalyDetectionDLL\framework.h" />
+    <Content Include="AnomalyDetectionDLL\HybridAnomalyDetector.cpp" />
+    <Content Include="AnomalyDetectionDLL\HybridAnomalyDetector.h" />
+    <Content Include="AnomalyDetectionDLL\minCircle.cpp" />
+    <Content Include="AnomalyDetectionDLL\minCircle.h" />
+    <Content Include="AnomalyDetectionDLL\pch.cpp" />
+    <Content Include="AnomalyDetectionDLL\pch.h" />
+    <Content Include="AnomalyDetectionDLL\SimpleAnomalyDetector.cpp" />
+    <Content Include="AnomalyDetectionDLL\SimpleAnomalyDetector.h" />
+    <Content Include="AnomalyDetectionDLL\timeseries.cpp" />
+    <Content Include="AnomalyDetectionDLL\timeseries.h" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
