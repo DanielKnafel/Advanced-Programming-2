@@ -13,8 +13,8 @@ namespace Ex1.controls
         private double vm_currentTime;
         public double VM_Speed
         {
-            get { return reader.Speed; }
-            set { reader.Speed = value; }
+            get { return vm.Speed; }
+            set { vm.Speed = value; }
         }
         public int VM_VideoLength
         {
@@ -29,7 +29,7 @@ namespace Ex1.controls
         {
             set
             {
-                if (this.reader != null)
+                if (this.vm != null)
                 {
                     int newTime = (int)(value - this.vm_currentTime);
                     if (newTime > 0)
@@ -81,40 +81,40 @@ namespace Ex1.controls
             this.VM_CurrentTime = 0;
 
         }
-        public override void setDataFileReader(DataFileReader reader)
+        public override void setMainViewModel(MainViewModel vm)
         {
-            base.setDataFileReader(reader);
-            this.VM_VideoLength = reader.Size / reader.Frequency;
-            this.reader.PropertyChanged +=
+            base.setMainViewModel(vm);
+            this.VM_VideoLength = vm.Size / vm.Frequency;
+            this.vm.PropertyChanged +=
                delegate (Object sender, PropertyChangedEventArgs e)
                {
                    if (e.PropertyName.Equals("LineNumber"))
-                       this.VM_CurrentTime = reader.LineNumber / reader.Frequency;
+                       this.VM_CurrentTime = vm.LineNumber / vm.Frequency;
                    else if (e.PropertyName.Equals("Size"))
-                       this.VM_VideoLength = reader.Size / reader.Frequency;
+                       this.VM_VideoLength = vm.Size / vm.Frequency;
                    NotifyPropertyChanged("VM_" + e.PropertyName);
                };
         }
         public void pauseVideo()
         {
-            this.reader.stopReading();
+            this.vm.stopReading();
         }
         public void playVideo()
         {
-            this.reader.startReading();
+            this.vm.startReading();
         }
         public void stopVideo()
         {
-            this.reader.stopReading();
-            this.reader.LineNumber = 0;
+            this.vm.stopReading();
+            this.vm.LineNumber = 0;
         }
         public void forwardVideo(int sec)
         {
-            this.reader.skipForward(sec);
+            this.vm.skipForward(sec);
         }
         public void backVideo(int sec)
         {
-            this.reader.skipBackwards(sec);
+            this.vm.skipBackwards(sec);
         }
         public void prevVideo()
         {
@@ -124,7 +124,7 @@ namespace Ex1.controls
         public void nextVideo()
         {
             pauseVideo();
-            reader.LineNumber = reader.Size - 1;
+            vm.LineNumber = vm.Size - 1;
         }
     }
 }

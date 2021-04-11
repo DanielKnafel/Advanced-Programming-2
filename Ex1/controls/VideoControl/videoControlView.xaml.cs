@@ -29,9 +29,9 @@ namespace Ex1.controls
             DataContext = vm;
         }
 
-        public void setDataFileReader(DataFileReader reader)
+        public void setMainViewModel(MainViewModel vm)
         {
-            vm.setDataFileReader(reader);
+            this.vm.setMainViewModel(vm);
         }
         private void Back_Click_Down(object sender, MouseButtonEventArgs e)
         {

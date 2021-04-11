@@ -16,9 +16,9 @@ namespace Ex1.controls
             DataContext = vm;
         }
 
-        public void setDataFileReader(DataFileReader reader)
+        public void setMainViewModel(MainViewModel vm)
         {
-            this.vm.setDataFileReader(reader);
+            this.vm.setMainViewModel(vm);
         }
     }
 }

@@ -27,20 +27,20 @@ namespace Ex1.controls
                 };
         }
 
-        public override void setDataFileReader(DataFileReader reader)
+        public override void setMainViewModel(MainViewModel vm)
         {
-            this.reader = reader;
-            this.reader.PropertyChanged +=
+            base.setMainViewModel(vm);
+            this.vm.PropertyChanged +=
                     delegate (Object sender, PropertyChangedEventArgs e)
                     {
                         if (e.PropertyName.Equals("Line"))
                         {
                             try
                             {
-                                this.Throttle = double.Parse(reader.getValueByName("throttle"));
-                                this.Rudder = double.Parse(reader.getValueByName("rudder"));
-                                this.Aileron = double.Parse(reader.getValueByName("aileron"));
-                                this.Elevator = double.Parse(reader.getValueByName("elevator"));
+                                this.Throttle = double.Parse(vm.getValueByName("throttle"));
+                                this.Rudder = double.Parse(vm.getValueByName("rudder"));
+                                this.Aileron = double.Parse(vm.getValueByName("aileron"));
+                                this.Elevator = double.Parse(vm.getValueByName("elevator"));
                             }
                             catch (Exception suppressed) { }
                         }

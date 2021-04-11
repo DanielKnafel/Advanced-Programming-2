@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,67 +23,74 @@ namespace Ex1.controls.GraphReg
     public partial class GraphRegView : UserControl
     {
         Polyline l;
-        List<Point> p;
-        string cf1, cf2;
-
-        GraphRegViewModel vm;
+        const double margin = 20;
+        double xmin = margin, xmax, ymax;
+        const double step = 10;
+        private GraphRegViewModel vm;
+        private List<Ellipse> points;
+        private List<Ellipse> last30Seconds;
+        private Brush[] brushes = { Brushes.Green, Brushes.Blue, Brushes.Gray };
         public GraphRegView()
         {
             InitializeComponent();
+            xmax = canGraph.Width;
+            ymax = canGraph.Height - margin;
             vm = new GraphRegViewModel();
-            cf1 = null;
-            cf2 = null;
+            this.last30Seconds = new List<Ellipse>();
+            this.points = new List<Ellipse>();
+            this.DataContext = vm;
             this.vm.PropertyChanged +=
-            delegate (Object sender, PropertyChangedEventArgs e)
-            {
-                if (e.PropertyName.Equals("VM_displayFeature"))
-                {
-                    l = vm.getRegLine();
-                    p = vm.getPoints();
-                    if (p != null && l != null)
-                        DrawGraph();
-                }
-                  
-                else if (e.PropertyName.Equals("VM_LineNumber"))
-                {
-                    p = vm.getPoints();
-                    if (p != null && l != null)
-                        DrawGraph();
-                }
-            };
-            l = new Polyline();
-            PointCollection po = new PointCollection();
-            po.Add(new Point(0, 0));
-            po.Add(new Point(6, 6));
-            l.Points = po;
-            p = new List<Point>();
-            p.Add(new Point(50, 50));
-            DrawGraph();
-        }
-        public void setDataFileReader(DataFileReader reader)
-        {
-            vm.setDataFileReader(reader);
-        }
-        // Draw a simple graph.
-        private void DrawGraph()
-        {
-            const double margin = 10;
-            double xmin = margin;
-            double xmax = canGraph.Width - margin;
-            double ymin = margin;
-            double ymax = canGraph.Height - margin;
-            const double step = 10;
+                delegate (Object sender, PropertyChangedEventArgs e)
+                {                       
+                    if (vm.VM_CorrolatedFeature != null)
+                    {
+                        if (e.PropertyName.Equals("VM_DisplayFeature"))
+                        {
+                            runDrawNewGraphInThread();
+                        }
 
+                        else if (e.PropertyName.Equals("VM_LineNumber"))
+                        {
+                            Application.Current.Dispatcher.Invoke((Action)delegate
+                            {
+                                drawLast30Seconds();
+                            });
+                        }
+                    }
+                    else
+                    {
+                        Application.Current.Dispatcher.Invoke((Action)delegate
+                        {
+                            canGraph.Children.Clear();
+                            drawAxis();
+                        });
+                    }
+                };
+            drawAxis();
+        }
+
+        private void runDrawNewGraphInThread()
+        {
+            new Thread(() =>
+            {
+                Application.Current.Dispatcher.Invoke((Action)delegate
+                {
+                    DrawNewGraph();
+                });
+            }).Start();
+        }
+
+        private void drawAxis()
+        {
             // Make the X axis.
             GeometryGroup xaxis_geom = new GeometryGroup();
             xaxis_geom.Children.Add(new LineGeometry(
-                new Point(0, ymax), new Point(canGraph.Width, ymax)));
-            for (double x = xmin + step;
-                x <= canGraph.Width - step; x += step)
+                new Point(0, ymax), new Point(xmax, ymax)));
+            for (double x = xmin + step; x <= xmax - step; x += step)
             {
                 xaxis_geom.Children.Add(new LineGeometry(
-                    new Point(x, ymax - margin / 2),
-                    new Point(x, ymax + margin / 2)));
+                    new Point(x, ymax - margin / 4),
+                    new Point(x, ymax + margin / 4)));
             }
 
             Path xaxis_path = new Path();
@@ -95,12 +103,12 @@ namespace Ex1.controls.GraphReg
             // Make the Y ayis.
             GeometryGroup yaxis_geom = new GeometryGroup();
             yaxis_geom.Children.Add(new LineGeometry(
-                new Point(xmin, 0), new Point(xmin, canGraph.Height)));
-            for (double y = step; y <= canGraph.Height - step; y += step)
+                new Point(xmin, ymax + margin), new Point(xmin, 0)));
+            for (double y = step; y <= ymax - step; y += step)
             {
                 yaxis_geom.Children.Add(new LineGeometry(
-                    new Point(xmin - margin / 2, y),
-                    new Point(xmin + margin / 2, y)));
+                    new Point(xmin - margin / 4, y),
+                    new Point(xmin + margin / 4, y)));
             }
 
             Path yaxis_path = new Path();
@@ -110,60 +118,77 @@ namespace Ex1.controls.GraphReg
 
             canGraph.Children.Add(yaxis_path);
 
-            // Make some data sets.
-            Brush[] brushes = { Brushes.Red, Brushes.Blue, Brushes.Gray };
-            Random rand = new Random();
+        }
+        public void setMainViewModel(MainViewModel vm)
+        {
+            this.vm.setMainViewModel(vm);
+        }
+        private void DrawNewGraph()
+        {
+            canGraph.Children.Clear();
+            points.Clear();
+            last30Seconds.Clear();
+            drawAxis();
+            canGraph.Children.Add(this.xAxisLabel);
+            canGraph.Children.Add(this.yAxisLabel);
+
+            // Display ellipses at the points.
+            const float pointSize = 4;
+            List<Point> p = vm.getPoints();
+
+            // scaling
+            double xRange = vm.DisplayFeatureMaxValue - vm.DisplayFeatureMinValue;
+            double yRange = vm.CorrolateFeatureMaxValue - vm.CorrolateFeatureMinValue;
+
+            for (int i = 0; i < vm.Size; i++)
+            {
+                Ellipse ellipse = new Ellipse();
+                Canvas.SetLeft(ellipse, margin + (p[i].X / xRange) * (xmax - margin) - pointSize / 2);
+                Canvas.SetTop(ellipse, ymax - (p[i].Y / yRange) * ymax - pointSize / 2);
+                ellipse.StrokeThickness = 1;
+                ellipse.Width = pointSize;
+                ellipse.Height = pointSize;
+                ellipse.Fill = brushes[2];
+                ellipse.Stroke = brushes[2];
+
+                points.Add(ellipse);
+                canGraph.Children.Add(ellipse);
+            }
+
+            l = new Polyline();
+            Line regLine = vm.RegLine;
+            double max = vm.DisplayFeatureMaxValue;
+            double x1 = margin + (max / xRange) * (xmax - margin);
+            double y1 = ymax - (regLine.f((float)max) / yRange) * ymax;
+            Point p1 = new Point(x1 , y1);
+
+            double min = vm.DisplayFeatureMinValue;
+            double x2 = margin + (min / xRange) * (xmax - margin);
+            double y2 = ymax - (regLine.f((float)min) / yRange) * ymax;
+            Point p2 = new Point(x2, y2);
+
+            PointCollection pointCol = new PointCollection();
+            pointCol.Add(p1);
+            pointCol.Add(p2);
+
+            l.Points = pointCol;
             l.StrokeThickness = 1;
             l.Stroke = brushes[1];
             canGraph.Children.Add(l);
-            // Display ellipses at the points.
-            const float width = 4;
-            const float radius = width / 2;
-            int length = vm.getLineNumber();
-            for (int i = 0; i < length; i++)
-            {
-                Point point = p[i];
-                Ellipse ellipse = new Ellipse();
-                ellipse.SetValue(Canvas.LeftProperty, point.X - radius);
-                ellipse.SetValue(Canvas.TopProperty, point.Y - radius);
-                if (length - i <= 300)
-                { // 30 sec. 
-                    ellipse.Fill = brushes[0];
-                    ellipse.Stroke = brushes[0];
-                }
-                else //regular point.
-                {
-                    ellipse.Fill = brushes[2];
-                    ellipse.Stroke = brushes[2];
-                }
-                ellipse.StrokeThickness = 1;
-                ellipse.Width = width;
-                ellipse.Height = width;
-                canGraph.Children.Add(ellipse);
-            }
-            /*
-            for (int data_set = 0; data_set < 3; data_set++)
-            {
-                int last_y = rand.Next((int)ymin, (int)ymax);
-
-                PointCollection points = new PointCollection();
-                for (double x = xmin; x <= xmax; x += step)
-                {
-                    last_y = rand.Next(last_y - 10, last_y + 10);
-                    if (last_y < ymin) last_y = (int)ymin;
-                    if (last_y > ymax) last_y = (int)ymax;
-                    points.Add(new Point(x, last_y));
-                }
-
-                Polyline polyline = new Polyline();
-                polyline.StrokeThickness = 1;
-                polyline.Stroke = brushes[data_set];
-                polyline.Points = points;
-
-                canGraph.Children.Add(polyline);
-            }
-            */
         }
-       
+        private void drawLast30Seconds()
+        {
+            if (last30Seconds.Count > 30 * vm.Frequency)
+            {
+                // change old point's color
+                last30Seconds[0].Fill = brushes[2];
+                last30Seconds[0].Stroke = brushes[2];
+                last30Seconds.RemoveAt(0);
+            } 
+            // add new point with color
+            points[vm.LineNumber].Fill = brushes[0];
+            points[vm.LineNumber].Stroke = brushes[0];
+            last30Seconds.Add(points[vm.LineNumber]);
+        }
     }
 }

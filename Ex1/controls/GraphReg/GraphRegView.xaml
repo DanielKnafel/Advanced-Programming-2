@@ -5,11 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Ex1.controls.GraphReg"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" >
-    
-    <Grid Background="LightGreen">
-        <Canvas Name="canGraph" Background="White"
-      Width="300" Height="200"
-      VerticalAlignment="Center" HorizontalAlignment="Center"/>
-    </Grid>
+             d:DesignHeight="200" d:DesignWidth="300" >
+
+    <Canvas Name="canGraph" Background="White" Width="300" Height="200" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Label x:Name="xAxisLabel" Content="{Binding VM_CorrolatedFeature, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="114" Canvas.Top="180" Width="78" Panel.ZIndex="1" />
+        <Label x:Name="yAxisLabel" Content="{Binding VM_DisplayFeature, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="-31" Canvas.Top="82" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" Width="80">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+    </Canvas>
+
 </UserControl>

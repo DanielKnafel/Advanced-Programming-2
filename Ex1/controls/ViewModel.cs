@@ -9,10 +9,11 @@ namespace Ex1.controls
 {
     public abstract class ViewModel : INotifyPropertyChanged
     {
-        protected DataFileReader reader;
-        public virtual void setDataFileReader(DataFileReader reader)
+        protected MainViewModel vm;
+
+        public virtual void setMainViewModel (MainViewModel vm)
         {
-            this.reader = reader;
+            this.vm = vm;
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)

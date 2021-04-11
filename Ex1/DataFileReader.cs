@@ -13,16 +13,16 @@ namespace Ex1
         // data from csv
         private string[] data;
         // columb names from xml
-        private string[] definitions;
         private volatile bool stop;
         public event PropertyChangedEventHandler PropertyChanged;
         private string line;
-        private string displayFeature;
         private int frequency, size;
         private volatile int lineNumber;
         // mutex for volotile resources
         private Mutex mut;
         private Dictionary<string, List<float>> featuresDictionary;
+        private Dictionary<string, int> featuresColumbs;
+
 
         public DataFileReader()
         {
@@ -43,10 +43,22 @@ namespace Ex1
             XmlDocument xml = new XmlDocument();
             xml.Load(fileName);
             XmlNodeList names = xml.GetElementsByTagName("name");
-            definitions = new string[names.Count/2];
-            for (int i = 0; i < definitions.Length; i++)
+            this.featuresColumbs = new Dictionary<string, int>();
+            this.featuresDictionary = new Dictionary<string, List<float>>();
+            for (int i = 0; i < names.Count/2; i++)
             {
-                definitions[i] = names[i].InnerText;
+                string name = names[i].InnerText;
+                // make duplicates of feature names
+                if (!featuresColumbs.ContainsKey(name))
+                {
+                    featuresColumbs.Add(name, i);
+                    featuresDictionary.Add(name, new List<float>());
+                }
+                else
+                {
+                    featuresColumbs.Add(name + "[1]", i);
+                    featuresDictionary.Add(name + "[1]", new List<float>());
+                }
             }
         }
         public void setCSVFile(string fileName, int frequency)
@@ -60,7 +72,6 @@ namespace Ex1
                 this.size = this.data.Length;
                 NotifyPropertyChanged("Size");
                 Speed = 1;
-                this.featuresDictionary = new Dictionary<string, List<float>>();
                 setFeaturesDictionary();
             }
             catch (Exception e)
@@ -71,12 +82,7 @@ namespace Ex1
         public string getValueByName(string name)
         {
             string[] lineValues = this.line.Split(',');
-            for (int i = 0; i < definitions.Length; i++)
-            {
-                if (definitions[i].Equals(name))
-                    return lineValues[i];
-            }
-            return null;
+            return lineValues[featuresColumbs[name]];
         }
         public void startReading()
         {
@@ -132,15 +138,14 @@ namespace Ex1
         {
             get { return this.frequency; }
         }
-        public string[] Definitions
+        public List<string> Definitions
         { 
-            get { return this.definitions; } 
+            get { return new List<string>(featuresColumbs.Keys); } 
         }
         public int Size
         {
             get { return this.size; }
         }
-        public Dictionary<string, List<float>> FeaturesDictionary { get { return this.featuresDictionary; } }
         #endregion
         public void skipForward(int seconds)
         {
@@ -171,43 +176,20 @@ namespace Ex1
         // returns a mapping between feature name and its values vector
         private void setFeaturesDictionary()
         {
-            // create list for each feature
-            foreach (string name in definitions)
-            {
-                // make duplicates of feature names
-                if (!featuresDictionary.ContainsKey(name))
-                    featuresDictionary.Add(name, new List<float>());
-                else
-                    featuresDictionary.Add(name+"[1]", new List<float>());
-            }
+            List<string> names = new List<string>(featuresColumbs.Keys);
             // initialize lists with values
             for (int i = 0; i < data.Length; i++)
             {
                 string[] lineValues = data[i].Split(',');
                 for (int j = 0; j < lineValues.Length; j++)
-                    featuresDictionary[definitions[j]].Add(float.Parse(lineValues[j]));
+                    featuresDictionary[names[j]].Add(float.Parse(lineValues[j]));
             }
         }
         public List<float> getValuesOfFeature(string name)
         {
-            return this.featuresDictionary[name];
-        }
-        public void setDisplayFeature(string name)
-        {
-            this.displayFeature = name;
-            NotifyPropertyChanged("displayFeature");
-        }
-        public string getDisplayFeature()
-        {
-            return displayFeature;
-        }
-        public string getCorroleatedFeature(string name)
-        {
-            return null; //implent.
-        }
-        public Polyline getRegLine(string cf1, string cf2)
-        {
-            return null; //implent.
+            if (name != null && this.featuresDictionary.ContainsKey(name))
+               return this.featuresDictionary[name];
+            return null;
         }
     }
 }

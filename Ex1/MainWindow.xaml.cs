@@ -2,31 +2,22 @@
 using System;
 using System.Windows;
 using System.Runtime.InteropServices;
+using System.Windows.Controls;
 
 namespace Ex1
 {
     public partial class MainWindow : Window
     {
-        private DataFileReader reader;
+        private MainViewModel vm;
         public MainWindow()
         {
             InitializeComponent();
-            reader = new DataFileReader();
-            //reader.setCSVFile("reg_flight.csv", frequency);
-            reader.setXMLDefinitions("playback_small.xml");
-            //Client client = new Client(reader);
-            //client.connect("localhost", 5400);
-            Joystick.setDataFileReader(reader);
-            VideoControl.setDataFileReader(reader);
-            VideoControl.IsEnabled = false;
-        }
-
-        private void UploadXMLButton_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-                reader.setXMLDefinitions(openFileDialog.FileName);
-            UploadCSVButton.IsEnabled = true;
+            this.vm = new MainViewModel();
+            Joystick.setMainViewModel(vm);
+            VideoControl.setMainViewModel(vm);
+            GraphReg.setMainViewModel(vm);
+            //Dashboard.setMainViewModel(vm);
+            this.DataContext = vm;
         }
 
         private void UploadCSVButton_Click(object sender, RoutedEventArgs e)
@@ -46,9 +37,14 @@ namespace Ex1
                     }
                     catch (Exception suppressed) { }
                 } while (!completed);
-                reader.setCSVFile(openFileDialog.FileName, frequency);
+                vm.setCSVFile(openFileDialog.FileName, frequency);
             }
             VideoControl.IsEnabled = true;
+        }
+
+        private void FeaturesListView_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            vm.DisplayFeature = (string)this.FeaturesListView.SelectedValue;
         }
     }
 }
