@@ -210,10 +210,6 @@ namespace Ex1.controls
             {
                 temp.Add(scale(tempPoint));
             }
-            foreach (Point tempPoint in temp)
-            {
-                Trace.WriteLine(tempPoint.ToString());
-            }
             return temp;
         }
     }

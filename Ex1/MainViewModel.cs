@@ -13,7 +13,6 @@ namespace Ex1
     public class MainViewModel : INotifyPropertyChanged
     {
         private DataFileReader reader;
-        private Client client;
         private CorrelatedFeaturesCalc cfc;
         public MainViewModel()
         {
@@ -25,8 +24,6 @@ namespace Ex1
             {
                 NotifyPropertyChanged(e.PropertyName);
             };
-            //this.client = new Client(reader);
-            //this.client.connect("localhost", 5400);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
@@ -50,6 +47,7 @@ namespace Ex1
             {
                 this.displayFeature = value;
                 NotifyPropertyChanged("DisplayFeature");
+                NotifyPropertyChanged("CorrolateFeature");
                 NotifyPropertyChanged("DisplayFeatureMinValue");
                 NotifyPropertyChanged("CorrolateFeatureMinValue");
                 NotifyPropertyChanged("DisplayFeatureMaxValue");
@@ -57,6 +55,11 @@ namespace Ex1
                 NotifyPropertyChanged("ValuesOfDisplayFeature");
                 NotifyPropertyChanged("ValuesOfCorrelateFeature");
             }
+        }
+
+        public string CorrolateFeature
+        {
+            get { return getCorroleatedFeature(DisplayFeature); }
         }
         public string getCorrelatedFeature(string name)
         {

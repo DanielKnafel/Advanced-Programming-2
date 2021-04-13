@@ -35,20 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AnomalyDetectionDLL">
-      <HintPath>..\..\..\AnomalyDetectionDLL\Debug\AnomalyDetectionDLL.dll</HintPath>
+    <Reference Include="Microsoft.Expression.Controls, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.Expression.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Expression.Controls, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Downloads\Microsoft.Expression.Controls.dll</HintPath>
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.Expression.Drawing.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Expression.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Downloads\Microsoft.Expression.Drawing.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Downloads\Microsoft.Expression.Interactions.dll</HintPath>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -148,11 +142,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="AnomalyDetectionDLL\AnomalyDetectionDLL.vcxproj" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="reg_flight.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -172,29 +169,15 @@
     <Folder Include="controls\Graphs\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AnomalyDetectionDLL\AnomalyDetectionAPI.cpp" />
-    <Content Include="AnomalyDetectionDLL\AnomalyDetectionAPI.h" />
-    <Content Include="AnomalyDetectionDLL\AnomalyDetectionDLL.dll" />
-    <Content Include="AnomalyDetectionDLL\AnomalyDetectionDLL.vcxproj.filters" />
-    <Content Include="AnomalyDetectionDLL\AnomalyDetectionDLL.vcxproj.user" />
-    <Content Include="AnomalyDetectionDLL\AnomalyDetector.h" />
-    <Content Include="AnomalyDetectionDLL\anomaly_detection_util.cpp" />
-    <Content Include="AnomalyDetectionDLL\anomaly_detection_util.h" />
-    <Content Include="AnomalyDetectionDLL\CLI.cpp" />
-    <Content Include="AnomalyDetectionDLL\CLI.h" />
-    <Content Include="AnomalyDetectionDLL\commands.h" />
-    <Content Include="AnomalyDetectionDLL\dllmain.cpp" />
-    <Content Include="AnomalyDetectionDLL\framework.h" />
-    <Content Include="AnomalyDetectionDLL\HybridAnomalyDetector.cpp" />
-    <Content Include="AnomalyDetectionDLL\HybridAnomalyDetector.h" />
-    <Content Include="AnomalyDetectionDLL\minCircle.cpp" />
-    <Content Include="AnomalyDetectionDLL\minCircle.h" />
-    <Content Include="AnomalyDetectionDLL\pch.cpp" />
-    <Content Include="AnomalyDetectionDLL\pch.h" />
-    <Content Include="AnomalyDetectionDLL\SimpleAnomalyDetector.cpp" />
-    <Content Include="AnomalyDetectionDLL\SimpleAnomalyDetector.h" />
-    <Content Include="AnomalyDetectionDLL\timeseries.cpp" />
-    <Content Include="AnomalyDetectionDLL\timeseries.h" />
+    <Content Include="playback_small.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnomalyDetectionDLL\AnomalyDetectionDLL.vcxproj">
+      <Project>{f2ce7aef-82f2-486c-9429-a984f013462d}</Project>
+      <Name>AnomalyDetectionDLL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
