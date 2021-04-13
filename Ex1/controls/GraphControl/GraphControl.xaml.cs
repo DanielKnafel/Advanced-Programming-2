@@ -131,7 +131,7 @@ namespace Ex1.controls
         {
             drawGraphAxes();
             Polyline polyline = new Polyline();
-            polyline.StrokeThickness = 1;
+            polyline.StrokeThickness = 2;
             polyline.Stroke = Brushes.Green;
             polyline.Points = p;
             canGraph.Children.Add(polyline);

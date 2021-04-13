@@ -8,8 +8,8 @@
              d:DesignHeight="200" d:DesignWidth="300" >
 
     <Canvas Name="canGraph" Background="White" Width="300" Height="200" VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Label x:Name="xAxisLabel" Content="{Binding VM_CorrolatedFeature, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="114" Canvas.Top="180" Width="78" Panel.ZIndex="1" />
-        <Label x:Name="yAxisLabel" Content="{Binding VM_DisplayFeature, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="-31" Canvas.Top="82" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" Width="80">
+        <Label x:Name="xAxisLabel" Content="{Binding VM_DisplayFeature, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="114" Canvas.Top="180" Width="78" Panel.ZIndex="1" />
+        <Label x:Name="yAxisLabel" Content="{Binding VM_CorrolatedFeature, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="-31" Canvas.Top="82" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" Width="80">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -19,6 +19,8 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
+        <Label x:Name="xZeroLabel" Content="0" FontSize="13" Canvas.Left="22" Canvas.Top="86"/>
+        <Label x:Name="yZeroLabel" Content="0" FontSize="13" Canvas.Left="148" Canvas.Top="163"/>
     </Canvas>
 
 </UserControl>

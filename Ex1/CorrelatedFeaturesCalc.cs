@@ -10,20 +10,6 @@ using System.Windows;
 
 namespace Ex1
 {
-    public class Line
-    {
-        public float a { get; set; }
-        public float b { get; set; }
-        public Line(float a, float b)
-        {
-            this.a = a;
-            this.b = b;
-        }
-        public float f(float x)
-        {
-            return a * x + b;
-        }
-    }
     public struct CorrelatedFeatures
     {
         public string f1, f2;
@@ -136,7 +122,7 @@ namespace Ex1
                 if (cf[i].f1.Equals(name) || cf[i].f2.Equals(name))
                     return cf[i].regLine;
             }
-            return null;
+            return new Line();
         }
     }
 }

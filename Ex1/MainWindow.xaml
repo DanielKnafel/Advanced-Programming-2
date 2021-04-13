@@ -13,7 +13,7 @@
         <Controls:videoControlView x:Name="VideoControl" Margin="129,482,268,0"/>
         <Button x:Name="UploadCSVButton" Content="Choose CSV" HorizontalAlignment="Left" Margin="54,611,0,0" VerticalAlignment="Top" Width="75" Click="UploadCSVButton_Click"/>
         <Viewbox Margin="540,345,349,189">
-        <GraphReg:GraphRegView x:Name="GraphReg" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+            <GraphReg:GraphRegView x:Name="GraphReg" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
         </Viewbox>
             <ListView x:Name="FeaturesListView" HorizontalAlignment="Left" Height="397" Margin="252,80,0,0" VerticalAlignment="Top" Width="157" SelectionChanged="FeaturesListView_SelectionChanged" ItemsSource="{Binding Definitions}">
             <ListView.View>

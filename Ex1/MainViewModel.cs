@@ -58,7 +58,7 @@ namespace Ex1
                 NotifyPropertyChanged("ValuesOfCorrelateFeature");
             }
         }
-        public string getCorroleatedFeature(string name)
+        public string getCorrelatedFeature(string name)
         {
             return this.cfc.getCorrelatedFeature(name);
         }
@@ -66,17 +66,14 @@ namespace Ex1
         {
             get { return cfc.getRegLine(this.displayFeature); }
         }
-
         public List<float> getValuesOfFeature(string name)
         {
             return reader.getValuesOfFeature(name);
         }
-
         public string getValueByName(string name)
         {
             return reader.getValueByName(name);
         }
-
         #region Properties
         public int LineNumber
         {
@@ -116,8 +113,8 @@ namespace Ex1
         public float CorrolateFeatureMinValue
         {
             get {
-                if (DisplayFeature != null && getCorroleatedFeature(DisplayFeature) != null)
-                    return getValuesOfFeature(getCorroleatedFeature(DisplayFeature)).Min();
+                if (DisplayFeature != null && getCorrelatedFeature(DisplayFeature) != null)
+                    return getValuesOfFeature(getCorrelatedFeature(DisplayFeature)).Min();
                 return 0;
             }
         }
@@ -134,8 +131,8 @@ namespace Ex1
         {
             get
             {
-                if (DisplayFeature != null && getCorroleatedFeature(DisplayFeature) != null)
-                    return getValuesOfFeature(getCorroleatedFeature(DisplayFeature)).Max();
+                if (DisplayFeature != null && getCorrelatedFeature(DisplayFeature) != null)
+                    return getValuesOfFeature(getCorrelatedFeature(DisplayFeature)).Max();
                 return 0;
             }
         }
@@ -154,7 +151,7 @@ namespace Ex1
             {
                 if (DisplayFeature == null)
                     return new ObservableCollection<Point>();
-                return ListToObservableCollection(getCorroleatedFeature(DisplayFeature));
+                return ListToObservableCollection(getCorrelatedFeature(DisplayFeature));
             }
         }
         #endregion

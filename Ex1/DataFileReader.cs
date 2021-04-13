@@ -189,7 +189,7 @@ namespace Ex1
         {
             if (name != null && this.featuresDictionary.ContainsKey(name))
                return this.featuresDictionary[name];
-            return null;
+            return new List<float>();
         }
     }
 }

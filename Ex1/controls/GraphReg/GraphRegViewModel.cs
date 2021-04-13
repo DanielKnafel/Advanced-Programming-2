@@ -12,7 +12,12 @@ namespace Ex1.controls.GraphReg
     class GraphRegViewModel : ViewModel
     {
         public string VM_DisplayFeature { get { return vm.DisplayFeature; } }
-        public string VM_CorrolatedFeature { get { return vm.getCorroleatedFeature(VM_DisplayFeature); } }
+        public string VM_CorrolatedFeature { get { return vm.getCorrelatedFeature(VM_DisplayFeature); } }
+
+        public List<float> getValuesOfFeature(string name)
+        {
+            return vm.getValuesOfFeature(name);
+        }
 
         public GraphRegViewModel() { }
         public override void setMainViewModel(MainViewModel vm)
@@ -34,18 +39,18 @@ namespace Ex1.controls.GraphReg
         }
         public List<Point> getPoints()
         {
+            List<Point> list = new List<Point>();
             if (VM_CorrolatedFeature != null)
             {
-                List<float> val1 = vm.getValuesOfFeature(VM_DisplayFeature);
-                List<float> val2 = vm.getValuesOfFeature(VM_CorrolatedFeature);
-                List<Point> list = new List<Point>();
+                List<float> val1 = vm.getValuesOfFeature(VM_CorrolatedFeature);
+                List<float> val2 = vm.getValuesOfFeature(VM_DisplayFeature);
                 for (int i = 0; i < vm.Size; i++)
                 {
                     list.Add(new Point(val1[i], val2[i]));
                 }
                 return list;
             }
-            return null;
+            return list;
         }
         public float DisplayFeatureMinValue
         {
