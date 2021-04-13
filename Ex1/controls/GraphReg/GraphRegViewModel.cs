@@ -11,6 +11,7 @@ namespace Ex1.controls.GraphReg
 {
     class GraphRegViewModel : ViewModel
     {
+
         public string VM_DisplayFeature { get { return vm.DisplayFeature; } }
         public string VM_CorrolatedFeature { get { return vm.getCorrelatedFeature(VM_DisplayFeature); } }
 
@@ -20,6 +21,8 @@ namespace Ex1.controls.GraphReg
         }
 
         public GraphRegViewModel() { }
+
+        public Tuple<string, int>[] Anomalies { get; set; }
         public override void setMainViewModel(MainViewModel vm)
         {
             base.setMainViewModel(vm);
@@ -29,6 +32,11 @@ namespace Ex1.controls.GraphReg
                    if (e.PropertyName.Equals("DisplayFeature"))
                    {
                        NotifyPropertyChanged("VM_CorrolatedFeature");
+                   }
+                   else if (e.PropertyName.Equals("Anomalies"))
+                   {
+                       this.Anomalies = vm.Anomalies;
+
                    }
                    NotifyPropertyChanged("VM_" + e.PropertyName);
                };

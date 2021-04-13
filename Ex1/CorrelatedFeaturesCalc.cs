@@ -20,32 +20,13 @@ namespace Ex1
     {
         private List<CorrelatedFeatures> cf;
 
-        public CorrelatedFeaturesCalc(string fileName, List<string> definitions)
+        public CorrelatedFeaturesCalc(string fileName)
         {
             this.cf = new List<CorrelatedFeatures>();
-            setCorrelatedFeaturesMap(addFeatureNamesToCSV(fileName, definitions));
+            findCorrelations(fileName);
         }
 
-
-        private string addFeatureNamesToCSV(string fileName, List<string> definitions)
-        {
-            string names = "";
-            foreach (string s in definitions)
-                names += s + ',';
-            // remove last ,
-            names = names.Substring(0, names.Length - 1);
-            // Create a new file     
-            using (StreamWriter sw = File.CreateText("1"+fileName))
-            {
-                sw.WriteLine(names);
-                // copy content of original CSV
-                string[] lines = File.ReadAllLines(fileName);
-                foreach (string line in lines)
-                    sw.WriteLine(line);
-            }
-            return "1" + fileName;
-        }
-        public void setCorrelatedFeaturesMap(string fileName)
+        public void findCorrelations(string fileName)
         {
             API api = new API(fileName);
             Tuple<string, string>[] namesArr = api.getCorrelationNamesVector();
@@ -60,7 +41,6 @@ namespace Ex1
                 cf.Add(c);
             }
         }  
-
         public string getCorrelatedFeature(string name)
         {
             foreach (CorrelatedFeatures c in this.cf)
@@ -72,7 +52,6 @@ namespace Ex1
             }
             return null;
         }
-
         public Line getRegLine(string name)
         {
             for (int i = 0; i < cf.Count; i++)

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="200" BorderThickness="5,5,5,5">
     <Canvas  Margin="0,0,-63,-35">
-        <Slider x:Name="RudderSlider" Value="{Binding Rudder, Mode=OneWay}" HorizontalAlignment="Left" Margin="78,148,0,0" VerticalAlignment="Top" Width="100" Minimum="0" Maximum="1" IsEnabled="False"/>
+        <Slider x:Name="RudderSlider" Value="{Binding Rudder, Mode=OneWay}" HorizontalAlignment="Left" Margin="78,148,0,0" VerticalAlignment="Top" Width="100" Minimum="-1" Maximum="1" IsEnabled="False"/>
         <Slider x:Name="ThrottleSlider" Value="{Binding Throttle, Mode=OneWay}" HorizontalAlignment="Left" Margin="-14,82,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="100" Minimum="0" Maximum="1" IsEnabled="False">
             <Slider.RenderTransform>
                 <TransformGroup>

@@ -42,9 +42,9 @@ namespace Ex1.controls.Dashboard
             DataContext = vm;
         }
 
-        public void SetDataFileReader(DataFileReader reader)
+        public void setMainViewModel(MainViewModel vm)
         {
-            this.vm.SetDataFileReader(reader);
+            this.vm.setMainViewModel(vm);
         }
 
     }

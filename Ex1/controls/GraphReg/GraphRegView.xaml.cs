@@ -29,7 +29,7 @@ namespace Ex1.controls.GraphReg
         private GraphRegViewModel vm;
         private List<Ellipse> ellipses;
         private List<Ellipse> last30Seconds;
-        private Brush[] brushes = { Brushes.Green, Brushes.Blue, Brushes.Gray };
+        private Brush[] brushes = { Brushes.Green, Brushes.Blue, Brushes.Gray, Brushes.Red };
         public GraphRegView()
         {
             InitializeComponent();
@@ -147,24 +147,39 @@ namespace Ex1.controls.GraphReg
             //Canvas.SetLeft(this.xZeroLabel, xZeroLocation);
             //canGraph.Children.Add(this.xZeroLabel);
 
+
+
+            List<int> anomalies = new List<int>();
+            string features1 = vm.VM_DisplayFeature + "-" + vm.VM_CorrolatedFeature;
+            string features2 = vm.VM_CorrolatedFeature + "-" + vm.VM_DisplayFeature;
+
+            foreach (Tuple<string, int> t in vm.Anomalies)
+            {
+                if (features1.Equals(t.Item1) || features2.Equals(t.Item1))
+                    anomalies.Add(t.Item2);
+            }
+
             List<float> x = vm.getValuesOfFeature(vm.VM_DisplayFeature);
             List<float> y = vm.getValuesOfFeature(vm.VM_CorrolatedFeature);
             List<Point> points = toPoints(x, y);
-
-            foreach (Point p in points)
+            for (int i = 0; i < points.Count; i++)
             {
                 Ellipse ellipse = new Ellipse();
-                Canvas.SetLeft(ellipse, margin + (p.X / xRange) * (xmax - margin) - pointSize / 2);
-                Canvas.SetTop(ellipse, ymax - (p.Y / yRange) * ymax - pointSize / 2);
+                Canvas.SetLeft(ellipse, margin + (points[i].X / xRange) * (xmax - margin) - pointSize / 2);
+                Canvas.SetTop(ellipse, ymax - (points[i].Y / yRange) * ymax - pointSize / 2);
                 ellipse.StrokeThickness = 1;
                 ellipse.Width = pointSize;
                 ellipse.Height = pointSize;
                 ellipse.Fill = brushes[2];
                 ellipse.Stroke = brushes[2];
+                if (anomalies.Contains(i+1))
+                {
+                    ellipse.Fill = brushes[3];
+                    ellipse.Stroke = brushes[3];
+                }
                 ellipses.Add(ellipse);
                 canGraph.Children.Add(ellipse);
             }
-
 
             Line regLine = Line.linear_reg(points);
 

@@ -14,16 +14,35 @@ namespace Ex1
     {
         private DataFileReader reader;
         private CorrelatedFeaturesCalc cfc;
+        private Client client;
+        private string detectFileName;
+        public string LearnFileName { get; set; }
+        public string DetectFileName 
+        {
+            get
+            {
+                return this.detectFileName;
+            }
+            set
+            {
+                this.detectFileName = value;
+                this.reader.setCSVFile(value, 10);
+            }
+
+        }
         public MainViewModel()
         {
+            this.LearnFileName = "reg_flight.csv";
             this.reader = new DataFileReader();
             this.reader.setXMLDefinitions("playback_small.xml");
-            this.reader.setCSVFile("reg_flight.csv", 10);
-            this.cfc = new CorrelatedFeaturesCalc("reg_flight.csv", reader.Definitions);
+            this.cfc = new CorrelatedFeaturesCalc(this.LearnFileName);
             this.reader.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged(e.PropertyName);
             };
+
+            //this.client = new Client(reader);
+            //this.client.connect("localhost", 5400);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
@@ -35,7 +54,6 @@ namespace Ex1
         {
             this.reader.setCSVFile(fileName, frequency);
         }
-
         private string displayFeature;
         public string DisplayFeature
         {
@@ -56,10 +74,9 @@ namespace Ex1
                 NotifyPropertyChanged("ValuesOfCorrelateFeature");
             }
         }
-
         public string CorrolateFeature
         {
-            get { return getCorroleatedFeature(DisplayFeature); }
+            get { return getCorrelatedFeature(DisplayFeature); }
         }
         public string getCorrelatedFeature(string name)
         {
@@ -183,6 +200,21 @@ namespace Ex1
         public void stopReading()
         {
             reader.stopReading();
+        }
+        public string addFeatureNamesToCSV()
+        {
+            return this.reader.addFeatureNamesToCSV();
+        }
+
+        private Tuple<string, int>[] anomalies;
+        public Tuple<string, int>[] Anomalies
+        {
+            get { return this.anomalies; }
+            set
+            {
+                this.anomalies = value;
+                NotifyPropertyChanged("Anomalies");
+            }
         }
     }
 }

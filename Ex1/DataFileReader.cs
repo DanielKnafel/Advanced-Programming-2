@@ -191,5 +191,22 @@ namespace Ex1
                return this.featuresDictionary[name];
             return new List<float>();
         }
+        public string addFeatureNamesToCSV()
+        {
+            string names = "";
+            foreach (string s in this.Definitions)
+                names += s + ',';
+            // remove last ,
+            names = names.Substring(0, names.Length - 1);
+            // Create a new file     
+            using (StreamWriter sw = File.CreateText("temp.csv"))
+            {
+                sw.WriteLine(names);
+                // copy content of original CSV
+                foreach (string line in this.data)
+                    sw.WriteLine(line);
+            }
+            return "temp.csv";
+        }
     }
 }
