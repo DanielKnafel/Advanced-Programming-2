@@ -6,52 +6,21 @@
              xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" 
              xmlns:local="clr-namespace:Ex1.controls.Dashboard"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Viewbox Margin="0,0,1.333,10">
-        <Grid Height="396" Width="723">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="2*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="241*"></ColumnDefinition>
-                <ColumnDefinition Width="241*"></ColumnDefinition>
-                <ColumnDefinition Width="218*"></ColumnDefinition>
-                <ColumnDefinition Width="22*"/>
-            </Grid.ColumnDefinitions>
-            <Viewbox Margin="-25,76,179.667,-48" Grid.RowSpan="2" Grid.Row="1" Grid.ColumnSpan="2">
-                <Grid Width="400" Height="400">
-                    <Ellipse HorizontalAlignment="Center" Height="380" StrokeThickness="10" VerticalAlignment="Top" Width="380" Margin="0">
-                        <Ellipse.Stroke>
-                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                <GradientStop Color="#FF4F4F4F"/>
-                                <GradientStop Color="Black" Offset="0.131"/>
-                            </LinearGradientBrush>
-                        </Ellipse.Stroke>
-                        <Ellipse.Fill>
-                            <RadialGradientBrush>
-                                <GradientStop Color="Black" Offset="0.946"/>
-                                <GradientStop Color="#FF363638" Offset="0.926"/>
-                            </RadialGradientBrush>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                    <ed:Arc StartAngle="0" EndAngle="360" Stretch="None" StrokeThickness="20"      
-                StrokeDashArray=".25" Stroke="#FF717171" Margin="30,18.5,30,39.5" Width="340" Height="342"/>
-                    <ed:Arc StartAngle="-90" EndAngle="-35" Stretch="None" StrokeThickness="20"
-                StrokeDashArray=".25" Stroke="Turquoise" RenderTransform="{Binding VM_airspeed}" Margin="31,9,9,31" Width="360" Height="360"/>
-                    <TextBlock Text="43" Foreground="White" HorizontalAlignment="Center"
-                FontSize="110" FontWeight="Light" Margin="140.975,127.166,143.975,125.833"/>
-                    <TextBlock HorizontalAlignment="Left" Height="60" Margin="128.975,94.612,0,0" TextWrapping="Wrap" Text="SPEED" VerticalAlignment="Top" Width="139.113" FontFamily="Segoe UI Symbol" FontSize="44" Foreground="White"/>
-                </Grid>
-            </Viewbox>
-            <Viewbox Grid.ColumnSpan="3" Margin="162.667,0,-95.333,59" Grid.Column="1" Grid.RowSpan="2">
+             d:DesignHeight="550" d:DesignWidth="800">
+    <UserControl.Resources>
+        <local:KnotsToAnglesConverter x:Key="KnotsToAnglesConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <Viewbox>
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="187*"/>
-                        <RowDefinition Height="13*"/>
-                    </Grid.RowDefinitions>
-                    <Ellipse HorizontalAlignment="Center" Height="380" StrokeThickness="10" VerticalAlignment="Top" Width="380" Margin="20.003,0,0.003,0" Grid.RowSpan="2">
+                    <Ellipse HorizontalAlignment="Center" Height="380" StrokeThickness="10" VerticalAlignment="Top" Width="380" Margin="20.003,-2.224,0.003,0">
                         <Ellipse.Stroke>
                             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                                 <GradientStop Color="#FF4F4F4F"/>
@@ -65,8 +34,6 @@
                             </RadialGradientBrush>
                         </Ellipse.Fill>
                     </Ellipse>
-                    <ed:Arc StartAngle="0" EndAngle="360" Stretch="None" StrokeThickness="20"      
-                StrokeDashArray=".7" Stroke="#FF717171" Margin="41.125,18.508,18.88,13.069" Width="340" Height="342"/>
                     <TextBlock HorizontalAlignment="Left" Height="33.838" Margin="201.944,35.139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="19.556" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="N"/></TextBlock>
                     <TextBlock HorizontalAlignment="Left" Height="33.838" Margin="201.944,299.795,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="19.556" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="S"/></TextBlock>
                     <TextBlock HorizontalAlignment="Left" Height="33.838" Margin="328.334,173.027,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35.066" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="W"/></TextBlock>
@@ -79,12 +46,32 @@
                     <TextBlock HorizontalAlignment="Left" Height="34.383" Margin="81.058,228.945,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="48.928" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="24"/></TextBlock>
                     <TextBlock HorizontalAlignment="Left" Height="34.383" Margin="85.506,91.057,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="48.928" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="30"/></TextBlock>
                     <TextBlock HorizontalAlignment="Left" Height="34.383" Margin="136.658,46.577,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="48.928" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="33"/></TextBlock>
-                    <Image Margin="179,101,152,124.667" Stretch="Fill" RenderTransform="{Binding VM_direction}"/>
+                    <Line x:Name="line" X1="210" Y1="80" X2="210" Y2="220" RenderTransform="{Binding VM_Direction}" StrokeThickness="10">
+                        <Line.Stroke>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="Red" Offset="0.404"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Line.Stroke>
+                    </Line>
+                    <ed:Arc HorizontalAlignment="Left" StartAngle="0"  EndAngle="360" StrokeDashArray="13.8" Height="351.104" Margin="36.202,14.448,0,0" StrokeThickness="10" VerticalAlignment="Top" Width="349.356" Stroke="Red" RenderTransformOrigin="0.5,0.5">
+                        <ed:Arc.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-28.222"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </ed:Arc.RenderTransform>
+                    </ed:Arc>
+                    <ed:Arc StartAngle="0" EndAngle="360" Stretch="None" StrokeThickness="20"      
+                StrokeDashArray=".2" Stroke="#FF717171" Margin="30,10,0,8" HorizontalAlignment="Left" Width="363"/>
                 </Grid>
             </Viewbox>
-            <Viewbox Grid.ColumnSpan="3" Margin="74,75,13.255,76" Grid.RowSpan="3">
-                <Grid Width="400" Height="400" Margin="196.666,10.333" IsEnabled="False">
-                    <Ellipse HorizontalAlignment="Center" Height="400" StrokeThickness="10" VerticalAlignment="Top" Width="380" Margin="10,0">
+
+            <Viewbox>
+                <Grid>
+                    <Ellipse HorizontalAlignment="Center" Height="380" StrokeThickness="10" VerticalAlignment="Top" Width="380">
                         <Ellipse.Stroke>
                             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                                 <GradientStop Color="#FF4F4F4F"/>
@@ -98,51 +85,28 @@
                             </RadialGradientBrush>
                         </Ellipse.Fill>
                     </Ellipse>
-                    <Ellipse Canvas.Left="50" Canvas.Top="50" Stroke="Black" StrokeThickness="1" Margin="30,18.5,30,19.897" RenderTransform="{Binding VM_pitch}">
-                        <Ellipse.Fill>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                <GradientStop Color="#FF3333EA" Offset="0.5" />
-                                <GradientStop Color="#FFA35924" Offset="0.5" />
-                            </LinearGradientBrush>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,194.833,0,0" Stretch="Fill" Stroke="#FF824141" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
-                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="178.334,206.833,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="50.832"/>
-                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="178.334,173.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="50.832"/>
-                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,224.833,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
-                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,154.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
-                    <TextBlock HorizontalAlignment="Left" Height="27.334" Margin="123,212.833,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="30.167" FontSize="20" Foreground="White"/>
-                    <TextBlock HorizontalAlignment="Left" Height="27.334" Margin="124.5,142.333,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="30.167" FontSize="20" Foreground="White"/>
-                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="178.334,242.833,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="50.832"/>
-                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="178.334,134.833,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="50.832"/>
-                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,115.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
-                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,259.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
-                    <TextBlock HorizontalAlignment="Left" Height="27.334" Margin="123,247.333,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="30.167" FontSize="20" Foreground="White"/>
-                    <TextBlock HorizontalAlignment="Left" Height="27.334" Margin="123,101.833,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="30.167" FontSize="20" Foreground="White"/>
-                    <ed:Arc StartAngle="0" EndAngle="1" Stretch="None" StrokeThickness="20"      
-            StrokeDashArray=".25" Stroke="#FF717171" Margin="30,18.5,30,39.5" Width="340" Height="342"/>
-                    <Polygon Points="10,0 20,20, 0,20" Stroke="#FFA35924" StrokeThickness="5" Fill="#FF3333EA" Margin="191.666,25.5,183.334,350.5" />
-                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,115.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
-                    <ed:Arc HorizontalAlignment="Left" Height="114.873" Margin="180.282,156.116,0,0" Stroke="#FFFFF200" StrokeThickness="8" StartAngle="0" EndAngle="180" VerticalAlignment="Top" Width="42.811" Fill="#FFFFF200" RenderTransformOrigin="0.5,0.5">
+                    <ed:Arc StartAngle="0" EndAngle="360" Stretch="None" StrokeThickness="20"      
+                StrokeDashArray=".25" Stroke="#FF717171" Margin="30,18,30,40" Width="340" Height="340"/>
+                    <ed:Arc StartAngle="0" EndAngle="{Binding VM_Airspeed, Converter={StaticResource KnotsToAnglesConverter}}" Stretch="None"  StrokeThickness="20"
+                StrokeDashArray=".25" Stroke="Turquoise" Margin="30,359,30,-301" Width="340" Height="340">
                         <ed:Arc.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="90"/>
-                                <TranslateTransform/>
+                                <RotateTransform Angle="-90"/>
                             </TransformGroup>
                         </ed:Arc.RenderTransform>
                     </ed:Arc>
-                    <ed:RegularPolygon Fill="#FFFFF200" HorizontalAlignment="Left" Height="30.438" Margin="181.334,349.666,0,0" Stroke="#FFFFF200" StrokeThickness="8" VerticalAlignment="Top" Width="38.332"/>
-                    <ed:LineArrow Fill="#FFFFF200" HorizontalAlignment="Left" Height="131.333" Margin="197.666,224.833,0,0" Stroke="#FFFFF200" StrokeThickness="8" VerticalAlignment="Top" Width="5.834"/>
+                    <TextBlock Text="{Binding VM_Airspeed}" Foreground="White" HorizontalAlignment="Center" FontSize="110" FontWeight="Light" Margin="135.477,127,143,125"/>
+                    <TextBlock HorizontalAlignment="Left" Height="66" Margin="135,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137" FontFamily="Segoe UI Symbol" FontSize="44" Foreground="White" Text="SPEED"/>
+                    <TextBlock HorizontalAlignment="Left" Height="41" Margin="153,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" FontFamily="Segoe UI Symbol" FontSize="25" Foreground="White" Text="(knots)"/>
                 </Grid>
             </Viewbox>
-            <Viewbox Margin="95.667,52,-142.333,-17" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
-                <Label Content="{Binding VM_Altitude}" Height="2" Width="2"/>
-            </Viewbox>
-            <Viewbox Margin="-41,-10,161,52" Grid.RowSpan="2" Grid.ColumnSpan="2">
-                <Grid Width="400" Height="400">
-                    <Ellipse HorizontalAlignment="Center" Height="380" StrokeThickness="10" VerticalAlignment="Top" Width="380" Margin="7.776,2.224,12.224,0">
+        </StackPanel>
+
+        <StackPanel Grid.Column="2">
+            <Viewbox>
+                <Grid>
+                    <Ellipse HorizontalAlignment="Center" Height="380" StrokeThickness="10" VerticalAlignment="Top" Width="380">
                         <Ellipse.Stroke>
                             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                                 <GradientStop Color="#FF4F4F4F"/>
@@ -180,7 +144,7 @@
                         </ed:LineArrow>
                     </Viewbox>
                     <ed:Arc StartAngle="0" EndAngle="360" Stretch="None" StrokeThickness="3"      
-                StrokeDashArray="20" Stroke="White" Margin="27.775,20.724,32.224,37.275" Width="340" Height="342" RenderTransformOrigin="0.5,0.5">
+                        StrokeDashArray="20" Stroke="White" Margin="27.775,20.724,32.224,37.275" Width="340" Height="342" RenderTransformOrigin="0.5,0.5">
                         <ed:Arc.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -203,6 +167,93 @@
                 </Grid>
             </Viewbox>
 
-        </Grid>
-    </Viewbox>
+            <Viewbox>
+                <Grid>
+                    <Ellipse HorizontalAlignment="Center" Height="380" StrokeThickness="10" VerticalAlignment="Top" Width="380">
+                        <Ellipse.Stroke>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FF434344" Offset="0.981"/>
+                                <GradientStop Color="#FF131E9D" Offset="0.992"/>
+                                <GradientStop Color="#FF434344" Offset="0.99"/>
+                            </LinearGradientBrush>
+                        </Ellipse.Stroke>
+                        <Ellipse.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FF131E9D" Offset="0.946"/>
+                                <GradientStop Color="#FF9BBCFF" Offset="0.65"/>
+                            </LinearGradientBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <ed:LineArrow HorizontalAlignment="Left" Height="131" Margin="187,108,0,0" StrokeThickness="15"  StartArrow="OvalArrow"  VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
+                        <ed:LineArrow.Stroke>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FF434344" Offset="0.219"/>
+                                <GradientStop Color="#FF131E9D" Offset="0.801"/>
+                            </LinearGradientBrush>
+                        </ed:LineArrow.Stroke>
+                        <ed:LineArrow.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="-1"/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-180"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </ed:LineArrow.RenderTransform>
+                        <ed:LineArrow.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FF131E9D" Offset="0.946"/>
+                                <GradientStop Color="#FF9BBCFF" Offset="0.65"/>
+                            </LinearGradientBrush>
+                        </ed:LineArrow.Fill>
+                    </ed:LineArrow>
+                    <TextBlock HorizontalAlignment="Center" Height="34" Margin="219,148,50,0" TextWrapping="Wrap" Text="RIGHT YAW" VerticalAlignment="Top" Width="111" FontSize="20" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Center"  Height="34" Margin="67,148,210,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" FontSize="20" FontWeight="Bold" Text="LEFT YAW"/>
+                </Grid>
+            </Viewbox>
+        </StackPanel>
+        <Viewbox Grid.Column="1" Margin="0.333,0" Grid.RowSpan="3">
+            <Grid>
+                <Ellipse HorizontalAlignment="Center" Height="400" StrokeThickness="10" VerticalAlignment="Top" Width="380" Margin="10,0">
+                    <Ellipse.Stroke>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF4F4F4F"/>
+                            <GradientStop Color="Black" Offset="0.131"/>
+                        </LinearGradientBrush>
+                    </Ellipse.Stroke>
+                    <Ellipse.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Color="Black" Offset="0.946"/>
+                            <GradientStop Color="#FF363638" Offset="0.926"/>
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Ellipse Canvas.Left="50" Canvas.Top="50" RenderTransform="{Binding VM_Pitch}" Stroke="Black" StrokeThickness="1" Margin="30,18.5,30,19.897">
+                    <Ellipse.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#FF3333EA" Offset="0.5" />
+                            <GradientStop Color="#FFA35924" Offset="0.5" />
+                        </LinearGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,194.833,0,0" Stretch="Fill" Stroke="#FF824141" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
+                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="178.334,206.833,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="50.832"/>
+                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="178.334,173.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="50.832"/>
+                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,224.833,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
+                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,154.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
+                <TextBlock HorizontalAlignment="Left" Height="27.334" Margin="123,212.833,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="30.167" FontSize="20" Foreground="White"/>
+                <TextBlock HorizontalAlignment="Left" Height="27.334" Margin="124.5,142.333,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="30.167" FontSize="20" Foreground="White"/>
+                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="178.334,242.833,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="50.832"/>
+                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="178.334,134.833,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="50.832"/>
+                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,115.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
+                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,259.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
+                <TextBlock HorizontalAlignment="Left" Height="27.334" Margin="123,247.333,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="30.167" FontSize="20" Foreground="White"/>
+                <TextBlock HorizontalAlignment="Left" Height="27.334" Margin="123,101.833,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="30.167" FontSize="20" Foreground="White"/>
+                <ed:Arc StartAngle="0" EndAngle="1" Stretch="None" StrokeThickness="20"      
+            StrokeDashArray=".25" Stroke="#FF717171" Margin="30,18.5,30,39.5" Width="340" Height="342"/>
+                <Polygon Points="10,0 20,20, 0,20" Stroke="#FFA35924" StrokeThickness="5" Fill="#FF3333EA" Margin="191.666,25.5,183.334,350.5" />
+                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,115.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
+                <ed:LineArrow StartArrow="OpenArrow"  StrokeDashArray="14" HorizontalAlignment="Left" Height="5" Margin="94.834,195.167,0,0" Stroke="#FFEBF835" StrokeThickness="5" VerticalAlignment="Top" Width="209.999"/>
+            </Grid>
+        </Viewbox>
+    </Grid>
 </UserControl>

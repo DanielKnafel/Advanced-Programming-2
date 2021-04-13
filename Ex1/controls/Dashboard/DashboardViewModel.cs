@@ -39,7 +39,7 @@ namespace Ex1.controls.Dashboard
             get { return this.VM_airspeed; }
             set
             {
-                this.VM_airspeed = value;
+                this.VM_airspeed = (int)value;
                 NotifyPropertyChanged("VM_Airspeed");
             }
         }
@@ -84,7 +84,7 @@ namespace Ex1.controls.Dashboard
             }
         }
 
-        public override void setMainViewModel(MainViewModel vm)
+        public void SetDataFileReader(MainViewModel vm)
         {
             base.setMainViewModel(vm);
             this.vm.PropertyChanged += 
