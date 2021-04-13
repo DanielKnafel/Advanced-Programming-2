@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using AnomalyDetectionDLL;
 
 namespace Ex1
 {
@@ -39,29 +40,6 @@ namespace Ex1
             setCorrelatedFeaturesMap(addFeatureNamesToCSV(fileName, definitions));
         }
 
-        #region DLL Imports
-        // Vector
-        [DllImport("AnomalyDetectionDLL.dll")]
-        public static extern int vectorSize(IntPtr vec);
-
-        [DllImport("AnomalyDetectionDLL.dll")]
-        public static extern IntPtr getByIndex(IntPtr vec, int index);
-        // String
-        [DllImport("AnomalyDetectionDLL.dll")]
-        public static extern int len(IntPtr wrap);
-
-        [DllImport("AnomalyDetectionDLL.dll")]
-        public static extern int getCharByIndex(IntPtr wrap, int index);
-        // API
-        [DllImport("AnomalyDetectionDLL.dll")]
-        public static extern IntPtr CreateAPI(char[] fileName);
-
-        [DllImport("AnomalyDetectionDLL.dll")]
-        public static extern IntPtr getCorrelationNamesVector(IntPtr api);
-
-        [DllImport("AnomalyDetectionDLL.dll")]
-        public static extern IntPtr getRegLinesVector(IntPtr api);
-        #endregion
 
         private string addFeatureNamesToCSV(string fileName, List<string> definitions)
         {
@@ -83,36 +61,16 @@ namespace Ex1
         }
         public void setCorrelatedFeaturesMap(string fileName)
         {
-            IntPtr api = CreateAPI(fileName.ToCharArray());
-            IntPtr namesVec = getCorrelationNamesVector(api);
-            IntPtr linesVec = getRegLinesVector(api);
-            int namesSize = vectorSize(namesVec);
+            API api = new API(fileName);
+            Tuple<string, string>[] namesArr = api.getCorrelationNamesVector();
+            Tuple<float, float>[] linesArr = api.getRegLinesVector();
 
-            // get names
-            for (int i = 0; i < namesSize; i++)
+            for (int i = 0; i < namesArr.Length; i++)
             {
-                IntPtr namesWrap = getByIndex(namesVec, i);
-                int length = len(namesWrap);
-                string names = "";
-                for (int j = 0; j < length; j++)
-                {
-                    names += (char)getCharByIndex(namesWrap, j);
-                }
-
-                IntPtr linesWrap = getByIndex(linesVec, i);
-                int length2 = len(linesWrap);
-                string line = "";
-                for (int j = 0; j < length2; j++)
-                {
-                    line += (char)getCharByIndex(linesWrap, j);
-                }
-                string[] namesArr = names.Split(',');
-                string[] lineArr = line.Split(',');
-
                 CorrelatedFeatures c;
-                c.f1 = namesArr[0];
-                c.f2 = namesArr[1];
-                c.regLine = new Line(float.Parse(lineArr[0]), float.Parse(lineArr[1]));
+                c.f1 = namesArr[i].Item1;
+                c.f2 = namesArr[i].Item2;
+                c.regLine = new Line(linesArr[i].Item1, linesArr[i].Item2);
                 cf.Add(c);
             }
         }  

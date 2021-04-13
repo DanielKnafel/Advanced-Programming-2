@@ -168,15 +168,15 @@
     <Folder Include="controls\Graphs\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AnomalyDetectionDLL\AnomalyDetectionDLL.vcxproj">
-      <Project>{10c13a62-9a99-4183-85b4-a01ddc3097d5}</Project>
-      <Name>AnomalyDetectionDLL</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="playback_small.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnomalyDetectionDLL\AnomalyDetectionDLL.vcxproj">
+      <Project>{f2ce7aef-82f2-486c-9429-a984f013462d}</Project>
+      <Name>AnomalyDetectionDLL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
