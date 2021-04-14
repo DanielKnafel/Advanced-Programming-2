@@ -39,14 +39,15 @@ In the master we have the following files:
 
 ![AnomalyDetectionDLL](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/anommalyDetectionDLL.png)
 
-Contains the cpp files from the first semester for learning and detecting annomalies.
+Contains the cpp files from the first semester for learning and detecting anomalies.
 #### Ex1
 
 ![Ex1](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/Ex1.png)
 
-Contains folders that will be explained after the explnation of the following files:
+Explanation follows files description.
 
-`CorrelatedFeaturesCalc.cs` - by given a file name, finds all correlated features. returns correlated feature for a given feature and also returns linear regression line
+`CorrelatedFeaturesCalc.cs` - By providing a file name, the class method finds all correlated features.
+Then returns the correlated features for a specific feature name provided and also returns the appropriate linear regression line.
 . 
 
 `DataFileReader.cs` - by given a file name, reader the file and connect to the client. the client and the MainViewModel listens to him by getting events. 
@@ -196,13 +197,13 @@ DataFileReader - the main algorithm of our project, manages almost everything.
 
 ![MVVMDIAG](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/UML/MVVMDIAG.png)
 
-according to the Diagram above:
-GraphReg, Joystick, ViewControl and Dashboard views works with thier ViewModels.
-MainWindos, GraphControl and all the four mentioned ViewModles above works with the MainViewModel.
-Joystick also has his own Model.
-The MainViewModel works with the DataFileReader and also the client works with the DataFileReader.
-The flow of data goes from the views -> ViewModels -> MainViewModel -> DataFileReader(Model) (with commands and binding), Client -> DataFileReader(Model).
-And The other direction they get notified from DataFileReader(Model) -> MainViewModel and Client -> ViewModels -> Views.
+Explanation for the diagram attached above:
+1) The GraphReg, Joystick, ViewControl and Dashboard **views** are all work with their **ViewModels**.
+2) The MainWindow and GraphControl **views** plus GraphReg, Joystick, ViewControl and Dashboard **ViewModles** are all works with the MainViewModel.
+3) The joystick also has his own **Model**.
+4) The MainViewModel and the client work together with the DataFileReader.
+5) The flow of the data is happening that way: views -> ViewModels -> MainViewModel -> DataFileReader(Model) (with commands and binding), Client -> DataFileReader(Model).
+in the opposite way, they get notified from DataFileReader(Model) -> MainViewModel and Client -> ViewModels -> Views.
 
 ## Video link
 
