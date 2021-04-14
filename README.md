@@ -48,19 +48,19 @@ Then returns the correlated features for the specific feature name provided and 
 
 ***`DataFileReader.cs`*** - The DataFileReader object receives the CSV file to be read, and reads it line-by-line. It notifies all of its listeners about the progress, allowing them to ask it for the new information at every step.
 
-***`Line.cs`*** - represents a line by two points.
+***`Line.cs`*** - Line represented by two points.
 
-***`MainViewModel.cs`*** - all the ViewModels, GraphControl, MainWindow listens to his according to the architecture of MVVM. listens to the DataFileReader. 
+***`MainViewModel.cs`*** - The all ViewModels, GraphControl and MainWindow are listening to **MainViewModel** according to the MVVM architecture, and the MainViewModel is listening in its turn to the DataFileReader. 
 
 ***`MainWindow.xaml.cs`*** - The main view that contains all the controls of the project and displays them.
 
-***`playback_small.xml`*** - xml for the flight simulator.
+***`playback_small.xml`*** - The xml for the flight simulator.
 
 ##### client
 
 ![client](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/client.png)
 
-The client that connects to the flight simulator server and listens to the DataFileReader.
+The client that connects to the flight simulator server and is listening to the DataFileReader.
 
 ##### images
 
@@ -80,39 +80,39 @@ Explanation of the controls:
 
 ![DashBoard](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/controls/dashboard.png)
 
-Dashboard to display the numerical data sent from the airplane. Contains view and viewModel. the viewModel listens to MainViewModel. implents ViewModel abstract class.
+Dashboard main role is to display the numerical data sent from the airplane. It contains the view and viewModel. The viewModel is listening to MainViewModel. It also implements ViewModel abstract class.
 
-Also has a class `KnotsToAnglesConverter` that converts from knots to angles. 
+In addition there's a class `KnotsToAnglesConverter` that converts the knots to angles using scaling calculations. 
 
 ***`GraphControl`***
 
 ![GraphControl](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/controls/graphcontrol.png)
 
-Graph Control to display flight's correlated features and the detected anomalies. Contains view that listens to MainViewModel.
+Graph Control to display flight's correlated features and the detected anomalies. Contains view that is listening to the MainViewModel.
 
 ***`GraphReg`***
 
 ![GraphReg](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/controls/graphreg.png)
 
-Graph Regression displaying all points in comparsion with a pre-learned line regression. Contains view and viewModel. the viewModel listens to MainViewModel. implents ViewModel abstract class.
+Graph Regression is displaying all the points in comparsion with a pre-learned linear line regression. It contains view and viewModel. The viewModel is listening to the MainViewModel. It also implents ViewModel abstract class.
 
 
 ***`Joystick`***
 
 ![Joystick](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/controls/joystik.png)
 
-Joystick that uses the ailerons, elevator and rudder to control the flight. Contains view, viewModel and model. the viewModel listens to MainViewModel. implents ViewModel abstract class.
+Joystick that uses the ailerons, elevator and rudder to control the flight. Contains view, viewModel and model. The viewModel is listening to MainViewModel and implents ViewModel abstract class.
 
 
 ***`VideoControl`***
 
 ![VideoControl](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/controls/videocontrol.png)
 
-Video Control to play the recorded flight making the simulator come to live. Contains view, viewModel and model. the viewModel listens to MainViewModel. implents ViewModel abstract class.
+Video Control main role is to play the recorded flight making the simulator come to live. It contains view, viewModel and model. The viewModel is listening to MainViewModel. It also implents ViewModel abstract class.
 
 ***`ViewModel.cs` ***
 
-abstract class for the ViewModels. containts the DataFileReader and implents INotifyPropertyChanged.
+The abstract class for the ViewModels. It containts the DataFileReader and implents INotifyPropertyChanged.
 #### UML
 
 Contains images of UMLs.
@@ -124,11 +124,7 @@ Contains images to display in README.md file.
 
 ![plugins](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/plugins.png)
 
-Plugins to load into the project as dll. two plugins:
-
-1. One file is a normal and regular flight containing all necessary flight's details using this file and our dll we learn how the correct flight supposed to be.
-
-2. Second file is an abnormal flight which means a flight with anomaly, flawed flight. This time we supposed to detect the anomalies.
+Plugins to load into the project as DLLs and the flight csv file to be inspected.
 
 ## Preinstall for developers
 
@@ -179,8 +175,8 @@ The MainView Model listens to the DataFileReader(Model) also according to the MV
 
 ![Models](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/UML/Models.png)
 
-Each Model has it's algoritm that it works according to him.
-Client - connects to the flight gear simulator and send it's data according to the DataFileReader he's listening to by MVVM architecture.
+Each Model has it's own algoritm that works according to its specific logic.
+Client - connects to the flight gear simulator and sends data according to the DataFileReader its listening to by MVVM architecture.
 JoystickModel -  responsible for the Joystick algorithm.
 DataFileReader - the main algorithm of our project, manages almost everything.
 
