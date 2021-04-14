@@ -1,22 +1,17 @@
 # Advanced-Programming-2 - Flight Inspection App
 
 ## Introduction
-In our project we connect to the flight gear simulator.
-
-We simulate a flight using a given flight csv files with a necessary details regarding airplane's state at any given second. 
-
-From the beginning, of airplane's taking off till the end, of its landing.
+In this project we connect to the FlightGear Simulator (fgfs) and provide it with a set of pre-recorded measurements of an airplanes instruments to simulate the original flight. We also show a veriety of the airplane's instruments such as altitude, airspeed, pitch-roll-yaw degrees, aileron, elevator and rudder in real-time on the screen.
 
 In this project we're using:
-1) **.NET Framework** to create a GUI App for FlightGear.
+1) **.NET Framework** to create a GUI Application.
 2) **MVVM** architectural pattern in a multi-threaded environment.
-3) **TCP** protocol for Client to send, receive and parse data from FlightGear.
+3) **TCP** protocol for communication with the FlightGear Simulator.
 
-The csv files used in this project include details the pilot or the autopilot are using such as:
-airplane's altitude, airspeed, pitch-roll-yaw degrees, joystick's details like aileron, elevator and rudder and so on.
+The program takes a CSV file containing the recorded flight's measurements.
 
-We created fligth's controls pack which includes: 
-1. **Joystick** that uses the ailerons, elevator and rudder to control the flight.
+We created an on-screen control unit, which includes: 
+1. **Joystick** that recreates the movement of the on-plane joystick.
 2. **Dashboard** to display the numerical data sent from the airplane.
 3. **Graph Control** to display flight's correlated features and the detected anomalies.
 4. **Graph Regression** displaying all points in comparsion with a pre-learned line regression. 
@@ -47,20 +42,20 @@ Contains the cpp files from the first semester responsible for learning and dete
 
 Explanation follows after files' description.
 
-`CorrelatedFeaturesCalc.cs` - By providing a file name, the class method finds all correlated features.
-Then returns the correlated features for a specific feature name provided and also returns the appropriate linear regression line.
+***`CorrelatedFeaturesCalc.cs`*** - By providing a file name, the class method finds all correlated features.
+Then returns the correlated features for the specific feature name provided and also returns the appropriate linear regression line.
 . 
 
-`DataFileReader.cs` - by given a file name, reader the file and connect to the client. the client and the MainViewModel listens to him by getting events. 
+***`DataFileReader.cs`*** - By providing a csv file name, reader object and the file itself and connect to the client. the client and the MainViewModel listens to him by getting events. 
 it is the main part of the project that manages almost everthing(model).
 
-`Line.cs` - represents a line by two points.
+***`Line.cs`*** - represents a line by two points.
 
-`MainViewModel.cs` - all the ViewModels, GraphControl, MainWindow listens to his according to the architecture of MVVM. listens to the DataFileReader. 
+***`MainViewModel.cs`*** - all the ViewModels, GraphControl, MainWindow listens to his according to the architecture of MVVM. listens to the DataFileReader. 
 
-`MainWindow.xaml.cs` - The main view that contains all the controls of the project and displays them.
+***`MainWindow.xaml.cs`*** - The main view that contains all the controls of the project and displays them.
 
-`playback_small.xml` - xml for the flight simulator.
+***`playback_small.xml`*** - xml for the flight simulator.
 
 ##### client
 
@@ -82,7 +77,7 @@ Contains all the Controls of the project.
 
 Explanation of the controls:
 
-`DashBoard`
+***`DashBoard`***
 
 ![DashBoard](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/controls/dashboard.png)
 
@@ -90,33 +85,33 @@ Dashboard to display the numerical data sent from the airplane. Contains view an
 
 Also has a class `KnotsToAnglesConverter` that converts from knots to angles. 
 
-`GraphControl`
+***`GraphControl`***
 
 ![GraphControl](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/controls/graphcontrol.png)
 
 Graph Control to display flight's correlated features and the detected anomalies. Contains view that listens to MainViewModel.
 
-`GraphReg`
+***`GraphReg`***
 
 ![GraphReg](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/controls/graphreg.png)
 
 Graph Regression displaying all points in comparsion with a pre-learned line regression. Contains view and viewModel. the viewModel listens to MainViewModel. implents ViewModel abstract class.
 
 
-`Joystick`
+***`Joystick`***
 
 ![Joystick](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/controls/joystik.png)
 
 Joystick that uses the ailerons, elevator and rudder to control the flight. Contains view, viewModel and model. the viewModel listens to MainViewModel. implents ViewModel abstract class.
 
 
-`VideoControl`
+***`VideoControl`***
 
 ![VideoControl](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/controls/videocontrol.png)
 
 Video Control to play the recorded flight making the simulator come to live. Contains view, viewModel and model. the viewModel listens to MainViewModel. implents ViewModel abstract class.
 
-`ViewModel.cs` 
+***`ViewModel.cs` ***
 
 abstract class for the ViewModels. containts the DataFileReader and implents INotifyPropertyChanged.
 #### UML
