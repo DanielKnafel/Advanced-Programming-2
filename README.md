@@ -5,7 +5,13 @@
 In our project we connect to flight gear simulator.
 We simulate a flight using a giving flight's csv files with necessary details regarding airplane's state
 at any given second from the beginning - of airplane's taking off, till the end - of its landing.
-Csv files include details the pilot or the autopilot are using such as:
+
+In this project we're using:
+1) .NET Framework to create a GUI App for FlightGear.
+2) MVVM architectural pattern in a multi-threaded environment.
+3) TCP protocol for Client to send, receive and parse data from FlightGear.
+
+The csv files used in this project include details the pilot or the autopilot are using such as:
 Airplane's altitude, airspeed, pitch-roll-yaw degrees, joystick's details like aileron, elevator and rudder and so on.
 
 We created fligth's controls pack which includes: 
@@ -21,7 +27,6 @@ and loaded it to our current project.
 The files we load to simulator are:
 
 1. One file is a normal and regular flight containing all necessary flight's details using this file and our dll we learn how the correct flight supposed to be.
-
 2. Second file is an abnormal flight which means a flight with anomaly, flawed flight. This time we supposed to detect the anomalies, based on what we learned before.
 
 ## Explanation of folders and main files structure
