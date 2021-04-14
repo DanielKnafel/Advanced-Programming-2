@@ -23,7 +23,7 @@ namespace Ex1.controls.GraphReg
     public partial class GraphRegView : UserControl
     {
         private const double margin = 20;
-        private double xmin = margin, xmax, ymax, ymin = 0;
+        private double xmin = margin, xmax, ymax, ymin = pointSize / 2;
         private const double step = 10;
         private GraphRegViewModel vm;
         private List<Ellipse> ellipses;
@@ -33,12 +33,16 @@ namespace Ex1.controls.GraphReg
         private GeometryGroup geometryGroup;
         private List<int> anomalies;
         private double xRange, yRange;
+        private double globalXmin;
+        private double globalYmin;
+        private double globalXmax;
+        private double globalYmax;
         public GraphRegView()
         {
             InitializeComponent();
             this.geometryGroup = new GeometryGroup();
             this.anomalies = new List<int>();
-            xmax = canGraph.Width;
+            xmax = canGraph.Width - pointSize / 2;
             ymax = canGraph.Height - margin;
             vm = new GraphRegViewModel();
             this.last30Seconds = new List<Ellipse>();
@@ -51,8 +55,6 @@ namespace Ex1.controls.GraphReg
                     {
                         if (e.PropertyName.Equals("VM_DisplayFeature"))
                         {
-                            this.xRange = vm.DisplayFeatureMaxValue - vm.DisplayFeatureMinValue;
-                            this.yRange = vm.CorrolateFeatureMaxValue - vm.CorrolateFeatureMinValue;
                             setAnomalies();
                             drawNewGraphInThread();
                         }
@@ -104,12 +106,12 @@ namespace Ex1.controls.GraphReg
             // Make the X axis.
             GeometryGroup xaxis_geom = new GeometryGroup();
             xaxis_geom.Children.Add(new LineGeometry(
-                new Point(0, ymax), new Point(xmax, ymax)));
-            for (double x = xmin + step; x <= xmax - step; x += step)
+                new Point(0, canGraph.Height - margin), new Point(canGraph.Width, canGraph.Height - margin)));
+            for (double x = xmin + step; x <= xmax + pointSize / 2 - step; x += step)
             {
                 xaxis_geom.Children.Add(new LineGeometry(
-                    new Point(x, ymax - margin / 4),
-                    new Point(x, ymax + margin / 4)));
+                    new Point(x, canGraph.Height - margin - margin / 4),
+                    new Point(x, canGraph.Height - margin + margin / 4)));
             }
 
             Path xaxis_path = new Path();
@@ -119,15 +121,15 @@ namespace Ex1.controls.GraphReg
 
             canGraph.Children.Add(xaxis_path);
 
-            // Make the Y ayis.
+            // Make the Y axis.
             GeometryGroup yaxis_geom = new GeometryGroup();
             yaxis_geom.Children.Add(new LineGeometry(
-                new Point(xmin, ymax + margin), new Point(xmin, 0)));
+                new Point(margin, canGraph.Height), new Point(margin, 0)));
             for (double y = step; y <= ymax - step; y += step)
             {
                 yaxis_geom.Children.Add(new LineGeometry(
-                    new Point(xmin - margin / 4, y),
-                    new Point(xmin + margin / 4, y)));
+                    new Point(margin - margin / 4, y),
+                    new Point(margin + margin / 4, y)));
             }
 
             Path yaxis_path = new Path();
@@ -157,23 +159,35 @@ namespace Ex1.controls.GraphReg
         
         private Point scale(Point p)
         {
-            double newX = p.X - vm.DisplayFeatureMinValue;
-            double newY = p.Y - vm.CorrolateFeatureMinValue;
+            double newX = p.X - globalXmin;
+            double newY = p.Y - globalYmin;
 
             if (xRange != 0)
-                newX *= (xmax - xmin - pointSize / 2) / xRange;
+                newX *= (xmax - xmin) / xRange;
             if (yRange != 0)
-                newY *= (ymax - ymin - pointSize / 2) / yRange;
+                newY *= (ymax - ymin) / yRange;
 
             newX += margin;
-            newY = ymax - newY - pointSize / 2;
+            newY = ymax - newY;
             return new Point(newX, newY);
         }
         private void DrawNewGraph()
-        {          
+        {
             List<float> x = vm.getValuesOfFeature(vm.VM_DisplayFeature);
             List<float> y = vm.getValuesOfFeature(vm.VM_CorrolatedFeature);
             List<Point> points = toPoints(x, y);
+
+            Line regLine = Line.linear_reg(points);
+            Point start = new Point(x.Min(), regLine.f(x.Min()));
+            Point end = new Point(x.Max(), regLine.f(x.Max()));
+
+            // calculate the min & max of x & y
+            globalXmin = vm.DisplayFeatureMinValue;
+            globalXmax = vm.DisplayFeatureMaxValue;
+            globalYmin = Math.Min(Math.Min(start.Y, end.Y), vm.CorrolateFeatureMinValue);
+            globalYmax = Math.Max(Math.Max(start.Y, end.Y), vm.CorrolateFeatureMaxValue);
+            this.xRange = globalXmax - globalXmin;
+            this.yRange = globalYmax - globalYmin;
 
             //double yZeroLocation = ymax - (ymax * (Math.Abs(vm.DisplayFeatureMinValue) / yRange)) - margin;
             //Canvas.SetTop(this.yZeroLabel, yZeroLocation);
@@ -187,8 +201,8 @@ namespace Ex1.controls.GraphReg
             {
                 Ellipse ellipse = new Ellipse();
                 Point newPoint = scale(points[i]);
-                Canvas.SetLeft(ellipse, newPoint.X);
-                Canvas.SetTop(ellipse, newPoint.Y);
+                Canvas.SetLeft(ellipse, newPoint.X - pointSize / 2);
+                Canvas.SetTop(ellipse, newPoint.Y - pointSize / 2);
                 ellipse.StrokeThickness = 1;
                 ellipse.Width = pointSize;
                 ellipse.Height = pointSize;
@@ -202,11 +216,6 @@ namespace Ex1.controls.GraphReg
                 ellipses.Add(ellipse);
                 canGraph.Children.Add(ellipse);
             }
-
-            Line regLine = Line.linear_reg(points);
-
-            Point start = new Point(x.Min(), regLine.f(x.Min()));
-            Point end = new Point(x.Max(), regLine.f(x.Max()));
 
             PointCollection pointCol = new PointCollection();
             pointCol.Add(scale(start));

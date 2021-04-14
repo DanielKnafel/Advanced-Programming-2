@@ -14,7 +14,8 @@ namespace Ex1
     {
         private DataFileReader reader;
         private CorrelatedFeaturesCalc cfc;
-        private Client client;
+        //private Client client;
+        private UDPClient client;
         private string detectFileName;
         public string LearnFileName { get; set; }
         public string DetectFileName 
@@ -42,8 +43,10 @@ namespace Ex1
             };
 
             //this.client = new Client(reader);
+            this.client = new UDPClient(reader);
             //this.client.connect("localhost", 5400);
             //this.client.connect("ibm7.chantzish.ga", 5400);
+            this.client.connect("ibm7.chantzish.ga", 5400);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
