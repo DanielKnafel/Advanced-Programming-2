@@ -129,9 +129,12 @@ Plugins to load into the project as dll. two plugins:
 
 2. Second file is an abnormal flight which means a flight with anomaly, flawed flight. This time we supposed to detect the anomalies.
 
-## preinstall for developers
+## Preinstall for developers
 
-## Installation and first run
+## Quickstart: Installations Instructions And Running
+System requirements: .NET Framework, Microsoft.SDK.Expression.Blend
+Downloading and Installing Flight Gear: https://www.flightgear.org/download/
+(depends on operating system it will run on).
 
 ## Links
 
