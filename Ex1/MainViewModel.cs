@@ -26,7 +26,7 @@ namespace Ex1
             set
             {
                 this.detectFileName = value;
-                this.reader.setCSVFile(value, 10);
+                this.reader.setCSVFile(value, Frequency);
             }
 
         }

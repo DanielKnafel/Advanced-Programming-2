@@ -178,6 +178,10 @@ namespace Ex1
         {
             List<string> names = new List<string>(featuresColumbs.Keys);
             // initialize lists with values
+            foreach (string name in names)
+            {
+                featuresDictionary[name] = new List<float>();
+            }
             for (int i = 0; i < data.Length; i++)
             {
                 string[] lineValues = data[i].Split(',');
