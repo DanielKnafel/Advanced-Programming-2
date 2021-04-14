@@ -46,8 +46,7 @@ Explanation follows after files' description.
 Then returns the correlated features for the specific feature name provided and also returns the appropriate linear regression line.
 . 
 
-***`DataFileReader.cs`*** - By providing a csv file name, reader object and the file itself and connect to the client. the client and the MainViewModel listens to him by getting events. 
-it is the main part of the project that manages almost everthing(model).
+***`DataFileReader.cs`*** - The DataFileReader object receives the CSV file to be read, and reads it line-by-line. It notifies all of its listeners about the progress, allowing them to ask it for the new information at every step.
 
 ***`Line.cs`*** - represents a line by two points.
 
