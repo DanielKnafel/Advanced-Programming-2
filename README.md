@@ -114,8 +114,6 @@ Video Control to play the recorded flight making the simulator come to live. Con
 abstract class for the ViewModels. containts the DataFileReader and implents INotifyPropertyChanged.
 #### UML
 
-![UML](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/Ex1.png)
-
 Contains images of UMLs.
 
 #### images
