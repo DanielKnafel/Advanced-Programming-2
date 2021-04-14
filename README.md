@@ -2,9 +2,9 @@
 
 ## Introduction
 
-In our project we connect to flight gear simulator.
-We simulate a flight using a giving flight's csv files with necessary details regarding airplane's state
-at any given second from the beginning - of airplane's taking off, till the end - of its landing.
+In our project we connect to the flight gear simulator.
+We simulate a flight using a given flight csv files with a necessary details regarding airplane's state
+at any given second from the beginning, of airplane's taking off till the end, of its landing.
 
 In this project we're using:
 1) .NET Framework to create a GUI App for FlightGear.
@@ -30,7 +30,7 @@ The files we load to simulator are:
 2. Second file is an abnormal flight which means a flight with anomaly, flawed flight. This time we supposed to detect the anomalies, based on what we learned before.
 
 ## Explanation of folders and main files structure
-In the master we have the following files:
+In branch master we have these files:
 
 ![folders](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/folders.png)
 
@@ -39,12 +39,12 @@ In the master we have the following files:
 
 ![AnomalyDetectionDLL](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/anommalyDetectionDLL.png)
 
-Contains the cpp files from the first semester for learning and detecting anomalies.
+Contains the cpp files from the first semester responsible for learning and detecting anomalies.
 #### Ex1
 
 ![Ex1](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/images/Ex1.png)
 
-Explanation follows files description.
+Explanation follows after files' description.
 
 `CorrelatedFeaturesCalc.cs` - By providing a file name, the class method finds all correlated features.
 Then returns the correlated features for a specific feature name provided and also returns the appropriate linear regression line.
@@ -166,9 +166,9 @@ The ViewModel also get notfications but from the model for what he listens.
 
 ![Views](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/UML/Views.png)
 
-Our views - GraphReg, Joystick, VideoControl, Dashboard and MainWindow passing commands to their view model,
-and get notified accordingly from the view model. That way bind user interface objects to view model, 
-so the connection between view and view model is bidirectional
+The **views** - GraphReg, Joystick, VideoControl, Dashboard and MainWindow passing commands to their **viewModels**,
+and get notified accordingly from the viewModel. That way we bind user interface objects to viewModel, 
+so the connection between view and viewModel is bidirectional.
 
 
 ### ViewModels
