@@ -15,8 +15,7 @@ namespace Ex1
     {
         private DataFileReader reader;
         private CorrelatedFeaturesCalc cfc;
-        //private Client client;
-        private UDPClient client;
+        private Client client;
         private string detectFileName;
         public string LearnFileName { get; set; }
         public string DetectFileName 
