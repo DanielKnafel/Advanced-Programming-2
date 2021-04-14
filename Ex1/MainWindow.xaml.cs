@@ -60,17 +60,36 @@ namespace Ex1
             if (openFileDialog.ShowDialog() == true)
             {
                 var DLL = Assembly.LoadFile(openFileDialog.FileName);
-                //var DLL = Assembly.LoadFile(@"C:\Users\Daniel\Source\Repos\DanielKnafel\Advanced-Programming-2\Debug\LinearRegression.dll");
-                var theType = DLL.GetType("AnomalyDetect.AnomalyDetector");
-                var instance = Activator.CreateInstance(theType);
-                var learnMethod = theType.GetMethod("learn");
-                var detectMethod = theType.GetMethod("detect");
+                // extract interface from dll
+                Type Itype = DLL.GetType("IAnomalyDetect.IAnomalyDetector");
+                // find a suitable implementation of interface
+                Type[] types = DLL.GetTypes();
+                Type theType = null;
+                foreach (Type type in types)
+                {
+                    if (!type.Equals(Itype) && Itype.IsAssignableFrom(type))
+                    {
+                        theType = type;
+                        break;
+                    }
+                }
+                try
+                {
+                    // use anomaly detector by invoking the interface methods
+                    var learnMethod = theType.GetMethod("learn");
+                    var detectMethod = theType.GetMethod("detect");
+                    var instance = Activator.CreateInstance(theType);
 
-                learnMethod.Invoke(instance, new object[] { vm.LearnFileName });
+                    learnMethod.Invoke(instance, new object[] { vm.LearnFileName });
 
-                Tuple<string, int>[] anomalies = (Tuple<string, int>[])detectMethod.Invoke
-                                    (instance, new object[] { vm.addFeatureNamesToCSV() });
-                vm.Anomalies = anomalies;
+                    Tuple<string, int>[] anomalies = (Tuple<string, int>[])detectMethod.Invoke
+                                        (instance, new object[] { vm.addFeatureNamesToCSV() });
+                    vm.Anomalies = anomalies;
+                }
+                catch (ArgumentNullException ex)
+                {
+                    throw new Exception("No suitable Anomaly Detector found in DLL");
+                }
                 this.VideoControl.IsEnabled = true;
                 this.FeaturesListView.IsEnabled = true;
             }

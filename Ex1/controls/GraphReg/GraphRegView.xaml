@@ -19,8 +19,6 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="xZeroLabel" Content="0" FontSize="13" Canvas.Left="22" Canvas.Top="86"/>
-        <Label x:Name="yZeroLabel" Content="0" FontSize="13" Canvas.Left="148" Canvas.Top="163"/>
     </Canvas>
 
 </UserControl>

@@ -1,8 +1,8 @@
-		public interface AnomalyDetector
+namespace IAnomalyDetect {
+	public interface class IAnomalyDetector
 	{
 	public:
-		AnomalyDetector();
-		void learn(System::String^ learnFileName);
-		cli::array<Tuple<System::String^, int>^>^ detect(System::String^ detectFileName);
-		~AnomalyDetector();
+		virtual void learn(System::String^ learnFileName);
+		virtual cli::array<Tuple<System::String^, int>^>^ detect(System::String^ detectFileName);
 	};
+}

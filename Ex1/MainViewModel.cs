@@ -43,6 +43,7 @@ namespace Ex1
 
             //this.client = new Client(reader);
             //this.client.connect("localhost", 5400);
+            //this.client.connect("ibm7.chantzish.ga", 5400);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)

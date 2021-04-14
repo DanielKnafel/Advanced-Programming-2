@@ -1,8 +1,10 @@
 using namespace System;
 
-public interface class AnomalyDetector
-{
-public:
-	void learn(System::String^ learnFileName);
-	cli::array<Tuple<System::String^, int>^>^ detect(System::String^ detectFileName);
-};
+namespace IAnomalyDetect {
+	public interface class IAnomalyDetector
+	{
+	public:
+		virtual void learn(System::String^ learnFileName);
+		virtual cli::array<Tuple<System::String^, int>^>^ detect(System::String^ detectFileName);
+	};
+}

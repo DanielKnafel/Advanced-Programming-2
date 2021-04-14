@@ -22,17 +22,22 @@ namespace Ex1.controls.GraphReg
     /// </summary>
     public partial class GraphRegView : UserControl
     {
-        Polyline l;
-        const double margin = 20;
-        double xmin = margin, xmax, ymax;
-        const double step = 10;
+        private const double margin = 20;
+        private double xmin = margin, xmax, ymax, ymin = 0;
+        private const double step = 10;
         private GraphRegViewModel vm;
         private List<Ellipse> ellipses;
         private List<Ellipse> last30Seconds;
         private Brush[] brushes = { Brushes.Orange, Brushes.Blue, Brushes.LightGray, Brushes.Red };
+        private const float pointSize = 4;
+        private GeometryGroup geometryGroup;
+        private List<int> anomalies;
+        private double xRange, yRange;
         public GraphRegView()
         {
             InitializeComponent();
+            this.geometryGroup = new GeometryGroup();
+            this.anomalies = new List<int>();
             xmax = canGraph.Width;
             ymax = canGraph.Height - margin;
             vm = new GraphRegViewModel();
@@ -46,6 +51,9 @@ namespace Ex1.controls.GraphReg
                     {
                         if (e.PropertyName.Equals("VM_DisplayFeature"))
                         {
+                            this.xRange = vm.DisplayFeatureMaxValue - vm.DisplayFeatureMinValue;
+                            this.yRange = vm.CorrolateFeatureMaxValue - vm.CorrolateFeatureMinValue;
+                            setAnomalies();
                             drawNewGraphInThread();
                         }
 
@@ -62,11 +70,14 @@ namespace Ex1.controls.GraphReg
                     }
                     else
                     {
-                        Application.Current.Dispatcher.Invoke((Action)delegate
+                        if (Application.Current != null)
                         {
-                            canGraph.Children.Clear();
-                            drawAxis();
-                        });
+                            Application.Current.Dispatcher.Invoke((Action)delegate
+                            {
+                                canGraph.Children.Clear();
+                                drawAxis();
+                            });
+                        }
                     }
                 };
             drawAxis();
@@ -78,6 +89,9 @@ namespace Ex1.controls.GraphReg
             {
                 Application.Current.Dispatcher.Invoke((Action)delegate
                 {
+                    canGraph.Children.Clear();
+                    ellipses.Clear();
+                    last30Seconds.Clear();
                     drawAxis();
                     canGraph.Children.Add(this.xAxisLabel);
                     canGraph.Children.Add(this.yAxisLabel);
@@ -128,18 +142,38 @@ namespace Ex1.controls.GraphReg
         {
             this.vm.setMainViewModel(vm);
         }
-        private void DrawNewGraph()
+        
+        private void setAnomalies()
         {
-            canGraph.Children.Clear();
-            ellipses.Clear();
-            last30Seconds.Clear();
+            string features1 = vm.VM_DisplayFeature + "-" + vm.VM_CorrolatedFeature;
+            string features2 = vm.VM_CorrolatedFeature + "-" + vm.VM_DisplayFeature;
 
-            // Display ellipses at the points.
-            const float pointSize = 4;
+            foreach (Tuple<string, int> t in vm.Anomalies)
+            {
+                if (features1.Equals(t.Item1) || features2.Equals(t.Item1))
+                    this.anomalies.Add(t.Item2);
+            }
+        }
+        
+        private Point scale(Point p)
+        {
+            double newX = p.X - vm.DisplayFeatureMinValue;
+            double newY = p.Y - vm.CorrolateFeatureMinValue;
 
-            // scaling
-            double xRange = vm.DisplayFeatureMaxValue - vm.DisplayFeatureMinValue;
-            double yRange = vm.CorrolateFeatureMaxValue - vm.CorrolateFeatureMinValue;
+            if (xRange != 0)
+                newX *= (xmax - xmin - pointSize / 2) / xRange;
+            if (yRange != 0)
+                newY *= (ymax - ymin - pointSize / 2) / yRange;
+
+            newX += margin;
+            newY = ymax - newY - pointSize / 2;
+            return new Point(newX, newY);
+        }
+        private void DrawNewGraph()
+        {          
+            List<float> x = vm.getValuesOfFeature(vm.VM_DisplayFeature);
+            List<float> y = vm.getValuesOfFeature(vm.VM_CorrolatedFeature);
+            List<Point> points = toPoints(x, y);
 
             //double yZeroLocation = ymax - (ymax * (Math.Abs(vm.DisplayFeatureMinValue) / yRange)) - margin;
             //Canvas.SetTop(this.yZeroLabel, yZeroLocation);
@@ -149,24 +183,12 @@ namespace Ex1.controls.GraphReg
             //Canvas.SetLeft(this.xZeroLabel, xZeroLocation);
             //canGraph.Children.Add(this.xZeroLabel);
 
-            List<int> anomalies = new List<int>();
-            string features1 = vm.VM_DisplayFeature + "-" + vm.VM_CorrolatedFeature;
-            string features2 = vm.VM_CorrolatedFeature + "-" + vm.VM_DisplayFeature;
-
-            foreach (Tuple<string, int> t in vm.Anomalies)
-            {
-                if (features1.Equals(t.Item1) || features2.Equals(t.Item1))
-                    anomalies.Add(t.Item2);
-            }
-
-            List<float> x = vm.getValuesOfFeature(vm.VM_DisplayFeature);
-            List<float> y = vm.getValuesOfFeature(vm.VM_CorrolatedFeature);
-            List<Point> points = toPoints(x, y);
             for (int i = 0; i < points.Count; i++)
             {
                 Ellipse ellipse = new Ellipse();
-                Canvas.SetLeft(ellipse, margin + (points[i].X / xRange) * (xmax - margin) - pointSize / 2);
-                Canvas.SetTop(ellipse, ymax - (points[i].Y / yRange) * ymax - pointSize / 2);
+                Point newPoint = scale(points[i]);
+                Canvas.SetLeft(ellipse, newPoint.X);
+                Canvas.SetTop(ellipse, newPoint.Y);
                 ellipse.StrokeThickness = 1;
                 ellipse.Width = pointSize;
                 ellipse.Height = pointSize;
@@ -183,39 +205,14 @@ namespace Ex1.controls.GraphReg
 
             Line regLine = Line.linear_reg(points);
 
-            double max = vm.DisplayFeatureMaxValue;
-            double x1 = margin + (max / xRange) * (xmax - margin);
-            double y1 = ymax - (regLine.f((float)max) / yRange) * ymax;
-            Point p1 = new Point(x1 , y1);
-
-            double min = vm.DisplayFeatureMinValue;
-            double x2 = margin + (min / xRange) * (xmax - margin);
-            double y2 = ymax - (regLine.f((float)min) / yRange) * ymax;
-            Point p2 = new Point(x2, y2);
-
-            float startX = (-1) * regLine.b / regLine.a;
-            float startY = regLine.f(startX);
-            double x3 = margin + (startX / xRange) * (xmax - margin);
-            double y3 = ymax - (startY / yRange) * ymax;
-            Point p3 = new Point(x3, y3);
-
-            double y4 = 0;
-            double endY = yRange;
-            double endX = (endY - regLine.b) / regLine.a;
-            double x4 = margin + (endX / xRange) * (xmax - margin);
-            Point p4 = new Point(x4, y4);
+            Point start = new Point(x.Min(), regLine.f(x.Min()));
+            Point end = new Point(x.Max(), regLine.f(x.Max()));
 
             PointCollection pointCol = new PointCollection();
-            Point pLeft = p2, pRight = p1;
-            if (p2.Y > ymax)
-                pLeft = p3;
-            if (p1.Y < 0)
-                pRight = p4;
+            pointCol.Add(scale(start));
+            pointCol.Add(scale(end));
 
-            pointCol.Add(pLeft);
-            pointCol.Add(pRight);
-
-            l = new Polyline();
+            Polyline l = new Polyline();
             l.Points = pointCol;
             l.StrokeThickness = 1;
             l.Stroke = brushes[1];

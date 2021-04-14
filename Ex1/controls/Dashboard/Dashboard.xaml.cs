@@ -22,19 +22,6 @@ namespace Ex1.controls.Dashboard
     {
         private DashboardViewModel vm;
 
-        // thousands of ft
-        private double altitude;
-
-        // Km in a hour
-        private double airspeed;
-
-        //degrees
-        private double pitch;
-        private double roll;
-        private double yaw;
-        private double direction;
-
-
         public Dashboard()
         {
             InitializeComponent();

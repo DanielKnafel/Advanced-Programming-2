@@ -3,10 +3,10 @@
 #ifndef HYBRIDANOMALYDETECTOR_H_
 #define HYBRIDANOMALYDETECTOR_H_
 
-#include "AnomalyDetector.h"
+#include "SimpleAnomalyDetector.h"
 #include "minCircle.h"
 
-class HybridAnomalyDetector:public TimeSeriesAnomalyDetector {
+class HybridAnomalyDetector:public SimpleAnomalyDetector {
 public:
 	HybridAnomalyDetector();
 	virtual ~HybridAnomalyDetector();
