@@ -126,7 +126,11 @@ Contains images to display in README.md file.
 
 Plugins to load into the project as DLLs and the flight csv file to be inspected.
 
-## Preinstall for developers
+## Preinstallation for Developer
+1) Visual Studio 2019
+2) .NET desktop development
+3) .NET development with C++
+4) C++/CLI support for v142 build tools
 
 ## Quickstart: Installations Instructions And Running
 System requirements: 
