@@ -21,6 +21,7 @@ We created fligth's controls pack which includes:
 3. **Graph Control** to display flight's correlated features and the detected anomalies.
 4. **Graph Regression** displaying all points in comparsion with a pre-learned line regression. 
 5. **Video Control** to play the recorded flight making the simulator come to live.
+
 We use our project from the previous semester written in C++ in order to load it to this project so that we'll use
 all the functionality for learning the anomalies at any desired flight. We wrapped this C++ code with a dll (Dynamic Link Library) 
 and loaded it to our current project.
