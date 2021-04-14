@@ -153,19 +153,40 @@ In our project we used MVVM architecture in order to make everything work.
 
 ![MVVM](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/UML/MVVM.png)
 
-
+The MVVM is divided to three parts:
+View: responsiple to display the data to the user.
+ViewModel: responsible to connect between the View and the Model.
+Model: The algoritim to commit.
+We are using Data Binding Between the View and the ViewModel, if proprety has changed, so as well it will be changed to the value that is binding to this proprety.
+The View send Commands to the ViewModel that passes those commands to the Model. View gets notfications from the ViewModel if he listens. 
+The ViewModel also get notfications but from the model for what he listens.
 
 ### Views
 
 ![Views](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/UML/Views.png)
 
+Our views - GraphReg, Joystick, VideoControl, Dashboard and MainWindow passing commands to their view model,
+and get notified accordingly from the view model. That way bind user interface objects to view model, 
+so the connection between view and view model is bidirectional
+
+
 ### ViewModels
 
 ![ViewModels](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/UML/ViewModels.png)
 
+VideoControlViewModel, DashBoardViewModel, JostickViewModel and GraphRegViewModel extends the abstract class ViewModel that Implents the InotifyPropretyChanged.
+The ViewModel contains the MainViewModel, and the mentioned ViewModels above contains it as well because they extend ViewModle.
+Each ViewModel Above listens according to the MVVM architecture to the MainViewModel. 
+The MainView Model listens to the DataFileReader(Model) also according to the MVVM architecture.
+
 ### Models
 
 ![Models](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/UML/Models.png)
+
+Each Model has it's algoritm that it works according to him.
+Client - connects to the flight gear simulator and send it's data according to the DataFileReader he's listening to by MVVM architecture.
+JoystickModel -  responsible for the Joystick algorithm.
+DataFileReader - the main algorithm of our project, manages almost everything.
 
 ### Other
 
@@ -175,6 +196,13 @@ In our project we used MVVM architecture in order to make everything work.
 
 ![MVVMDIAG](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/UML/MVVMDIAG.png)
 
+according to the Diagram above:
+GraphReg, Joystick, ViewControl and Dashboard views works with thier ViewModels.
+MainWindos, GraphControl and all the four mentioned ViewModles above works with the MainViewModel.
+Joystick also has his own Model.
+The MainViewModel works with the DataFileReader and also the client works with the DataFileReader.
+The flow of data goes from the views -> ViewModels -> MainViewModel -> DataFileReader(Model) (with commands and binding), Client -> DataFileReader(Model).
+And The other direction they get notified from DataFileReader(Model) -> MainViewModel and Client -> ViewModels -> Views.
 
 ## Video link
 
