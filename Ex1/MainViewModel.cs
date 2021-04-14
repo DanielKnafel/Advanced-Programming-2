@@ -112,6 +112,7 @@ namespace Ex1
         public int Frequency
         {
             get { return reader.Frequency; }
+            set { this.reader.Frequency = value; }
         }
         public List<string> Definitions
         {

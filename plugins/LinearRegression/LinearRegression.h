@@ -1,7 +1,6 @@
 #pragma once
 #include "timeseries.h"
 #include "SimpleAnomalyDetector.h"
-#include "IAnomalyDetector.h"
 
 using namespace System;
 

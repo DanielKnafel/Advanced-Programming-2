@@ -137,6 +137,7 @@ namespace Ex1
         public int Frequency
         {
             get { return this.frequency; }
+            set { this.frequency = value; }
         }
         public List<string> Definitions
         { 

@@ -37,7 +37,7 @@ namespace Ex1
                     string UserAnswer = Microsoft.VisualBasic.Interaction.InputBox("Please enter sample frequency in Hz ", "Frequency Required!", "10");
                     try
                     {
-                        frequency = int.Parse(UserAnswer);
+                        vm.Frequency = int.Parse(UserAnswer);
                         completed = true;
                     }
                     catch (Exception suppressed) { }
