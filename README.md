@@ -3,6 +3,9 @@
 ## Introduction
 In this project we connect to the FlightGear Simulator (fgfs) and provide it with a set of pre-recorded measurements of an airplanes instruments to simulate the original flight. We also show a veriety of the airplane's instruments such as altitude, airspeed, pitch-roll-yaw degrees, aileron, elevator and rudder in real-time on the screen.
 
+## Video link
+https://www.youtube.com/watch?v=vH_aki95r3I
+
 In this project we're using:
 1) **.NET Framework** to create a GUI Application.
 2) **MVVM** architectural pattern in a multi-threaded environment.
@@ -203,7 +206,5 @@ Explanation for the diagram attached above:
 4) The MainViewModel and the client work together with the DataFileReader.
 5) The flow of the data is happening that way: views -> ViewModels -> MainViewModel -> DataFileReader(Model) (with commands and binding), Client -> DataFileReader(Model).
 in the opposite way, they get notified from DataFileReader(Model) -> MainViewModel and Client -> ViewModels -> Views.
-
-## Video link
 
 ![Models](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/UML/Models.png)
