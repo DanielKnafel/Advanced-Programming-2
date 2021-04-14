@@ -1,14 +1,11 @@
 #pragma once
-#include "timeseries.h"
-#include "SimpleAnomalyDetector.h"
-#include "IAnomalyDetector.h"
-
+#include "HybridAnomalyDetector.h"
 using namespace System;
 
 namespace AnomalyDetect {
 	public ref class AnomalyDetector
 	{
-		SimpleAnomalyDetector* ad;
+		HybridAnomalyDetector* ad;
 	public:
 		AnomalyDetector();
 		void learn(System::String^ learnFileName);

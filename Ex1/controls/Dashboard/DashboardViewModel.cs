@@ -10,7 +10,7 @@ namespace Ex1.controls.Dashboard
 {
     public class DashboardViewModel: ViewModel
     {
-        private double VM_altitude, VM_airspeed, VM_pitch, VM_roll, VM_yaw, VM_direction;
+        private double VM_altitude, VM_airspeed, VM_pitch, VM_roll, VM_yaw, VM_heading;
 
         public DashboardViewModel()
         {
@@ -19,7 +19,7 @@ namespace Ex1.controls.Dashboard
             this.VM_Pitch = 0;
             this.VM_Roll = 0;
             this.VM_Yaw = 0;
-            this.VM_Direction = 0;
+            this.VM_Heading = 0;
         }
         public double VM_Altitude
         {
@@ -74,17 +74,17 @@ namespace Ex1.controls.Dashboard
             }
         }
 
-        public double VM_Direction
+        public double VM_Heading
         {
-            get { return this.VM_direction; }
+            get { return this.VM_heading; }
             set
             {
-                this.VM_direction = value;
-                NotifyPropertyChanged("VM_Direction");
+                this.VM_heading = value;
+                NotifyPropertyChanged("VM_Heading");
             }
         }
 
-        public void SetDataFileReader(MainViewModel vm)
+        public override void setMainViewModel(MainViewModel vm)
         {
             base.setMainViewModel(vm);
             this.vm.PropertyChanged += 
@@ -98,14 +98,13 @@ namespace Ex1.controls.Dashboard
                             this.VM_Airspeed = double.Parse(vm.getValueByName("airspeed-kt"));
                             this.VM_Pitch = double.Parse(vm.getValueByName("pitch-deg"));
                             this.VM_Roll = double.Parse(vm.getValueByName("roll-deg"));
-                            this.VM_Yaw = double.Parse(vm.getValueByName("heading-deg"));
-                            this.VM_Direction = double.Parse(vm.getValueByName("side-slip-deg"));
+                            this.VM_Yaw = double.Parse(vm.getValueByName("side-slip-deg"));
+                            this.VM_Heading = double.Parse(vm.getValueByName("heading-deg"));
                         }
                         catch (Exception suppressed) { }
                     }
                 };
         }
-
     }
 
 }

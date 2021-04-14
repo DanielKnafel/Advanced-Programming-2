@@ -20,10 +20,10 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{66539349-4F2F-4671-8C45-7DCCE83F8C5D}</ProjectGuid>
+    <ProjectGuid>{A678796D-8B77-4659-B9DD-FC6E0985FF16}</ProjectGuid>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
-    <RootNamespace>LinearRegression</RootNamespace>
+    <RootNamespace>CircleRegression</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -76,7 +76,7 @@
   <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -121,8 +121,9 @@
   <ItemGroup>
     <ClInclude Include="AnomalyDetector.h" />
     <ClInclude Include="anomaly_detection_util.h" />
-    <ClInclude Include="IAnomalyDetector.h" />
-    <ClInclude Include="LinearRegression.h" />
+    <ClInclude Include="CircleRegression.h" />
+    <ClInclude Include="HybridAnomalyDetector.h" />
+    <ClInclude Include="minCircle.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SimpleAnomalyDetector.h" />
@@ -131,7 +132,9 @@
   <ItemGroup>
     <ClCompile Include="anomaly_detection_util.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="LinearRegression.cpp" />
+    <ClCompile Include="CircleRegression.cpp" />
+    <ClCompile Include="HybridAnomalyDetector.cpp" />
+    <ClCompile Include="minCircle.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -149,9 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Windows" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

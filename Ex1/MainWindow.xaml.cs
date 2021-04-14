@@ -44,8 +44,7 @@ namespace Ex1
                 } while (!completed);
                 
                 this.vm.DetectFileName = openFileDialog.FileName;
-                vm.setCSVFile(openFileDialog.FileName, frequency);
-                //vm.setCSVFile(@"C:\Users\Daniel\Source\Repos\DanielKnafel\Advanced-Programming-2\Debug\reg_flight.csv", frequency);
+                //this.vm.DetectFileName = @"C:\Users\Daniel\Source\Repos\DanielKnafel\Advanced-Programming-2\Debug\reg_flight.csv";
             }
             this.AnomalyDetectionButton.IsEnabled = true;
         }

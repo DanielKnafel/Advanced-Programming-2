@@ -4,10 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Ex1.controls" d:DataContext="{d:DesignInstance Type=local:JoystickViewModel}"
-             mc:Ignorable="d" 
-             d:DesignHeight="150" d:DesignWidth="200" BorderThickness="5,5,5,5">
-    <Canvas  Margin="0,0,-63,-35">
-        <Slider x:Name="RudderSlider" Value="{Binding Rudder, Mode=OneWay}" HorizontalAlignment="Left" Margin="78,148,0,0" VerticalAlignment="Top" Width="100" Minimum="-1" Maximum="1" IsEnabled="False"/>
+             mc:Ignorable="d" BorderThickness="5,5,5,5" Height="184.333" Width="240.333">
+    <Canvas>
+        <Slider x:Name="RudderSlider" Value="{Binding Rudder, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Minimum="-1" Maximum="1" IsEnabled="False" Canvas.Left="75" Canvas.Top="155"/>
         <Slider x:Name="ThrottleSlider" Value="{Binding Throttle, Mode=OneWay}" HorizontalAlignment="Left" Margin="-14,82,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="100" Minimum="0" Maximum="1" IsEnabled="False">
             <Slider.RenderTransform>
                 <TransformGroup>
@@ -36,7 +35,16 @@
                 </Ellipse.OpacityMask>
             </Ellipse>
         </Canvas>
-        <Label x:Name="ThrottleLabel" Content="Throttle" FontSize="15" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="RudderLabel" Content="Rudder" FontSize="15" HorizontalAlignment="Left" Margin="178,142,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="ThrottleLabel" Content="Throttle" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Canvas.Left="-17" Canvas.Top="72">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label x:Name="RudderLabel" Content="Rudder" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="175" Canvas.Top="149"/>
     </Canvas>
 </UserControl>

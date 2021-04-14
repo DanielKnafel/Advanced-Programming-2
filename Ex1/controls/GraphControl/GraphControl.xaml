@@ -6,8 +6,5 @@
              xmlns:local="clr-namespace:Ex1.controls"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="300">
-    <Canvas Name="canGraph" Background="White"
-                Width="300" Height="200"
-                VerticalAlignment="Center" HorizontalAlignment="Center">
-    </Canvas>
+    <Canvas Name="canGraph" Background="White" Width="300" Height="200" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 </UserControl>

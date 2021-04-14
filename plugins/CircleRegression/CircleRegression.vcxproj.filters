@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LinearRegression.h">
+    <ClInclude Include="CircleRegression.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
@@ -30,18 +30,21 @@
     <ClInclude Include="AnomalyDetector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HybridAnomalyDetector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="minCircle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="SimpleAnomalyDetector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="timeseries.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IAnomalyDetector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LinearRegression.cpp">
+    <ClCompile Include="CircleRegression.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -51,6 +54,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="anomaly_detection_util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HybridAnomalyDetector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minCircle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SimpleAnomalyDetector.cpp">

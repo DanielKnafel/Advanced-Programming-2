@@ -20,7 +20,7 @@
         <StackPanel Grid.Column="0">
             <Viewbox>
                 <Grid>
-                    <Ellipse HorizontalAlignment="Center" Height="380" StrokeThickness="10" VerticalAlignment="Top" Width="380" Margin="20.003,-2.224,0.003,0">
+                    <Ellipse HorizontalAlignment="Center" Height="380" StrokeThickness="10" VerticalAlignment="Top" Width="380" Margin="20,0,0,0">
                         <Ellipse.Stroke>
                             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                                 <GradientStop Color="#FF4F4F4F"/>
@@ -34,41 +34,45 @@
                             </RadialGradientBrush>
                         </Ellipse.Fill>
                     </Ellipse>
-                    <TextBlock HorizontalAlignment="Left" Height="33.838" Margin="201.944,35.139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="19.556" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="N"/></TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Height="33.838" Margin="201.944,299.795,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="19.556" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="S"/></TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Height="33.838" Margin="328.334,173.027,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35.066" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="W"/></TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Height="33.838" Margin="68.126,164.131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30.836" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="E"/></TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Height="31.077" Margin="277.862,55.633,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="21.148" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="3"/></TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Height="31.077" Margin="326.79,106.785,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="21.148" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="6"/></TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Height="34.383" Margin="303.458,242.289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="48.928" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="12"/></TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Height="34.383" Margin="256.754,286.769,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="48.928" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="15"/></TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Height="34.383" Margin="121.09,280.097,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="48.928" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="21"/></TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Height="34.383" Margin="81.058,228.945,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="48.928" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="24"/></TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Height="34.383" Margin="85.506,91.057,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="48.928" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="30"/></TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Height="34.383" Margin="136.658,46.577,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="48.928" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="33"/></TextBlock>
-                    <Line x:Name="line" X1="210" Y1="80" X2="210" Y2="220" RenderTransform="{Binding VM_Direction}" StrokeThickness="10">
+                    <TextBlock HorizontalAlignment="Left" Height="34" Margin="200,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="28" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="N"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Height="34" Margin="200,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="19" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="S"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Height="34" Margin="333,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="W"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Height="34" Margin="66,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="E"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Height="31" Margin="284,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="21" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="3"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Height="31" Margin="327,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="21" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="6"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Height="35" Margin="319,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="49" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="12"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Height="34" Margin="269,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="49" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="15"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Height="34" Margin="117,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="49" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="21"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Height="35" Margin="76,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="49" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="24"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Height="34" Margin="77,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="48" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="30"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Height="35" Margin="121,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="49" FontSize="30"><Run FontWeight="Bold" FlowDirection="RightToLeft" Text="33"/></TextBlock>
+
+                    <Line x:Name="line" X1="210" Y1="90" X2="210" Y2="290" StrokeThickness="8" Height="380" Width="400">
+                        <Line.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform CenterX="210" CenterY="190" Angle="{Binding VM_Heading}"/>
+                            </TransformGroup>
+                        </Line.RenderTransform>
                         <Line.Stroke>
-                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <LinearGradientBrush>
                                 <GradientStop Color="Red" Offset="0.404"/>
                                 <GradientStop Color="White" Offset="1"/>
                             </LinearGradientBrush>
                         </Line.Stroke>
                     </Line>
-                    <ed:Arc HorizontalAlignment="Left" StartAngle="0"  EndAngle="360" StrokeDashArray="13.8" Height="351.104" Margin="36.202,14.448,0,0" StrokeThickness="10" VerticalAlignment="Top" Width="349.356" Stroke="Red" RenderTransformOrigin="0.5,0.5">
+                    <ed:Arc HorizontalAlignment="Left" StartAngle="0" EndAngle="360" StrokeDashArray="13.8" Height="351.104" Margin="36.202,14.448,0,0" StrokeThickness="10" VerticalAlignment="Top" Width="349.356" Stroke="Red" RenderTransformOrigin="0.5,0.5">
                         <ed:Arc.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
                                 <SkewTransform/>
-                                <RotateTransform Angle="-28.222"/>
+                                <RotateTransform Angle="-24.911"/>
                                 <TranslateTransform/>
                             </TransformGroup>
                         </ed:Arc.RenderTransform>
                     </ed:Arc>
-                    <ed:Arc StartAngle="0" EndAngle="360" Stretch="None" StrokeThickness="20"      
-                StrokeDashArray=".2" Stroke="#FF717171" Margin="30,10,0,8" HorizontalAlignment="Left" Width="363"/>
+                    <ed:Arc StartAngle="0" EndAngle="360" Stretch="None" StrokeThickness="20" StrokeDashArray=".2" Stroke="#FF717171" Margin="30,10,0,8" HorizontalAlignment="Left" Width="363"/>
                 </Grid>
             </Viewbox>
-
             <Viewbox>
                 <Grid>
                     <Ellipse HorizontalAlignment="Center" Height="380" StrokeThickness="10" VerticalAlignment="Top" Width="380">
@@ -184,28 +188,38 @@
                             </LinearGradientBrush>
                         </Ellipse.Fill>
                     </Ellipse>
-                    <ed:LineArrow HorizontalAlignment="Left" Height="131" Margin="187,108,0,0" StrokeThickness="15"  StartArrow="OvalArrow"  VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
-                        <ed:LineArrow.Stroke>
-                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                <GradientStop Color="#FF434344" Offset="0.219"/>
-                                <GradientStop Color="#FF131E9D" Offset="0.801"/>
-                            </LinearGradientBrush>
-                        </ed:LineArrow.Stroke>
-                        <ed:LineArrow.RenderTransform>
+                    <Viewbox HorizontalAlignment="Left" Height="131" Margin="187,108,0,0"  VerticalAlignment="Top" Width="9" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+                        <Viewbox.RenderTransform>
                             <TransformGroup>
-                                <ScaleTransform ScaleX="-1"/>
+                                <ScaleTransform/>
                                 <SkewTransform/>
-                                <RotateTransform Angle="-180"/>
+                                <RotateTransform Angle="{Binding VM_Yaw}"/>
                                 <TranslateTransform/>
                             </TransformGroup>
-                        </ed:LineArrow.RenderTransform>
-                        <ed:LineArrow.Fill>
-                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                <GradientStop Color="#FF131E9D" Offset="0.946"/>
-                                <GradientStop Color="#FF9BBCFF" Offset="0.65"/>
-                            </LinearGradientBrush>
-                        </ed:LineArrow.Fill>
-                    </ed:LineArrow>
+                        </Viewbox.RenderTransform>
+                        <ed:LineArrow StrokeThickness="15"  StartArrow="OvalArrow" RenderTransformOrigin="0.5,0.5" Height="131" Width="9">
+                            <ed:LineArrow.Stroke>
+                                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF434344" Offset="0.219"/>
+                                    <GradientStop Color="#FF131E9D" Offset="0.801"/>
+                                </LinearGradientBrush>
+                            </ed:LineArrow.Stroke>
+                            <ed:LineArrow.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="-1"/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-180"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </ed:LineArrow.RenderTransform>
+                            <ed:LineArrow.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF131E9D" Offset="0.946"/>
+                                    <GradientStop Color="#FF9BBCFF" Offset="0.65"/>
+                                </LinearGradientBrush>
+                            </ed:LineArrow.Fill>
+                        </ed:LineArrow>
+                    </Viewbox>
                     <TextBlock HorizontalAlignment="Center" Height="34" Margin="219,148,50,0" TextWrapping="Wrap" Text="RIGHT YAW" VerticalAlignment="Top" Width="111" FontSize="20" FontWeight="Bold"/>
                     <TextBlock HorizontalAlignment="Center"  Height="34" Margin="67,148,210,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" FontSize="20" FontWeight="Bold" Text="LEFT YAW"/>
                 </Grid>
@@ -227,32 +241,50 @@
                         </RadialGradientBrush>
                     </Ellipse.Fill>
                 </Ellipse>
-                <Ellipse Canvas.Left="50" Canvas.Top="50" RenderTransform="{Binding VM_Pitch}" Stroke="Black" StrokeThickness="1" Margin="30,18.5,30,19.897">
-                    <Ellipse.Fill>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#FF3333EA" Offset="0.5" />
-                            <GradientStop Color="#FFA35924" Offset="0.5" />
-                        </LinearGradientBrush>
-                    </Ellipse.Fill>
-                </Ellipse>
-                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,194.833,0,0" Stretch="Fill" Stroke="#FF824141" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
-                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="178.334,206.833,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="50.832"/>
-                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="178.334,173.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="50.832"/>
-                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,224.833,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
-                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,154.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
-                <TextBlock HorizontalAlignment="Left" Height="27.334" Margin="123,212.833,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="30.167" FontSize="20" Foreground="White"/>
-                <TextBlock HorizontalAlignment="Left" Height="27.334" Margin="124.5,142.333,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="30.167" FontSize="20" Foreground="White"/>
-                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="178.334,242.833,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="50.832"/>
-                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="178.334,134.833,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="50.832"/>
-                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,115.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
-                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,259.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
-                <TextBlock HorizontalAlignment="Left" Height="27.334" Margin="123,247.333,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="30.167" FontSize="20" Foreground="White"/>
-                <TextBlock HorizontalAlignment="Left" Height="27.334" Margin="123,101.833,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="30.167" FontSize="20" Foreground="White"/>
-                <ed:Arc StartAngle="0" EndAngle="1" Stretch="None" StrokeThickness="20"      
-            StrokeDashArray=".25" Stroke="#FF717171" Margin="30,18.5,30,39.5" Width="340" Height="342"/>
-                <Polygon Points="10,0 20,20, 0,20" Stroke="#FFA35924" StrokeThickness="5" Fill="#FF3333EA" Margin="191.666,25.5,183.334,350.5" />
-                <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,115.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
+                <Viewbox Margin="30,18.5,30,19.897" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+                    <Viewbox.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="{Binding VM_Pitch}"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Viewbox.RenderTransform>
+                    <Ellipse Stroke="Black" StrokeThickness="1" Height="362" Width="340">
+                        <Ellipse.Fill>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#FF3333EA" Offset="0.5" />
+                                <GradientStop Color="#FFA35924" Offset="0.5" />
+                            </LinearGradientBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Viewbox>
                 <ed:LineArrow StartArrow="OpenArrow"  StrokeDashArray="14" HorizontalAlignment="Left" Height="5" Margin="94.834,195.167,0,0" Stroke="#FFEBF835" StrokeThickness="5" VerticalAlignment="Top" Width="209.999"/>
+                <Canvas RenderTransformOrigin="0.5,0.5">
+                    <Canvas.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="{Binding VM_Roll}"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Canvas.RenderTransform>
+                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,194.833,0,0" Stretch="Fill" Stroke="#FF824141" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
+                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="178.334,206.833,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="50.832"/>
+                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="178.334,173.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="50.832"/>
+                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,224.833,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
+                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,154.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
+                    <TextBlock HorizontalAlignment="Left" Height="27.334" Margin="123,212.833,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="30.167" FontSize="20" Foreground="White"/>
+                    <TextBlock HorizontalAlignment="Left" Height="27.334" Margin="124.5,142.333,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="30.167" FontSize="20" Foreground="White"/>
+                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="178.334,242.833,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="50.832"/>
+                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="178.334,134.833,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="50.832"/>
+                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,115.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
+                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,259.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
+                    <TextBlock HorizontalAlignment="Left" Height="27.334" Margin="123,247.333,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="30.167" FontSize="20" Foreground="White"/>
+                    <TextBlock HorizontalAlignment="Left" Height="27.334" Margin="123,101.833,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="30.167" FontSize="20" Foreground="White"/>
+                    <Polygon Points="10,0 20,20, 0,20" Stroke="#FFA35924" StrokeThickness="5" Fill="#FF3333EA" Margin="191.666,25.5,183.334,350.5" />
+                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="5" Margin="145.667,115.333,0,0" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="115.166"/>
+                </Canvas>
             </Grid>
         </Viewbox>
     </Grid>

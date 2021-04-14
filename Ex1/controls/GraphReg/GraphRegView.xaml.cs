@@ -29,7 +29,7 @@ namespace Ex1.controls.GraphReg
         private GraphRegViewModel vm;
         private List<Ellipse> ellipses;
         private List<Ellipse> last30Seconds;
-        private Brush[] brushes = { Brushes.Green, Brushes.Blue, Brushes.Gray, Brushes.Red };
+        private Brush[] brushes = { Brushes.Orange, Brushes.Blue, Brushes.LightGray, Brushes.Red };
         public GraphRegView()
         {
             InitializeComponent();
@@ -46,15 +46,18 @@ namespace Ex1.controls.GraphReg
                     {
                         if (e.PropertyName.Equals("VM_DisplayFeature"))
                         {
-                            runDrawNewGraphInThread();
+                            drawNewGraphInThread();
                         }
 
                         else if (e.PropertyName.Equals("VM_LineNumber"))
                         {
-                            Application.Current.Dispatcher.Invoke((Action)delegate
+                            if (Application.Current != null)
                             {
-                                drawLast30Seconds();
-                            });
+                                Application.Current.Dispatcher.Invoke((Action)delegate
+                                {
+                                    drawLast30Seconds();
+                                });
+                            }
                         }
                     }
                     else
@@ -69,17 +72,19 @@ namespace Ex1.controls.GraphReg
             drawAxis();
         }
 
-        private void runDrawNewGraphInThread()
+        private void drawNewGraphInThread()
         {
             new Thread(() =>
             {
                 Application.Current.Dispatcher.Invoke((Action)delegate
                 {
+                    drawAxis();
+                    canGraph.Children.Add(this.xAxisLabel);
+                    canGraph.Children.Add(this.yAxisLabel);
                     DrawNewGraph();
                 });
             }).Start();
         }
-
         private void drawAxis()
         {
             // Make the X axis.
@@ -128,12 +133,9 @@ namespace Ex1.controls.GraphReg
             canGraph.Children.Clear();
             ellipses.Clear();
             last30Seconds.Clear();
-            drawAxis();
-            canGraph.Children.Add(this.xAxisLabel);
-            canGraph.Children.Add(this.yAxisLabel);
 
             // Display ellipses at the points.
-            const float pointSize = 3;
+            const float pointSize = 4;
 
             // scaling
             double xRange = vm.DisplayFeatureMaxValue - vm.DisplayFeatureMinValue;
@@ -146,8 +148,6 @@ namespace Ex1.controls.GraphReg
             //double xZeroLocation = xmax * (Math.Abs(vm.CorrolateFeatureMinValue) / xRange) + margin;
             //Canvas.SetLeft(this.xZeroLabel, xZeroLocation);
             //canGraph.Children.Add(this.xZeroLabel);
-
-
 
             List<int> anomalies = new List<int>();
             string features1 = vm.VM_DisplayFeature + "-" + vm.VM_CorrolatedFeature;

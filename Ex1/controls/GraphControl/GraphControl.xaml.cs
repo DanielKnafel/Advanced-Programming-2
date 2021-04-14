@@ -24,7 +24,7 @@ namespace Ex1.controls
 
         public static readonly DependencyProperty Minimum_xProperty =
             DependencyProperty.Register("Minimum_x",
-                typeof(double), typeof(GraphControl), new UIPropertyMetadata(0.0, new PropertyChangedCallback(redrawHelper)));
+                typeof(double), typeof(GraphControl), new UIPropertyMetadata(0.0, null));
 
         public double Minimum_x
         {
@@ -40,7 +40,7 @@ namespace Ex1.controls
 
         public static readonly DependencyProperty Minimum_yProperty =
             DependencyProperty.Register("Minimum_y",
-                typeof(double), typeof(GraphControl), new UIPropertyMetadata(0.0, new PropertyChangedCallback(redrawHelper)));
+                typeof(double), typeof(GraphControl), new UIPropertyMetadata(0.0, null));
 
         public double Minimum_y
         {
@@ -56,7 +56,7 @@ namespace Ex1.controls
 
         public static readonly DependencyProperty Maximum_xProperty =
             DependencyProperty.Register("Maximum_x",
-                typeof(double), typeof(GraphControl), new UIPropertyMetadata(300.0, new PropertyChangedCallback(redrawHelper)));
+                typeof(double), typeof(GraphControl), new UIPropertyMetadata(300.0, null));
 
         public double Maximum_x
         {
@@ -72,7 +72,7 @@ namespace Ex1.controls
 
         public static readonly DependencyProperty Maximum_yProperty =
             DependencyProperty.Register("Maximum_y",
-                typeof(double), typeof(GraphControl), new UIPropertyMetadata(200.0, new PropertyChangedCallback(redrawHelper)));
+                typeof(double), typeof(GraphControl), new UIPropertyMetadata(200.0, null));
 
         public double Maximum_y
         {
@@ -115,20 +115,17 @@ namespace Ex1.controls
         }
         void helper(DependencyPropertyChangedEventArgs e)
         {
-            if (((ObservableCollection<Point>)e.NewValue) == null)
-                addGraph(new PointCollection());
-            else
-                addGraph(new PointCollection(scaleall((ObservableCollection<Point>)e.NewValue)));
+            addGraph(new PointCollection(scaleall((ObservableCollection<Point>)e.NewValue)));
         }
 
         public GraphControl()
         {
             InitializeComponent();
-            addGraph(new PointCollection(scaleall(Points)));
         }
 
         void addGraph(PointCollection p)
         {
+            canGraph.Children.Clear();
             drawGraphAxes();
             Polyline polyline = new Polyline();
             polyline.StrokeThickness = 2;
@@ -184,7 +181,6 @@ namespace Ex1.controls
             canGraph.Children.Add(yaxis_path);
 
         }
-
         private Point scale(Point tp)
         {
             Point p = new Point(tp.X, tp.Y);
