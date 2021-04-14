@@ -1,7 +1,6 @@
 # Advanced-Programming-2 - Flight Inspection App
 
 ## Introduction
-
 In our project we connect to the flight gear simulator.
 We simulate a flight using a given flight csv files with a necessary details regarding airplane's state
 at any given second from the beginning, of airplane's taking off till the end, of its landing.
