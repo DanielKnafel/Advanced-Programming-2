@@ -2,8 +2,10 @@
 
 ## Introduction
 In our project we connect to the flight gear simulator.
-We simulate a flight using a given flight csv files with a necessary details regarding airplane's state
-at any given second from the beginning, of airplane's taking off till the end, of its landing.
+
+We simulate a flight using a given flight csv files with a necessary details regarding airplane's state at any given second. 
+
+From the beginning, of airplane's taking off till the end, of its landing.
 
 In this project we're using:
 1) **.NET Framework** to create a GUI App for FlightGear.
