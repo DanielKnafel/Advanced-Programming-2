@@ -22,7 +22,7 @@ The files we load to simulator are:
 
 1. One file is a normal and regular flight containing all necessary flight's details using this file and our dll we learn how the correct flight supposed to be.
 
-2. Second file is an abnormal flight which means a flight with anomaly, flawed flight. This time we supposed to detect the anomalies.
+2. Second file is an abnormal flight which means a flight with anomaly, flawed flight. This time we supposed to detect the anomalies, based on what we learned before.
 
 ## Explanation of folders and main files structure
 In the master we have the following files:
