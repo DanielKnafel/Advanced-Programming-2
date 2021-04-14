@@ -24,8 +24,8 @@ all the functionality for learning the anomalies at any desired flight. We wrapp
 and loaded it to our current project.
 
 The files we load to simulator are:
-1. One file is a normal and regular flight containing all necessary flight's details. We're using this file and with our DLL we learn how the correct flight supposed to be.
-2. Second file is an abnormal flight which means a flight with anomaly, flawed flight. This time we supposed to detect the anomalies, based on what we learned before.
+1. One file is a **normal** and regular flight containing all necessary flight's details. We're using this file and with our DLL we learn how the correct flight supposed to be.
+2. Second file is an **abnormal** flight which means a flight with anomaly, flawed flight. This time we supposed to detect the anomalies, based on what we learned before.
 
 ## Explanation of folders and main files structure
 In branch master we have these files:
