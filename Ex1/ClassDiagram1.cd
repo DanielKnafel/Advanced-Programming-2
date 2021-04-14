@@ -8,7 +8,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Ex1.Client">
-    <Position X="8.75" Y="17.25" Width="1.5" />
+    <Position X="0.5" Y="17.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAABAAUAAA=</HashCode>
       <FileName>Client\Client.cs</FileName>
@@ -22,7 +22,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Ex1.DataFileReader" BaseTypeListCollapsed="true">
-    <Position X="4.5" Y="17.5" Width="2" />
+    <Position X="5" Y="17.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAEgAAAhAAAAgIgAAIIIAQEBiIBgBACBAAEQAAEBAAg=</HashCode>
       <FileName>DataFileReader.cs</FileName>
@@ -30,7 +30,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Ex1.Line">
-    <Position X="7" Y="17.25" Width="1.5" />
+    <Position X="8.5" Y="17.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAICBAAAAAAAAAAAAAQAAAAAAAAAwAQAAAAAAAAA=</HashCode>
       <FileName>Line.cs</FileName>
@@ -55,7 +55,7 @@
   <Class Name="Ex1.controls.Dashboard.Dashboard" BaseTypeListCollapsed="true">
     <Position X="7.75" Y="11.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAgIAAAAAAAAAAgAIAABEAAAAAAAgAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>controls\Dashboard\Dashboard.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -92,7 +92,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Ex1.controls.JoystickModel" BaseTypeListCollapsed="true">
-    <Position X="2" Y="17.5" Width="2" />
+    <Position X="2.5" Y="17.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAEAAAACAAAAIIAAAAGAAAggAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>controls\Joystick\JoystickModel.cs</FileName>
@@ -132,7 +132,7 @@
   <Class Name="Ex1.controls.GraphReg.GraphRegView" BaseTypeListCollapsed="true">
     <Position X="3" Y="11.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>IAAIAAAAAAAgAABAQAAAAAAAAQAgAAQABAAAQgQAFAE=</HashCode>
+      <HashCode>IAAIDAAAAEAgAABAQAgAIAACAQAgAAQAAAAAQkQAFAE=</HashCode>
       <FileName>controls\GraphReg\GraphRegView.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
