@@ -7,6 +7,7 @@ using System.IO;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Windows.Media;
 
 namespace Ex1
 {

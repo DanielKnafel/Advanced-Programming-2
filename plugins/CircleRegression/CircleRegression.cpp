@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "CircleRegression.h"
+using namespace System::Windows;
 
-#define CORRELATION_THRESHOLD 0.9
+#define CORRELATION_THRESHOLD 0.5
 
 AnomalyDetect::AnomalyDetector::AnomalyDetector() {
 	this->ad = new HybridAnomalyDetector();

@@ -26,7 +26,12 @@
             <Controls:Joystick x:Name="Joystick" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Viewbox>
         <Controls:videoControlView  x:Name="VideoControl" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.RowSpan="2"/>
-        <Button x:Name="UploadCSVButton" Content="Choose CSV" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Click="UploadCSVButton_Click" Grid.Row="2" Grid.Column="3" Height="50" Margin="27,59,289,4"/>
+        <Button x:Name="UploadCSVButton" HorizontalAlignment="Center" 
+                VerticalAlignment="Center" Width="75" Click="UploadCSVButton_Click" 
+                Grid.Row="2" Grid.Column="3" Height="50" Margin="27,59,289,4">
+            <TextBlock TextWrapping="Wrap" Height="50" Width="75">Choose CSV</TextBlock>
+        </Button>
+        
         <Button x:Name="AnomalyDetectionButton" Width="75" Height="50" HorizontalAlignment="Left" Margin="146,63,0,0" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Click="AnomalyDetectionButton_Click" IsEnabled="False">
             <TextBlock TextWrapping="Wrap" Height="50" Width="75">Choose Detection DLL</TextBlock>
         </Button>

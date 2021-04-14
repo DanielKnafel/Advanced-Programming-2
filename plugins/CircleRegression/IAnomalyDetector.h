@@ -1,5 +1,5 @@
 using namespace System;
-
+using namespace System::Windows::Media;
 namespace IAnomalyDetect {
 	public interface class IAnomalyDetector
 	{

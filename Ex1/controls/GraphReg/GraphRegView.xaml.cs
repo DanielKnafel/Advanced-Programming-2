@@ -189,13 +189,6 @@ namespace Ex1.controls.GraphReg
             this.xRange = globalXmax - globalXmin;
             this.yRange = globalYmax - globalYmin;
 
-            //double yZeroLocation = ymax - (ymax * (Math.Abs(vm.DisplayFeatureMinValue) / yRange)) - margin;
-            //Canvas.SetTop(this.yZeroLabel, yZeroLocation);
-            //canGraph.Children.Add(this.yZeroLabel);
-
-            //double xZeroLocation = xmax * (Math.Abs(vm.CorrolateFeatureMinValue) / xRange) + margin;
-            //Canvas.SetLeft(this.xZeroLabel, xZeroLocation);
-            //canGraph.Children.Add(this.xZeroLabel);
 
             for (int i = 0; i < points.Count; i++)
             {

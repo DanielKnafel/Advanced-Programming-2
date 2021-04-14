@@ -76,7 +76,7 @@
   <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -123,6 +123,7 @@
     <ClInclude Include="anomaly_detection_util.h" />
     <ClInclude Include="CircleRegression.h" />
     <ClInclude Include="HybridAnomalyDetector.h" />
+    <ClInclude Include="IAnomalyDetector.h" />
     <ClInclude Include="minCircle.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
@@ -151,9 +152,15 @@
     <Image Include="app.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,8 +2,8 @@
 #include "timeseries.h"
 #include "SimpleAnomalyDetector.h"
 #include "IAnomalyDetector.h"
-
-
+using namespace System;
+using namespace System::Windows::Media;
 namespace AnomalyDetect {
 	public ref class AnomalyDetector : public IAnomalyDetect::IAnomalyDetector
 	{
