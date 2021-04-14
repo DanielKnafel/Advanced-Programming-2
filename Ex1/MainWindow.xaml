@@ -23,20 +23,19 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Viewbox Grid.Row="1" Grid.Column="3">
-            <Controls:Joystick x:Name="Joystick" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Controls:Joystick x:Name="Joystick" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"/>
         </Viewbox>
-        <Controls:videoControlView  x:Name="VideoControl" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.RowSpan="2"/>
-        <Button x:Name="UploadCSVButton" HorizontalAlignment="Center" 
-                VerticalAlignment="Center" Width="75" Click="UploadCSVButton_Click" 
-                Grid.Row="2" Grid.Column="3" Height="50" Margin="27,59,289,4">
-            <TextBlock TextWrapping="Wrap" Height="50" Width="75">Choose CSV</TextBlock>
+        <Controls:videoControlView  x:Name="VideoControl" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.RowSpan="2" IsEnabled="False"/>
+        <Button x:Name="UploadCSVButton" Content="Choose CSV" HorizontalAlignment="Center" 
+                VerticalAlignment="Center" Width="79" Click="UploadCSVButton_Click" 
+                Grid.Row="2" Grid.Column="3" Height="50" Margin="22,59,281,4">
         </Button>
-        
+
         <Button x:Name="AnomalyDetectionButton" Width="75" Height="50" HorizontalAlignment="Left" Margin="146,63,0,0" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Click="AnomalyDetectionButton_Click" IsEnabled="False">
             <TextBlock TextWrapping="Wrap" Height="50" Width="75">Choose Detection DLL</TextBlock>
         </Button>
-        <GraphReg:GraphRegView x:Name="GraphReg" VerticalAlignment="Center" Grid.Row="0" Grid.Column="3" Height="200" Width="300"/>
-        <ListView x:Name="FeaturesListView" Height="400" Width="200" VerticalAlignment="Center" SelectionChanged="FeaturesListView_SelectionChanged" ItemsSource="{Binding Definitions}" Grid.RowSpan="2" Grid.Column="0">
+        <GraphReg:GraphRegView x:Name="GraphReg" VerticalAlignment="Center" Grid.Row="0" Grid.Column="3" Height="200" Width="300" IsEnabled="False"/>
+        <ListView x:Name="FeaturesListView" Height="400" Width="200" VerticalAlignment="Center" SelectionChanged="FeaturesListView_SelectionChanged" ItemsSource="{Binding Definitions}" Grid.RowSpan="2" Grid.Column="0" IsEnabled="False">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Features"/>
@@ -45,14 +44,14 @@
         </ListView>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="1" Grid.ColumnSpan="1" Grid.Column="1" Height="240" Width="300">
             <TextBlock Text="{Binding DisplayFeature, UpdateSourceTrigger=PropertyChanged}"/>
-            <Controls:GraphControl Height="200" Width="300" x:Name="DisplayFeatureGraphControl" Minimum_x="0" Maximum_x="{Binding Size}" Minimum_y="{Binding DisplayFeatureMinValue}" Maximum_y="{Binding DisplayFeatureMaxValue}" Points="{Binding ValuesOfDisplayFeature}" />
+            <Controls:GraphControl Height="200" Width="300" x:Name="DisplayFeatureGraphControl" Minimum_x="0" Maximum_x="{Binding Size}" Minimum_y="{Binding DisplayFeatureMinValue}" Maximum_y="{Binding DisplayFeatureMaxValue}" Points="{Binding ValuesOfDisplayFeature}" IsEnabled="False" />
         </StackPanel>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="1" Grid.ColumnSpan="1" Grid.Column="2" Height="240" Width="300">
             <TextBlock Text="{Binding CorrolateFeature, UpdateSourceTrigger=PropertyChanged}"/>
-            <Controls:GraphControl Height="200" Width="300" x:Name="CorrelatedFeatureGraphControl" Minimum_x="0" Maximum_x="{Binding Size}" Minimum_y="{Binding CorrolateFeatureMinValue}" Maximum_y="{Binding CorrolateFeatureMaxValue}" Points="{Binding ValuesOfCorrelateFeature}" />
+            <Controls:GraphControl Height="200" Width="300" x:Name="CorrelatedFeatureGraphControl" Minimum_x="0" Maximum_x="{Binding Size}" Minimum_y="{Binding CorrolateFeatureMinValue}" Maximum_y="{Binding CorrolateFeatureMaxValue}" Points="{Binding ValuesOfCorrelateFeature}" IsEnabled="False" />
         </StackPanel>
         <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
-            <Dashboard:Dashboard x:Name="Dashboard"/>
+            <Dashboard:Dashboard x:Name="Dashboard" IsEnabled="False"/>
         </Viewbox>
     </Grid>
 </Window>
