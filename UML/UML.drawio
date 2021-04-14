@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-04-14T13:50:45.743Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36" etag="Xzl8o4MYcLVz0HGOi-1c" version="14.6.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-04-14T15:00:19.860Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36" etag="67gsArJ92PZX4B-Ps6rE" version="14.6.0" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -384,6 +384,31 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="LMAW1DUZcX1mLdOMo50G-150" value="Notifications (Events)" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="LMAW1DUZcX1mLdOMo50G-149">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LMAW1DUZcX1mLdOMo50G-151" value="Client (Model)" style="html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="820" y="170" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="LMAW1DUZcX1mLdOMo50G-152" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;fillColor=#f5f5f5;strokeColor=#666666;exitX=1;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="LMAW1DUZcX1mLdOMo50G-151">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="910" y="230" as="sourcePoint" />
+            <mxPoint x="1090" y="290" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LMAW1DUZcX1mLdOMo50G-153" value="commands" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="LMAW1DUZcX1mLdOMo50G-152">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LMAW1DUZcX1mLdOMo50G-154" value="" style="endArrow=classic;html=1;entryX=0.438;entryY=1.02;entryDx=0;entryDy=0;fillColor=#f5f5f5;dashed=1;strokeColor=#FF3333;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" target="LMAW1DUZcX1mLdOMo50G-151">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="290" as="sourcePoint" />
+            <mxPoint x="840" y="217.5" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="940" y="253" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LMAW1DUZcX1mLdOMo50G-155" value="Notifications (Events)" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="LMAW1DUZcX1mLdOMo50G-154">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
