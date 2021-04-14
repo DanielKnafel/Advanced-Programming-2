@@ -1,7 +1,7 @@
 # Advanced-Programming-2 - Flight Inspection App
 
 ## Introduction
- ![Models](https://github.com/DanielKnafel/Advanced-Programming-2/tree/master/UML/Models.png)
+![Models](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/UML/Models.png)
 
 ## Explanation of folders and main files structure
 
