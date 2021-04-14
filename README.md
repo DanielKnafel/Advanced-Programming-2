@@ -135,7 +135,9 @@ Plugins to load into the project as dll. two plugins:
 System requirements: 
 1) .NET Framework
 2) Microsoft.SDK.Expression.Blend
-Downloading and Installing Flight Gear: https://www.flightgear.org/download/
+
+Downloading and Installing Flight Gear: 
+https://www.flightgear.org/download/
 (depends on operating system it will run on).
 
 ## Links
