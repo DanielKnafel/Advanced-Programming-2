@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Ex1.App" Collapsed="true">
+    <Position X="14.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex1.Client">
+    <Position X="8.75" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAABAAUAAA=</HashCode>
+      <FileName>Client\Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex1.CorrelatedFeaturesCalc">
+    <Position X="10.5" Y="17.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACCAAAAAAAAAAAAAAQABAAAAAAAAAAAA=</HashCode>
+      <FileName>CorrelatedFeaturesCalc.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex1.DataFileReader" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="17.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAEgAAAhAAAAgIgAAIIIAQEBiIBgBACBAAEQAAEBAAg=</HashCode>
+      <FileName>DataFileReader.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Ex1.Line">
+    <Position X="7" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAICBAAAAAAAAAAAAAQAAAAAAAAAwAQAAAAAAAAA=</HashCode>
+      <FileName>Line.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex1.MainViewModel" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="1.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAApEAAAiIgAgIoIAQMJgIBARCQBACAEBAERAAA=</HashCode>
+      <FileName>MainViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Ex1.MainWindow" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="11.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAIAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Ex1.controls.Dashboard.Dashboard" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="11.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAgIAAAAAAAAAAgAIAABEAAAAAAAgAAAAA=</HashCode>
+      <FileName>controls\Dashboard\Dashboard.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Ex1.controls.Dashboard.DashboardViewModel">
+    <Position X="3" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAgAAAAIAAAAAARAAAAEQEAAAABAAIAAgAiAAA=</HashCode>
+      <FileName>controls\Dashboard\DashboardViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex1.controls.Dashboard.KnotsToAnglesConverter" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="17.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>controls\Dashboard\KnotsToAnglesConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Ex1.controls.GraphControl" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="11.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAQAQAgABABAEBgEACAQAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>controls\GraphControl\GraphControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Ex1.controls.Joystick" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="11.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>controls\Joystick\Joystick.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Ex1.controls.JoystickModel" BaseTypeListCollapsed="true">
+    <Position X="2" Y="17.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAACAAAAIIAAAAGAAAggAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>controls\Joystick\JoystickModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Ex1.controls.JoystickViewModel">
+    <Position X="5.25" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAggAAAIBAAAAAQAAAAAAAAAEAAAwhAIAMA=</HashCode>
+      <FileName>controls\Joystick\JoystickViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex1.controls.videoControlView" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="11.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAgAAAEEAIABAAAAAAAgAIAAAQAAlAAAJA=</HashCode>
+      <FileName>controls\VideoControl\videoControlView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Ex1.controls.videoControlViewModel">
+    <Position X="0.75" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAAQQSCAAAEAAAAAAAAQCkAEAAIAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>controls\VideoControl\videoControlViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex1.controls.ViewModel" Collapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAIAAAAAAAAAAgAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>controls\ViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Ex1.controls.GraphReg.GraphRegView" BaseTypeListCollapsed="true">
+    <Position X="3" Y="11.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IAAIAAAAAAAgAABAQAAAAAAAAQAgAAQABAAAQgQAFAE=</HashCode>
+      <FileName>controls\GraphReg\GraphRegView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Ex1.controls.GraphReg.GraphRegViewModel">
+    <Position X="7.25" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAgAgAAAgIAAIIAIAAACAAACAAAgAAACA=</HashCode>
+      <FileName>controls\GraphReg\GraphRegViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex1.Properties.Resources" Collapsed="true">
+    <Position X="14.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex1.Properties.Settings" Collapsed="true">
+    <Position X="14.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Ex1.CorrelatedFeatures">
+    <Position X="12.75" Y="17.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAgAAAAA=</HashCode>
+      <FileName>CorrelatedFeaturesCalc.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
