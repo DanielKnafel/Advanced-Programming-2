@@ -59,7 +59,7 @@ namespace Ex1.controls.Dashboard
             get { return this.VM_roll; }
             set
             {
-                this.VM_roll = value;
+                this.VM_roll = 360 - value;
                 NotifyPropertyChanged("VM_Roll");
             }
         }

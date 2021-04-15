@@ -293,7 +293,67 @@
                         </LinearGradientBrush>
                     </Ellipse.Stroke>
                 </Ellipse>
-                <Polygon Points="10,0 20,20, 0,20" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="#FFA35924" StrokeThickness="5" Fill="#FF3333EA" Margin="203,27,210,327"/>
+                <Canvas RenderTransformOrigin="0.5,0.5">
+                    <Canvas.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="{Binding VM_Roll}"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Canvas.RenderTransform>
+                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="6.167" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="24.988" Canvas.Left="100.108" Canvas.Top="36.692" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="60"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="6.167" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="24.988" Canvas.Left="27.608" Canvas.Top="114.756" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="30"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="6.167" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="24.988" Canvas.Left="294.733" Canvas.Top="36.425" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="123.926"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path Data="M170.66667,191 L232.83301,190.5" HorizontalAlignment="Left" Height="6.167" Stretch="Fill" Stroke="White" StrokeThickness="5" VerticalAlignment="Top" Width="24.988" Canvas.Left="366.667" Canvas.Top="111.833" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-23.295"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Polygon Points="10,0 20,20, 0,20" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Canvas.Left="204" Canvas.Top="3" RenderTransformOrigin="0.5,0.5" Height="20" Width="20">
+                        <Polygon.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="180"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Polygon.RenderTransform>
+                    </Polygon>
+                </Canvas>
+                <Polygon Points="10,0 20,20, 0,20" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="#FFA35924" StrokeThickness="5" Fill="#FF3333EA" Margin="204,29,212,348"/>
                 <ed:LineArrow StartArrow="OpenArrow"  StrokeDashArray="14" HorizontalAlignment="Left" Height="5" Margin="109,197.5,0,0" Stroke="#FFEBF835" StrokeThickness="5" VerticalAlignment="Top" Width="210"/>
             </Grid>
         </Viewbox>
