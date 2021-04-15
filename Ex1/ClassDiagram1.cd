@@ -157,7 +157,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Ex1.UDPClient" Collapsed="true">
-    <Position X="5.5" Y="7.5" Width="1.5" />
+    <Position X="15.25" Y="11.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAABAAUAAA=</HashCode>
       <FileName>Client\UDPClient.cs</FileName>
