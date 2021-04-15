@@ -52,7 +52,7 @@ namespace Ex1.controls
         public string VM_Time
         {
             get
-            {
+            { //cast seconds to display time in string.
                 int seconds = (int)VM_CurrentTime;
                 int h = seconds / 3600;
                 seconds = seconds - h * 3600;
@@ -84,8 +84,8 @@ namespace Ex1.controls
         public override void setMainViewModel(MainViewModel vm)
         {
             base.setMainViewModel(vm);
-            this.VM_VideoLength = vm.Size / vm.Frequency;
-            this.vm.PropertyChanged +=
+            this.VM_VideoLength = vm.Size / vm.Frequency; //calculate video length.
+            this.vm.PropertyChanged += //listen to MainViewModel.
                delegate (Object sender, PropertyChangedEventArgs e)
                {
                    if (e.PropertyName.Equals("LineNumber"))
