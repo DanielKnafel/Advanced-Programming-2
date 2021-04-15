@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Ex1.App" Collapsed="true">
-    <Position X="14.5" Y="8.25" Width="1.5" />
+    <Position X="16" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>App.xaml.cs</FileName>
@@ -37,7 +37,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Ex1.MainViewModel" BaseTypeListCollapsed="true">
-    <Position X="9.75" Y="1.75" Width="2.75" />
+    <Position X="12.25" Y="1.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AIAAAAApEAAAiIgAgIoIAQMJgIBARCQBACAEBAERAAA=</HashCode>
       <FileName>MainViewModel.cs</FileName>
@@ -78,7 +78,7 @@
   <Class Name="Ex1.controls.GraphControl" BaseTypeListCollapsed="true">
     <Position X="0.75" Y="11.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAgAAAQAQAgABABAEBgEACAQAAAAAACAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAgAAAQAQggAhAAAEBgEECASAAAAQACAAAAgAAAAA=</HashCode>
       <FileName>controls\GraphControl\GraphControl.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -132,7 +132,7 @@
   <Class Name="Ex1.controls.GraphReg.GraphRegView" BaseTypeListCollapsed="true">
     <Position X="3" Y="11.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>IAAIDAAAAEAgAABAQAgAIAACAQAgAAQAAAAAQkQAFAE=</HashCode>
+      <HashCode>IAAIBAAAAAAgAAJAwEABIEACEQAgAIQAAAAAQkQAFAE=</HashCode>
       <FileName>controls\GraphReg\GraphRegView.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -140,20 +140,34 @@
   <Class Name="Ex1.controls.GraphReg.GraphRegViewModel">
     <Position X="7.25" Y="1.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAgAgAAAgIAAIIAIAAACAAACAAAgAAACA=</HashCode>
+      <HashCode>AQAAAAAIAAAAgAgAAAgIAAIAAIAAACAAACAAAgAAACA=</HashCode>
       <FileName>controls\GraphReg\GraphRegViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ex1.Properties.Resources" Collapsed="true">
-    <Position X="14.5" Y="7.5" Width="1.5" />
+    <Position X="16" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="Ex1.Properties.Settings" Collapsed="true">
-    <Position X="14.5" Y="6.75" Width="1.5" />
+    <Position X="16" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex1.UDPClient" Collapsed="true">
+    <Position X="5.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAABAAUAAA=</HashCode>
+      <FileName>Client\UDPClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex1.controls.GraphControlViewModel">
+    <Position X="9.75" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>controls\GraphControl\GraphControlViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="Ex1.CorrelatedFeatures">
