@@ -152,7 +152,6 @@ namespace Ex1.controls
         {
             Point p1 = this.timeLinePos[0];
             p1.X = margin + ((double)this.vm.LineNumber / (double)this.Points.Count) * (this.canGraph.Width - margin);
-            Trace.WriteLine(p1.X);
             this.timeLinePos[0] = p1;
 
             Point p2 = this.timeLinePos[1];
