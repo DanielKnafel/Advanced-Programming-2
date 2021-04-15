@@ -4,8 +4,8 @@
 In this project we connect to the FlightGear Simulator (fgfs) and provide it with a set of pre-recorded measurements of an airplanes instruments to simulate the original flight. We also show a veriety of the airplane's instruments such as altitude, airspeed, pitch-roll-yaw degrees, aileron, elevator and rudder in real-time on the screen.
 
 ***Special features***
-There's additional features in the project:
 
+There's additional features in the project:
 1) When we click on points on the graph the playback jumps to this specific episode and starts to play from this moment.
 2) There's a red vertical line moving on graphs showing the location of current points in accordance with the playing playback.
 
