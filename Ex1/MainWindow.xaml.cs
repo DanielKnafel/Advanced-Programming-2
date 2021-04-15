@@ -58,6 +58,7 @@ namespace Ex1
         private void AnomalyDetectionButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "DLL Files (*.dll)|*.dll";
             if (openFileDialog.ShowDialog() == true)
             {
                 var DLL = Assembly.LoadFile(openFileDialog.FileName);
@@ -91,6 +92,7 @@ namespace Ex1
                 {
                     throw new Exception("No suitable Anomaly Detector found in DLL");
                 }
+                // enable controls
                 this.VideoControl.IsEnabled = true;
                 this.FeaturesListView.IsEnabled = true;
                 this.GraphReg.IsEnabled = true;
