@@ -1,7 +1,7 @@
 # Advanced-Programming-2 - Flight Inspection App
 
 ## Introduction
-In this project we connect to the FlightGear Simulator (fgfs) and provide it with a set of pre-recorded measurements of an airplanes instruments to simulate the original flight. We also show a veriety of the airplane's instruments such as altitude, airspeed, pitch-roll-yaw degrees, aileron, elevator and rudder in real-time on the screen.
+In this project we connect to the FlightGear Simulator (fgfs) and provide it with a set of pre-recorded measurements of an airplanes instruments to simulate the original flight. We also show a variety of the airplane's instruments such as altitude, airspeed, pitch-roll-yaw degrees, aileron, elevator and rudder in real-time on the screen.
 
 ***Special features***
 
@@ -26,7 +26,7 @@ We created an on-screen control unit, which includes:
 4. **Graph Regression** displaying each two correlative features along with their linear regression line (and other shapes). 
 5. **Video Control** to control the recorded flight - play, pause, fast-forward or backward and change playing speed, making the simulator come to live.
 
-The app takes a user-specified anomaly detection algorithm. We supplied 2 in the plugin folder - linear and circular based, written in C++. We wrapped this C++ code with a dll (Dynamic Link Library) and loaded it to our current project. Any developer could add a new anomaly detection algorithm of his own, by implementing the provided interface - IAnomalyDetector.
+The app takes a user-specified anomaly detection algorithm. We supplied 2 in the plugin folder - linear and circular based, written in C++. We wrapped this C++ code with a dll (Dynamic Link Library) and loaded it to our current project. Any developer can add a new anomaly detection algorithm of his own, by implementing the provided interface - IAnomalyDetector.
 
 The files we load to simulator are:
 1. An XML file to define which of the plane's instrument each column in the CSV represents.
