@@ -26,7 +26,7 @@ namespace Ex1.controls.GraphReg
         public List<int> CurrentAnomalies
         { 
             get
-            {
+            { //return all anomalies of current feature.
                 List<int> currentAnomalies = new List<int>();
                 string features1 = VM_DisplayFeature + "-" + VM_CorrolatedFeature;
                 string features2 = VM_CorrolatedFeature + "-" + VM_DisplayFeature;
@@ -48,7 +48,7 @@ namespace Ex1.controls.GraphReg
         public override void setMainViewModel(MainViewModel vm)
         {
             base.setMainViewModel(vm);
-            this.vm.PropertyChanged +=
+            this.vm.PropertyChanged += //listen to MainViewModel.
                delegate (Object sender, PropertyChangedEventArgs e)
                {
                    if (e.PropertyName.Equals("DisplayFeature"))
@@ -65,7 +65,7 @@ namespace Ex1.controls.GraphReg
         public List<Point> getPoints()
         {
             List<Point> list = new List<Point>();
-            if (VM_CorrolatedFeature != null)
+            if (VM_CorrolatedFeature != null) //get all points of feature.
             {
                 List<float> val1 = vm.getValuesOfFeature(VM_CorrolatedFeature);
                 List<float> val2 = vm.getValuesOfFeature(VM_DisplayFeature);
