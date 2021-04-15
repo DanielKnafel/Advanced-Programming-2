@@ -21,6 +21,8 @@ namespace Ex1.controls.Dashboard
             this.VM_Yaw = 0;
             this.VM_Heading = 0;
         }
+
+        //view model of altitude
         public double VM_Altitude
         {
             get { return this.VM_altitude; }
@@ -34,6 +36,7 @@ namespace Ex1.controls.Dashboard
             }
         }
 
+        //view model of airspeed
         public double VM_Airspeed
         {
             get { return this.VM_airspeed; }
@@ -44,6 +47,7 @@ namespace Ex1.controls.Dashboard
             }
         }
 
+        //view model of pitch (deg)
         public double VM_Pitch
         {
             get { return this.VM_pitch; }
@@ -54,6 +58,7 @@ namespace Ex1.controls.Dashboard
             }
         }
 
+        //view model of roll (deg)
         public double VM_Roll
         {
             get { return this.VM_roll; }
@@ -64,6 +69,7 @@ namespace Ex1.controls.Dashboard
             }
         }
 
+        //view model of yaw (deg)
         public double VM_Yaw
         {
             get { return this.VM_yaw; }
@@ -74,6 +80,7 @@ namespace Ex1.controls.Dashboard
             }
         }
 
+        //view model of heading direction
         public double VM_Heading
         {
             get { return this.VM_heading; }
