@@ -195,10 +195,14 @@ DataFileReader - the main algorithm of our project, manages almost everything.
 
 ![Other](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/UML/Other.png)
 Other
+
 ***CorrelatedFeatureCalc***- class with methods that calculate the correlated features in the specific flight, this features will be displayed in appropriate graphs.
+
 ***KnotsToAnglesConverter***- in order to display the speed in knots on radial gauge control we had to scale it with  appropriate calculations.
+
 ***Line***- class that defines a line for line-regression graph. The correlated features will be represented as axis x and axis y.
 The scattered data points will be displayed around linear regression line
+
 ***CorrelatedFeatures***- class of CorreleatedFeatures consists of any two chosen correlated features and their linear regression line
 
 ### MVVM in our project
