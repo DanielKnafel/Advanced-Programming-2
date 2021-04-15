@@ -23,7 +23,28 @@ namespace Ex1.controls.GraphReg
 
         public GraphRegViewModel() { }
 
-        public Tuple<string, int>[] Anomalies { get; set; }
+        public List<int> CurrentAnomalies
+        { 
+            get
+            {
+                List<int> currentAnomalies = new List<int>();
+                string features1 = VM_DisplayFeature + "-" + VM_CorrolatedFeature;
+                string features2 = VM_CorrolatedFeature + "-" + VM_DisplayFeature;
+
+                foreach (Tuple<string, int> t in vm.Anomalies)
+                {
+                    if (features1.Equals(t.Item1) || features2.Equals(t.Item1))
+                        currentAnomalies.Add(t.Item2);
+                }
+                return currentAnomalies;
+            }
+        }
+
+        public int LineNumber
+        {
+            get { return vm.LineNumber; }
+            set { vm.LineNumber = value; }
+        }
         public override void setMainViewModel(MainViewModel vm)
         {
             base.setMainViewModel(vm);
@@ -33,11 +54,6 @@ namespace Ex1.controls.GraphReg
                    if (e.PropertyName.Equals("DisplayFeature"))
                    {
                        NotifyPropertyChanged("VM_CorrolatedFeature");
-                   }
-                   else if (e.PropertyName.Equals("Anomalies"))
-                   {
-                       this.Anomalies = vm.Anomalies;
-
                    }
                    NotifyPropertyChanged("VM_" + e.PropertyName);
                };
@@ -79,6 +95,5 @@ namespace Ex1.controls.GraphReg
         }
         public int Size { get { return vm.Size; } }
         public int Frequency { get { return vm.Frequency; } }
-        public int LineNumber { get { return vm.LineNumber; } }
     }
 }

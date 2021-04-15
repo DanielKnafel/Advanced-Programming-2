@@ -23,15 +23,20 @@ namespace Ex1.controls.GraphReg
     public partial class GraphRegView : UserControl
     {
         private const double margin = 20;
+        // effective screen size
         private double xmin = margin, xmax, ymax, ymin = pointSize / 2;
+        // used for axis drawing
         private const double step = 10;
         private GraphRegViewModel vm;
+        // all points on graph
         private List<Ellipse> ellipses;
+        // 30*frequency last points
         private List<Ellipse> last30Seconds;
+        // anomalous points
+        private List<Ellipse> anomalousPoints;
         private Brush[] brushes = { Brushes.Orange, Brushes.Blue, Brushes.LightGray, Brushes.Red };
         private const float pointSize = 4;
-        private GeometryGroup geometryGroup;
-        private List<int> anomalies;
+        // Scaling factors
         private double xRange, yRange;
         private double globalXmin;
         private double globalYmin;
@@ -40,25 +45,24 @@ namespace Ex1.controls.GraphReg
         public GraphRegView()
         {
             InitializeComponent();
-            this.geometryGroup = new GeometryGroup();
-            this.anomalies = new List<int>();
-            xmax = canGraph.Width - pointSize / 2;
-            ymax = canGraph.Height - margin;
-            vm = new GraphRegViewModel();
-            this.last30Seconds = new List<Ellipse>();
+            this.xmax = this.canGraph.Width - pointSize / 2;
+            this.ymax = this.canGraph.Height - margin;
+            this.vm = new GraphRegViewModel();
             this.ellipses = new List<Ellipse>();
+            this.last30Seconds = new List<Ellipse>();
+            this.anomalousPoints = new List<Ellipse>();
             this.DataContext = vm;
             this.vm.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
                 {                       
                     if (vm.VM_CorrolatedFeature != null)
                     {
+                        // if the display feature has chnaged, draw its graph
                         if (e.PropertyName.Equals("VM_DisplayFeature"))
                         {
-                            setAnomalies();
                             drawNewGraphInThread();
                         }
-
+                        // update last 30 seconds points for every new line read
                         else if (e.PropertyName.Equals("VM_LineNumber"))
                         {
                             if (Application.Current != null)
@@ -85,22 +89,6 @@ namespace Ex1.controls.GraphReg
             drawAxis();
         }
 
-        private void drawNewGraphInThread()
-        {
-            new Thread(() =>
-            {
-                Application.Current.Dispatcher.Invoke((Action)delegate
-                {
-                    canGraph.Children.Clear();
-                    ellipses.Clear();
-                    last30Seconds.Clear();
-                    drawAxis();
-                    canGraph.Children.Add(this.xAxisLabel);
-                    canGraph.Children.Add(this.yAxisLabel);
-                    DrawNewGraph();
-                });
-            }).Start();
-        }
         private void drawAxis()
         {
             // Make the X axis.
@@ -144,19 +132,7 @@ namespace Ex1.controls.GraphReg
         {
             this.vm.setMainViewModel(vm);
         }
-        
-        private void setAnomalies()
-        {
-            string features1 = vm.VM_DisplayFeature + "-" + vm.VM_CorrolatedFeature;
-            string features2 = vm.VM_CorrolatedFeature + "-" + vm.VM_DisplayFeature;
-
-            foreach (Tuple<string, int> t in vm.Anomalies)
-            {
-                if (features1.Equals(t.Item1) || features2.Equals(t.Item1))
-                    this.anomalies.Add(t.Item2);
-            }
-        }
-        
+        // fit all points on screen
         private Point scale(Point p)
         {
             double newX = p.X - globalXmin;
@@ -171,8 +147,27 @@ namespace Ex1.controls.GraphReg
             newY = ymax - newY;
             return new Point(newX, newY);
         }
+        private void drawNewGraphInThread()
+        {
+            new Thread(() =>
+            {
+                Application.Current.Dispatcher.Invoke((Action)delegate
+                {
+                    // clear previous graph
+                    canGraph.Children.Clear();
+                    ellipses.Clear();
+                    last30Seconds.Clear();
+                    // draw new graph
+                    drawAxis();
+                    canGraph.Children.Add(this.xAxisLabel);
+                    canGraph.Children.Add(this.yAxisLabel);
+                    DrawNewGraph();
+                });
+            }).Start();
+        }
         private void DrawNewGraph()
         {
+            // combine the display feature and its correlative one into (x,y) points
             List<float> x = vm.getValuesOfFeature(vm.VM_DisplayFeature);
             List<float> y = vm.getValuesOfFeature(vm.VM_CorrolatedFeature);
             List<Point> points = toPoints(x, y);
@@ -186,6 +181,7 @@ namespace Ex1.controls.GraphReg
             globalXmax = vm.DisplayFeatureMaxValue;
             globalYmin = Math.Min(Math.Min(start.Y, end.Y), vm.CorrolateFeatureMinValue);
             globalYmax = Math.Max(Math.Max(start.Y, end.Y), vm.CorrolateFeatureMaxValue);
+            // the entire range of all the points in the graph
             this.xRange = globalXmax - globalXmin;
             this.yRange = globalYmax - globalYmin;
 
@@ -199,13 +195,17 @@ namespace Ex1.controls.GraphReg
                 ellipse.StrokeThickness = 1;
                 ellipse.Width = pointSize;
                 ellipse.Height = pointSize;
-                ellipse.Fill = brushes[2];
-                ellipse.Stroke = brushes[2];
-                if (anomalies.Contains(i+1))
+                // check if point is anomalous
+                if (vm.CurrentAnomalies.Contains(i+1))
                 {
-                    ellipse.Fill = brushes[3];
-                    ellipse.Stroke = brushes[3];
+                    this.anomalousPoints.Add(ellipse);
+                    paintEllipse(ellipse, brushes[3]);
                 }
+                else
+                {
+                    paintEllipse(ellipse, brushes[2]);
+                }
+                addMouseEvents(ellipse);
                 ellipses.Add(ellipse);
                 canGraph.Children.Add(ellipse);
             }
@@ -220,6 +220,26 @@ namespace Ex1.controls.GraphReg
             l.Stroke = brushes[1];
             canGraph.Children.Add(l);
         }
+        private void addMouseEvents(Ellipse ellipse)
+        {
+            // change cursor
+            ellipse.MouseEnter +=
+                delegate (Object sender, MouseEventArgs e)
+                {
+                    Mouse.OverrideCursor = Cursors.Hand;
+                };
+            ellipse.MouseLeave +=
+                delegate (Object sender, MouseEventArgs e)
+                {
+                    Mouse.OverrideCursor = Cursors.Arrow;
+                };
+            // jump to any point of the video by clicking on its point on the graph
+            ellipse.MouseUp +=
+                delegate (Object sender, MouseButtonEventArgs e)
+                {
+                    vm.LineNumber = this.ellipses.IndexOf((Ellipse)sender) + 1;
+                };
+        }
         private List<Point> toPoints(List<float> x, List<float> y)
         {
             List<Point> list = new List<Point>();
@@ -229,19 +249,32 @@ namespace Ex1.controls.GraphReg
             }
             return list;
         }
+        private void paintEllipse(Ellipse ellipse, Brush brush)
+        {
+            ellipse.Fill = brush;
+            ellipse.Stroke = brush;
+        }
         private void drawLast30Seconds()
         {
             if (last30Seconds.Count > 30 * vm.Frequency)
             {
                 // change old point's color
-                last30Seconds[0].Fill = brushes[2];
-                last30Seconds[0].Stroke = brushes[2];
+                Ellipse toRemove = last30Seconds[0];
+                if (this.anomalousPoints.Contains(toRemove))
+                {
+                    paintEllipse(toRemove, brushes[3]);
+                }
+                else
+                {
+                    paintEllipse(toRemove, brushes[2]);
+                }
+                // remove oldest point from list
                 last30Seconds.RemoveAt(0);
             }
             // add new point with color
-            ellipses[vm.LineNumber].Fill = brushes[0];
-            ellipses[vm.LineNumber].Stroke = brushes[0];
-            last30Seconds.Add(ellipses[vm.LineNumber]);
+            Ellipse toAdd = ellipses[vm.LineNumber];
+            paintEllipse(toAdd, brushes[0]);
+            last30Seconds.Add(toAdd);
         }
     }
 }

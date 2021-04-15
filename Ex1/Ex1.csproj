@@ -116,6 +116,7 @@
     <Compile Include="controls\GraphControl\GraphControl.xaml.cs">
       <DependentUpon>GraphControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="controls\GraphControl\GraphControlViewModel.cs" />
     <Compile Include="controls\GraphReg\GraphRegView.xaml.cs">
       <DependentUpon>GraphRegView.xaml</DependentUpon>
     </Compile>

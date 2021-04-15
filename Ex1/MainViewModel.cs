@@ -42,8 +42,8 @@ namespace Ex1
                 NotifyPropertyChanged(e.PropertyName);
             };
 
-            this.client = new Client(reader);
-            this.client.connect("localhost", 5400);
+            //this.client = new Client(reader);
+            //this.client.connect("localhost", 5400);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)

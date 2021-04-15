@@ -23,16 +23,18 @@ namespace Ex1
             VideoControl.setMainViewModel(vm);
             GraphReg.setMainViewModel(vm);
             Dashboard.setMainViewModel(vm);
+            DisplayFeatureGraphControl.setMainViewModel(vm);
+            CorrelateFeatureGraphControl.setMainViewModel(vm);
             this.DataContext = vm;
         }
 
         private void UploadCSVButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "CSV Files (*.csv)|*.csv";
             if (openFileDialog.ShowDialog() == true)
             {
                 bool completed = false;
-                int frequency = 1;
                 do
                 {
                     string UserAnswer = Microsoft.VisualBasic.Interaction.InputBox("Please enter sample frequency in Hz ", "Frequency Required!", "10");
@@ -43,9 +45,7 @@ namespace Ex1
                     }
                     catch (Exception suppressed) { }
                 } while (!completed);
-                
                 this.vm.DetectFileName = openFileDialog.FileName;
-                //this.vm.DetectFileName = @"C:\Users\Daniel\Source\Repos\DanielKnafel\Advanced-Programming-2\Debug\reg_flight.csv";
             }
             this.AnomalyDetectionButton.IsEnabled = true;
         }
@@ -93,6 +93,7 @@ namespace Ex1
                 }
                 this.VideoControl.IsEnabled = true;
                 this.FeaturesListView.IsEnabled = true;
+                this.GraphReg.IsEnabled = true;
             }
         }
     }
