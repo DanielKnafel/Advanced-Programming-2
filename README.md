@@ -177,7 +177,7 @@ so the connection between view and viewModel is bidirectional.
 
 ![ViewModels](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/UML/ViewModels.png)
 
-VideoControlViewModel, DashBoardViewModel, JostickViewModel and GraphRegViewModel extends the abstract class ViewModel that Implents the InotifyPropretyChanged.
+VideoControlViewModel, DashBoardViewModel, JostickViewModel, GraphControlViewModel and GraphRegViewModel extends the abstract class ViewModel that Implents the InotifyPropretyChanged.
 The ViewModel contains the MainViewModel, and the mentioned ViewModels above contains it as well because they extend ViewModle.
 Each ViewModel Above listens according to the MVVM architecture to the MainViewModel. 
 The MainView Model listens to the DataFileReader(Model) also according to the MVVM architecture.
